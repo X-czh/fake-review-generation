@@ -13,7 +13,7 @@ class Discriminator(nn.Module):
     def __init__(self, num_classes, vocab_size, embedding_dim, filter_sizes, num_filters, dropout_prob):
         super(Discriminator, self).__init__()
         self.embed = nn.Embedding(vocab_size, embedding_dim)
-        self.conv = nn.ModuleList([
+        self.convs = nn.ModuleList([
             nn.Conv2d(1, num_f, (f_size, embedding_dim)) for f_size, num_f in zip(filter_sizes, num_filters)
         ])
         self.highway = nn.Linear(sum(num_filters), sum(num_filters))
@@ -30,7 +30,7 @@ class Discriminator(nn.Module):
         """
         emb = self.embed(x).unsqueeze(1) # batch_size, 1 * seq_len * emb_dim
         convs = [F.relu(conv(emb)).squeeze(3) for conv in self.convs] # [batch_size * num_filter * seq_len]
-        pools = [F.max_pool1d(conv, conv.size(2)).squeeze(2) for conv in self.convs] # [batch_size * num_filter]
+        pools = [F.max_pool1d(conv, conv.size(2)).squeeze(2) for conv in convs] # [batch_size * num_filter]
         out = torch.cat(pools, 1)  # batch_size * sum(num_filters)
         highway = self.highway(out)
         transform = F.sigmoid(highway)
