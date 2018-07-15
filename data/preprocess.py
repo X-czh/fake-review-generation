@@ -49,6 +49,12 @@ if __name__ == '__main__':
     combo.replace({r'([a-z0-9])([,:;.!?"()])': r'\1 \2'}, regex=True, inplace=True)
     combo.replace({r'([,:;.!?"()])([a-z0-9])': r'\1 \2'}, regex=True, inplace=True)
 
+    # remove reviews with more than 60 words (including punctuations)
+    combo = combo[combo['text'].apply(lambda x: len(x.split(' ')) <= 60)]
+
+    # Drop rows with at least one NaN value
+    combo.dropna(inplace=True)
+
     # Save to CSV
     save_file = combo.head(200000)
     save_file.to_csv('restaurant_review.csv', sep='\t', encoding='utf-8')
