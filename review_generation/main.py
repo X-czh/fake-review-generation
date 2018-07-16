@@ -16,16 +16,16 @@ from loss import PGLoss
 
 
 # Arguemnts
-parser = argparse.ArgumentParser(description='SeqGAN')
+parser = argparse.ArgumentParser(description='Review Generation')
 parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
-parser.add_argument('--data_path', type=str, default='/scratch/zc807/seq_gan/', metavar='PATH',
-                    help='data path to save files (default: /scratch/zc807/seq_gan/)')
-parser.add_argument('--rounds', type=int, default=0, metavar='N',
+parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
+                    help='data path to save files (default: /scratch/zc807/review_generation/)')
+parser.add_argument('--rounds', type=int, default=200, metavar='N',
                     help='rounds of adversarial training (default: 200)')
-parser.add_argument('--g_pretrain_steps', type=int, default=1, metavar='N',
+parser.add_argument('--g_pretrain_steps', type=int, default=120, metavar='N',
                     help='steps of pre-training of generators (default: 120)')
-parser.add_argument('--d_pretrain_steps', type=int, default=0, metavar='N',
+parser.add_argument('--d_pretrain_steps', type=int, default=50, metavar='N',
                     help='steps of pre-training of discriminators (default: 50)')
 parser.add_argument('--g_steps', type=int, default=1, metavar='N',
                     help='steps of generator updates in one round of adverarial training (default: 1)')
@@ -43,7 +43,7 @@ parser.add_argument('--vocab_size', type=int, default=10000, metavar='N',
                     help='vocabulary size (default: 10000)')
 parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='batch size (default: 64)')
-parser.add_argument('--n_samples', type=int, default=100, metavar='N',
+parser.add_argument('--n_samples', type=int, default=10000, metavar='N',
                     help='number of samples gerenated per time (default: 10000)')
 parser.add_argument('--gen_lr', type=float, default=1e-3, metavar='LR',
                     help='learning rate of generator optimizer (default: 1e-3)')
@@ -63,14 +63,14 @@ NEGATIVE_FILE = 'gene.csv'
 
 
 # Genrator Parameters
-g_embed_dim = 64
-g_hidden_dim = 64
+g_embed_dim = 300
+g_hidden_dim = 300
 g_seq_len = 60
 
 
 # Discriminator Parameters
 d_num_class = 2
-d_embed_dim = 64
+d_embed_dim = 300
 d_filter_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20]
 d_num_filters = [100, 200, 200, 200, 200, 100, 100, 100, 100, 100, 160, 160]
 d_dropout_prob = 0.75
@@ -86,14 +86,14 @@ def generate_samples(model, batch_size, generated_num, output_file):
     df.to_csv(output_file, sep='\t', encoding='utf-8')
 
 
-def train_generator_MLE(gen, data_iter, criterion, optimizer, epochs, args):
+def train_generator_MLE(gen, data_iter, criterion, optimizer, epochs, 
+        gen_pretrain_train_loss, args):
     """
     Train generator with MLE
     """
     for epoch in range(epochs):
         total_loss = 0.
-        for i, (data, target) in enumerate(data_iter):
-            print(i)
+        for data, target in data_iter:
             if args.cuda:
                 data, target = data.cuda(), target.cuda()
             target = target.contiguous().view(-1)
@@ -103,9 +103,9 @@ def train_generator_MLE(gen, data_iter, criterion, optimizer, epochs, args):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-    avg_loss = total_loss / len(data_iter)
-    print("Epoch {}, train loss: {:.5f}".format(epoch, avg_loss))
-    return avg_loss
+        avg_loss = total_loss / len(data_iter)
+        print("Epoch {}, train loss: {:.5f}".format(epoch, avg_loss))
+        gen_pretrain_train_loss.append(avg_loss)
 
 
 def train_generator_PG(gen, dis, rollout, pg_loss, optimizer, epochs, args):
@@ -274,10 +274,8 @@ if __name__ == '__main__':
     gen_data_iter = getGenDataIter(VOCAB_FILE, POSITIVE_FILE, args.batch_size, g_seq_len)
     for i in range(args.g_pretrain_steps):
         print("G-Step {}".format(i))
-        loss = train_generator_MLE(generator, gen_data_iter, nll_loss, 
-            gen_optimizer, args.gk_epochs, args)
-        gen_pretrain_train_loss.append(loss)
-        generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
+        train_generator_MLE(generator, gen_data_iter, nll_loss, 
+            gen_optimizer, args.gk_epochs, gen_pretrain_train_loss, args)
         eval_iter = getGenDataIter(VOCAB_FILE, EVAL_FILE, args.batch_size, g_seq_len)
         gen_loss = eval_generator(generator, eval_iter, nll_loss, args)
         gen_pretrain_eval_loss.append(gen_loss)
