@@ -1,4 +1,7 @@
 *.csv
 *.json
+*.pkl
+*.data
+__pychache__
 .vscode
 .ipynb_checkpoints

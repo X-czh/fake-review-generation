@@ -27,7 +27,7 @@ class Generator(nn.Module):
         """
         self.lstm.flatten_parameters()
         h0, c0 = self.init_hidden(x.size(0))
-        emb = self.embed(x) # batch_size * seq_len * emb_dim 
+        emb = self.embed(x) # batch_size * seq_len * emb_dim
         out, _ = self.lstm(emb, (h0, c0)) # out: seq_len * batch_size * hidden_dim
         out = self.log_softmax(self.fc(out.contiguous().view(-1, self.hidden_dim))) # seq_len * batch_size * vocab_size
         return out
@@ -64,14 +64,14 @@ class Generator(nn.Module):
 
     def sample(self, batch_size, seq_len, x=None):
         """
-        Samples the network and returns a batch of samples of length seq_len.
+        Samples the network and returns a batch of samples of max length seq_len.
 
         Outputs: out
             - out: (batch_size * seq_len)
         """
         samples = []
-        h, c = self.init_hidden(batch_size)
         if x is None:
+            h, c = self.init_hidden(batch_size)
             x = torch.zeros(batch_size, 1, dtype=torch.int64)
             if self.use_cuda:
                 x = x.cuda()
@@ -81,6 +81,7 @@ class Generator(nn.Module):
                 x = torch.multinomial(prob, 1)
                 samples.append(x)
         else:
+            h, c = self.init_hidden(x.size(0))
             given_len = x.size(1)
             lis = x.chunk(x.size(1), dim=1)
             for i in range(given_len):

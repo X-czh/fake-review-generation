@@ -28,7 +28,7 @@ class Discriminator(nn.Module):
         Outputs: out
             - out: (batch_size, num_classes)
         """
-        emb = self.embed(x).unsqueeze(1) # batch_size, 1 * seq_len * emb_dim
+        emb = self.embed(x).unsqueeze(1) # batch_size * 1 * seq_len * emb_dim
         convs = [F.relu(conv(emb)).squeeze(3) for conv in self.convs] # [batch_size * num_filter * seq_len]
         pools = [F.max_pool1d(conv, conv.size(2)).squeeze(2) for conv in convs] # [batch_size * num_filter]
         out = torch.cat(pools, 1)  # batch_size * sum(num_filters)
