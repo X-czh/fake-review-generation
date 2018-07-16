@@ -33,7 +33,7 @@ class GenDataset(Dataset):
             lang = pkl.load(f)
         df = pd.read_csv(data_file, delimiter='\t')
         lis = []
-        for line in df['text'][:1000]:
+        for line in df['text']:
             l = [lang.word2index(s) for s in line.split(' ')]
             l = pad_sequence(l, max_seq_len)
             lis.append(l)
@@ -67,7 +67,7 @@ class DisDataset(Dataset):
         df = pd.read_csv(data_file, delimiter='\t')
         df = df.sample(frac=1).reset_index(drop=True)
         lis = []
-        for line in df['text'][:10000]:
+        for line in df['text']:
             l = [lang.word2index(s) for s in line.split(' ')]
             l = pad_sequence(l, max_seq_len) # pad sequence for CNN
             lis.append(l)

@@ -41,7 +41,7 @@ parser.add_argument('--n_rollout', type=int, default=16, metavar='N',
                     help='number of roll-out (default: 16)')
 parser.add_argument('--vocab_size', type=int, default=10000, metavar='N',
                     help='vocabulary size (default: 10000)')
-parser.add_argument('--batch_size', type=int, default=8, metavar='N',
+parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='batch size (default: 64)')
 parser.add_argument('--n_samples', type=int, default=100, metavar='N',
                     help='number of samples gerenated per time (default: 10000)')
@@ -92,7 +92,8 @@ def train_generator_MLE(gen, data_iter, criterion, optimizer, epochs, args):
     """
     for epoch in range(epochs):
         total_loss = 0.
-        for data, target in data_iter:
+        for i, (data, target) in enumerate(data_iter):
+            print(i)
             if args.cuda:
                 data, target = data.cuda(), target.cuda()
             target = target.contiguous().view(-1)
