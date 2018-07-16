@@ -31,10 +31,10 @@ class Lang:
     def word2index(self, word):
         if word in self._word2index:
             index = self._word2index[word]
-            if index > self._vocab_size:
-                return UNK_token
-            else:
+            if index < self._vocab_size:
                 return index
+            else:
+                return UNK_token
         else:
             return UNK_token
     
