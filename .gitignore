@@ -3,6 +3,6 @@
 *.pkl
 *.log
 *.data
-__pychache__
+__pycache__
 .vscode
 .ipynb_checkpoints
