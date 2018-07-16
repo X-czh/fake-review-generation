@@ -1,6 +1,7 @@
 *.csv
 *.json
 *.pkl
+*.log
 *.data
 __pychache__
 .vscode
