@@ -36,12 +36,23 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
 VOCAB_FILE = 'vocab.pkl'
 POSITIVE_FILE = '../data/train.csv'
 EVAL_FILE = '../data/val.csv'
+NEGATIVE_FILE = 'gene.csv'
 
 
 # Genrator Parameters
 g_embed_dim = 300
 g_hidden_dim = 300
 g_seq_len = 60
+
+
+def generate_samples(model, batch_size, generated_num, output_file):
+    samples = []
+    for _ in range(int(generated_num / batch_size)):
+        sample = model.sample(batch_size, g_seq_len).cpu().data.numpy().tolist()
+        samples.extend(sample)
+    texts = [' '.join([str(s) for s in sample]) for sample in samples]
+    df = pd.DataFrame(texts, columns=['text'])
+    df.to_csv(output_file, sep='\t', encoding='utf-8')
 
 
 def train_generator_MLE(gen, data_iter, criterion, optimizer, epoch, 
@@ -126,6 +137,8 @@ if __name__ == '__main__':
         print("eval loss: {:.5f}\n".format(gen_loss))
     print('#####################################################\n\n')
 
+    # Generate samples
+    generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
 
     # Save experiment data
     with open(args.data_path + 'experiment.pkl', 'wb') as f:
