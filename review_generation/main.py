@@ -21,12 +21,12 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
                     help='data path to save files (default: /scratch/zc807/review_generation/)')
-parser.add_argument('--rounds', type=int, default=150, metavar='N',
-                    help='rounds of adversarial training (default: 150)')
-parser.add_argument('--g_pretrain_steps', type=int, default=100, metavar='N',
-                    help='steps of pre-training of generators (default: 100)')
-parser.add_argument('--d_pretrain_steps', type=int, default=50, metavar='N',
-                    help='steps of pre-training of discriminators (default: 50)')
+parser.add_argument('--rounds', type=int, default=30, metavar='N',
+                    help='rounds of adversarial training (default: 30)')
+parser.add_argument('--g_pretrain_steps', type=int, default=20, metavar='N',
+                    help='steps of pre-training of generators (default: 20)')
+parser.add_argument('--d_pretrain_steps', type=int, default=10, metavar='N',
+                    help='steps of pre-training of discriminators (default: 10)')
 parser.add_argument('--g_steps', type=int, default=1, metavar='N',
                     help='steps of generator updates in one round of adverarial training (default: 1)')
 parser.add_argument('--d_steps', type=int, default=3, metavar='N',
@@ -156,7 +156,7 @@ def train_discriminator(dis, gen, criterion, optimizer, epochs,
     Train discriminator
     """
     generate_samples(gen, args.batch_size, args.n_samples, NEGATIVE_FILE)
-    data_iter = getDisDataIter(VOCAB_FILE, POSITIVE_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
+    data_iter = getDisDataIter(VOCAB_FILE, POSITIVE_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len, sample=True)
     for epoch in range(epochs):
         correct = 0
         total_loss = 0.

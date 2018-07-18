@@ -42,10 +42,14 @@ class GenDataset(Dataset):
 
 class DisDataset(Dataset):
 
-    def __init__(self, vocab_file, real_data_file, fake_data_file, max_seq_len):
+    def __init__(self, vocab_file, real_data_file, fake_data_file, max_seq_len, sample):
         self.max_seq_len = max_seq_len
-        real_data_lis = self.read_file(vocab_file, real_data_file, max_seq_len)
-        fake_data_lis = self.read_file(vocab_file, fake_data_file, max_seq_len)
+        if sample == True:
+            num_sample = 90000 # len(train.csv) / 2
+        else:
+            num_sample = None
+        real_data_lis = self.read_file(vocab_file, real_data_file, max_seq_len, num_sample)
+        fake_data_lis = self.read_file(vocab_file, fake_data_file, max_seq_len, num_sample)
         self.data = real_data_lis + fake_data_lis
         self.labels = [1 for _ in range(len(real_data_lis))] +\
                         [0 for _ in range(len(fake_data_lis))]
@@ -61,11 +65,14 @@ class DisDataset(Dataset):
         label = torch.tensor(label, dtype=torch.int64)
         return data, label
 
-    def read_file(self, vocab_file, data_file, max_seq_len):
+    def read_file(self, vocab_file, data_file, max_seq_len, num_sample):
         with open(vocab_file, 'rb') as f:
             lang = pkl.load(f)
         df = pd.read_csv(data_file, delimiter='\t')
-        df = df.sample(frac=1).reset_index(drop=True)
+        if num_sample is None:
+            df = df.sample(frac=1).reset_index(drop=True)
+        else:
+            df = df.sample(n=num_sample, replace=True)
         lis = []
         for line in df['text']:
             l = [lang.word2index(s) for s in line.split(' ')]
@@ -85,8 +92,8 @@ def getGenDataIter(vocab_file, data_file, batch_size, max_seq_len):
     return dataloader
 
 
-def getDisDataIter(vocab_file, real_data_file, fake_data_file, batch_size, max_seq_len):
-    dataset = DisDataset(vocab_file, real_data_file, fake_data_file, max_seq_len)
+def getDisDataIter(vocab_file, real_data_file, fake_data_file, batch_size, max_seq_len, sample=False):
+    dataset = DisDataset(vocab_file, real_data_file, fake_data_file, max_seq_len, sample)
     dataloader = DataLoader(
         dataset=dataset,
         batch_size=batch_size,

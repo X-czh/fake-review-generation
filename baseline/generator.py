@@ -14,7 +14,6 @@ class Generator(nn.Module):
         self.lstm = nn.LSTM(embedding_dim, hidden_dim, batch_first=True)
         self.fc = nn.Linear(hidden_dim, vocab_size)
         self.log_softmax = nn.LogSoftmax(dim=1)
-        self.init_params()
 
     def forward(self, x):
         """
