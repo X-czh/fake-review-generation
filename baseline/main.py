@@ -24,6 +24,8 @@ parser.add_argument('--vocab_size', type=int, default=10000, metavar='N',
                     help='vocabulary size (default: 10000)')
 parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='batch size (default: 64)')
+parser.add_argument('--n_samples', type=int, default=10000, metavar='N',
+                    help='number of samples gerenated per time (default: 10000)')
 parser.add_argument('--gen_lr', type=float, default=1e-3, metavar='LR',
                     help='learning rate of generator optimizer (default: 1e-3)')
 parser.add_argument('--no_cuda', action='store_true', default=False,
