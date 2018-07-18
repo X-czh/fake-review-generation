@@ -289,7 +289,7 @@ if __name__ == '__main__':
     for i in range(args.d_pretrain_steps):
         print("D-Step {}".format(i))
         train_discriminator(discriminator, generator, nll_loss, 
-            gen_optimizer, args.dk_epochs, dis_adversarial_train_loss, dis_adversarial_train_acc, args)
+            dis_optimizer, args.dk_epochs, dis_adversarial_train_loss, dis_adversarial_train_acc, args)
         generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
         eval_iter = getDisDataIter(VOCAB_FILE, EVAL_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
         dis_loss, dis_acc = eval_discriminator(discriminator, eval_iter, nll_loss, args)

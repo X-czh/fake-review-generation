@@ -14,7 +14,6 @@ class Generator(nn.Module):
         self.lstm = nn.LSTM(embedding_dim, hidden_dim, batch_first=True)
         self.fc = nn.Linear(hidden_dim, vocab_size)
         self.log_softmax = nn.LogSoftmax(dim=1)
-        self.init_params()
 
     def forward(self, x):
         """
@@ -28,8 +27,8 @@ class Generator(nn.Module):
         self.lstm.flatten_parameters()
         h0, c0 = self.init_hidden(x.size(0))
         emb = self.embed(x) # batch_size * seq_len * emb_dim
-        out, _ = self.lstm(emb, (h0, c0)) # out: seq_len * batch_size * hidden_dim
-        out = self.log_softmax(self.fc(out.contiguous().view(-1, self.hidden_dim))) # seq_len * batch_size * vocab_size
+        out, _ = self.lstm(emb, (h0, c0)) # out: batch_size * seq_len * hidden_dim
+        out = self.log_softmax(self.fc(out.contiguous().view(-1, self.hidden_dim))) # batch_size * seq_len *vocab_size
         return out
 
     def step(self, x, h, c):
@@ -57,10 +56,6 @@ class Generator(nn.Module):
         if self.use_cuda:
             h, c = h.cuda(), c.cuda()
         return h, c
-    
-    def init_params(self):
-        for param in self.parameters():
-            param.data.uniform_(-0.05, 0.05)
 
     def sample(self, batch_size, seq_len, x=None):
         """
