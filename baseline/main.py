@@ -105,6 +105,7 @@ if __name__ == '__main__':
         args.data_path = ''
     VOCAB_FILE = args.data_path + VOCAB_FILE
     POSITIVE_FILE = args.data_path + POSITIVE_FILE
+    NEGATIVE_FILE = args.data_path + NEGATIVE_FILE
     EVAL_FILE = args.data_path + EVAL_FILE
 
     # Set models, criteria, optimizers

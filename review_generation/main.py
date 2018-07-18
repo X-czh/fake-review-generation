@@ -21,15 +21,15 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
                     help='data path to save files (default: /scratch/zc807/review_generation/)')
-parser.add_argument('--rounds', type=int, default=200, metavar='N',
-                    help='rounds of adversarial training (default: 200)')
-parser.add_argument('--g_pretrain_steps', type=int, default=120, metavar='N',
-                    help='steps of pre-training of generators (default: 120)')
+parser.add_argument('--rounds', type=int, default=150, metavar='N',
+                    help='rounds of adversarial training (default: 150)')
+parser.add_argument('--g_pretrain_steps', type=int, default=100, metavar='N',
+                    help='steps of pre-training of generators (default: 100)')
 parser.add_argument('--d_pretrain_steps', type=int, default=50, metavar='N',
                     help='steps of pre-training of discriminators (default: 50)')
 parser.add_argument('--g_steps', type=int, default=1, metavar='N',
                     help='steps of generator updates in one round of adverarial training (default: 1)')
-parser.add_argument('--d_steps', type=int, default=5, metavar='N',
+parser.add_argument('--d_steps', type=int, default=3, metavar='N',
                     help='steps of discriminator updates in one round of adverarial training (default: 5)')
 parser.add_argument('--gk_epochs', type=int, default=1, metavar='N',
                     help='epochs of generator updates in one step of generate update (default: 1)')
@@ -73,7 +73,7 @@ d_num_class = 2
 d_embed_dim = 300
 d_filter_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20]
 d_num_filters = [100, 200, 200, 200, 200, 100, 100, 100, 100, 100, 160, 160]
-d_dropout_prob = 0.75
+d_dropout_prob = 0.2
 
 
 def generate_samples(model, batch_size, generated_num, output_file):
@@ -241,7 +241,7 @@ if __name__ == '__main__':
     nll_loss = nn.NLLLoss()
     pg_loss = PGLoss()
     gen_optimizer = optim.Adam(params=generator.parameters(), lr=args.gen_lr)
-    dis_optimizer = optim.Adam(params=discriminator.parameters(), lr=args.dis_lr)
+    dis_optimizer = optim.SGD(params=discriminator.parameters(), lr=args.dis_lr)
     if args.cuda:
         generator = generator.cuda()
         discriminator = discriminator.cuda()
