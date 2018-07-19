@@ -21,7 +21,7 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
                     help='data path to save files (default: /scratch/zc807/review_generation/)')
-parser.add_argument('--rounds', type=int, default=30, metavar='N',
+parser.add_argument('--rounds', type=int, default=20, metavar='N',
                     help='rounds of adversarial training (default: 30)')
 parser.add_argument('--g_pretrain_steps', type=int, default=20, metavar='N',
                     help='steps of pre-training of generators (default: 20)')
@@ -73,7 +73,7 @@ d_num_class = 2
 d_embed_dim = 300
 d_filter_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20]
 d_num_filters = [100, 200, 200, 200, 200, 100, 100, 100, 100, 100, 160, 160]
-d_dropout_prob = 0.2
+d_dropout_prob = 0.5
 
 
 def generate_samples(model, batch_size, generated_num, output_file):
@@ -240,14 +240,14 @@ if __name__ == '__main__':
     discriminator = Discriminator(d_num_class, args.vocab_size, d_embed_dim, d_filter_sizes, d_num_filters, d_dropout_prob)
     nll_loss = nn.NLLLoss()
     pg_loss = PGLoss()
-    gen_optimizer = optim.Adam(params=generator.parameters(), lr=args.gen_lr)
-    dis_optimizer = optim.SGD(params=discriminator.parameters(), lr=args.dis_lr)
     if args.cuda:
         generator = generator.cuda()
         discriminator = discriminator.cuda()
         nll_loss = nll_loss.cuda()
         pg_loss = pg_loss.cuda()
         cudnn.benchmark = True
+    gen_optimizer = optim.Adam(params=generator.parameters(), lr=args.gen_lr)
+    dis_optimizer = optim.SGD(params=discriminator.parameters(), lr=args.dis_lr)
 
     # Container of experiment data
     gen_pretrain_train_loss = []
