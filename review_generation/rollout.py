@@ -3,7 +3,6 @@ import numpy as np
 
 import torch
 import torch.nn as nn
-import torch.optim as optim
 
 
 class Rollout(object):
@@ -19,7 +18,7 @@ class Rollout(object):
         Inputs: x, num, discriminator
             - x: (batch_size, seq_len) input data
             - num: rollout number
-            - discriminator: discrimanator model
+            - discriminator: discriminator model
         """
         rewards = []
         batch_size = x.size(0)

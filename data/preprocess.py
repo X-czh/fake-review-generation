@@ -26,7 +26,13 @@ if __name__ == '__main__':
     combo = pd.merge(df_restaurants, df_review, how='outer', on='business_id')
 
     # Delete 'business_id' key as it is no longer needed after merging
-    del combo['business_id'] 
+    del combo['business_id']
+
+    # Drop rows with at least one NaN value
+    combo.dropna(inplace=True)
+
+    # Remove reviews with more than 40 words (including punctuations) (downsample step 1)
+    combo = combo[combo['text'].apply(lambda x: len(x.split(' ')) <= 40)]
 
     # Drop rows with at least one NaN value
     combo.dropna(inplace=True)
@@ -49,12 +55,16 @@ if __name__ == '__main__':
     combo.replace({r'([a-z0-9])([,:;.!?"()])': r'\1 \2'}, regex=True, inplace=True)
     combo.replace({r'([,:;.!?"()])([a-z0-9])': r'\1 \2'}, regex=True, inplace=True)
 
-    # remove reviews with more than 60 words (including punctuations)
-    combo = combo[combo['text'].apply(lambda x: len(x.split(' ')) <= 60)]
-
+    # Remove reviews with more than 30 words (including punctuations) (downsample step 2)
+    combo = combo[combo['text'].apply(lambda x: len(x.split(' ')) <= 30)]
+    
     # Drop rows with at least one NaN value
     combo.dropna(inplace=True)
 
     # Save to CSV
-    save_file = combo.head(200000)
-    save_file.to_csv('restaurant_review.csv', sep='\t', encoding='utf-8')
+    combo.to_csv('restaurant_review.csv', sep='\t', encoding='utf-8')
+
+    # Drop column 0
+    df = pd.read_csv('restaurant_review.csv', delimiter='\t')
+    df = df.drop(['Unnamed: 0'], axis=1)
+    df.to_csv('restaurant_review.csv', sep='\t', encoding='utf-8')

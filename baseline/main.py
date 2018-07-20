@@ -30,8 +30,8 @@ parser.add_argument('--gen_lr', type=float, default=1e-3, metavar='LR',
                     help='learning rate of generator optimizer (default: 1e-3)')
 parser.add_argument('--no_cuda', action='store_true', default=False,
                     help='disables CUDA training')
-parser.add_argument('--seed', type=int, default=1, metavar='S',
-                    help='random seed (default: 1)')
+parser.add_argument('--seed', type=int, default=1997, metavar='S',
+                    help='random seed (default: 1997)')
 
 
 # Files
@@ -44,7 +44,7 @@ NEGATIVE_FILE = 'gene.csv'
 # Genrator Parameters
 g_embed_dim = 300
 g_hidden_dim = 300
-g_seq_len = 60
+g_seq_len = 30
 
 
 def generate_samples(model, batch_size, generated_num, output_file):
