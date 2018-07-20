@@ -28,7 +28,7 @@ class Generator(nn.Module):
         h0, c0 = self.init_hidden(x.size(0))
         emb = self.embed(x) # batch_size * seq_len * emb_dim
         out, _ = self.lstm(emb, (h0, c0)) # out: batch_size * seq_len * hidden_dim
-        out = self.log_softmax(self.fc(out.contiguous().view(-1, self.hidden_dim))) # (batch_size*seq_len) * vocab_size
+        out = self.log_softmax(self.fc(out.contiguous().view(-1, self.hidden_dim))) # (batch_size*seq_len) *vocab_size
         return out
 
     def step(self, x, h, c):
