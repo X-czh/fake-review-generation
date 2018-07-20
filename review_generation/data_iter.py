@@ -45,7 +45,7 @@ class DisDataset(Dataset):
     def __init__(self, vocab_file, real_data_file, fake_data_file, max_seq_len, sample):
         self.max_seq_len = max_seq_len
         if sample == True:
-            num_sample = 90000 # len(train.csv) / 2
+            num_sample = 10000 # == number of generated sample
         else:
             num_sample = None
         real_data_lis = self.read_file(vocab_file, real_data_file, max_seq_len, num_sample)

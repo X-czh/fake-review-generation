@@ -21,7 +21,7 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
                     help='data path to save files (default: /scratch/zc807/review_generation/)')
-parser.add_argument('--rounds', type=int, default=20, metavar='N',
+parser.add_argument('--rounds', type=int, default=30, metavar='N',
                     help='rounds of adversarial training (default: 30)')
 parser.add_argument('--g_pretrain_steps', type=int, default=20, metavar='N',
                     help='steps of pre-training of generators (default: 20)')
@@ -65,7 +65,7 @@ NEGATIVE_FILE = 'gene.csv'
 # Genrator Parameters
 g_embed_dim = 300
 g_hidden_dim = 300
-g_seq_len = 60
+g_seq_len = 30
 
 
 # Discriminator Parameters

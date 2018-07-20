@@ -5,6 +5,31 @@ import torch
 import torch.nn as nn
 
 
+def redistribution(idx, total, min_v):
+    idx = (idx + 0.0) / (total + 0.0) * 16.0
+    return (np.exp(idx - 8.0) / (1.0 + np.exp(idx - 8.0)))
+
+
+def rescale(reward, num):
+    reward = np.array(reward)
+    x, y = reward.shape
+    ret = np.zeros((x, y))
+    for i in range(x):
+        l = reward[i]
+        rescalar = {}
+        for s in l:
+            rescalar[s] = s
+        idxx = 1
+        min_s = 1.0
+        max_s = 0.0
+        for s in rescalar:
+            rescalar[s] = redistribution(idxx, len(l), min_s)
+            idxx += 1
+        for j in range(y):
+            ret[i, j] = rescalar[reward[i, j]]
+    return ret
+
+
 class Rollout(object):
     """ Rollout Policy """
 
@@ -41,7 +66,8 @@ class Rollout(object):
                 rewards.append(pred)
             else:
                 rewards[seq_len-1] += pred
-        rewards = np.transpose(np.array(rewards)) / (1.0 * num) # batch_size * seq_len
+        rewards = rescale(np.array(rewards), num) # Bootstrapped Rescaled Activation
+        rewards = np.transpose(np.array(rewards, dtype=np.float32)) / (1.0 * num) # batch_size * seq_len
         return rewards
 
     def update_params(self):
