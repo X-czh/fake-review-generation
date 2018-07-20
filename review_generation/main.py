@@ -27,7 +27,7 @@ parser.add_argument('--g_pretrain_steps', type=int, default=10, metavar='N',
                     help='steps of pre-training of generators (default: 20)')
 parser.add_argument('--d_pretrain_steps', type=int, default=1, metavar='N',
                     help='steps of pre-training of discriminators (default: 10)')
-parser.add_argument('--g_steps', type=int, default=3, metavar='N',
+parser.add_argument('--g_steps', type=int, default=1, metavar='N',
                     help='steps of generator updates in one round of adverarial training (default: 1)')
 parser.add_argument('--d_steps', type=int, default=1, metavar='N',
                     help='steps of discriminator updates in one round of adverarial training (default: 5)')
