@@ -66,7 +66,7 @@ class Rollout(object):
                 rewards.append(pred)
             else:
                 rewards[seq_len-1] += pred
-        rewards = rescale(np.array(rewards), num) # Bootstrapped Rescaled Activation
+        # rewards = rescale(np.array(rewards), num) # Bootstrapped Rescaled Activation
         rewards = np.transpose(np.array(rewards, dtype=np.float32)) / (1.0 * num) # batch_size * seq_len
         return rewards
 

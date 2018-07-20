@@ -21,19 +21,19 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
                     help='data path to save files (default: /scratch/zc807/review_generation/)')
-parser.add_argument('--rounds', type=int, default=30, metavar='N',
+parser.add_argument('--rounds', type=int, default=20, metavar='N',
                     help='rounds of adversarial training (default: 30)')
-parser.add_argument('--g_pretrain_steps', type=int, default=20, metavar='N',
+parser.add_argument('--g_pretrain_steps', type=int, default=10, metavar='N',
                     help='steps of pre-training of generators (default: 20)')
-parser.add_argument('--d_pretrain_steps', type=int, default=10, metavar='N',
+parser.add_argument('--d_pretrain_steps', type=int, default=1, metavar='N',
                     help='steps of pre-training of discriminators (default: 10)')
-parser.add_argument('--g_steps', type=int, default=1, metavar='N',
+parser.add_argument('--g_steps', type=int, default=3, metavar='N',
                     help='steps of generator updates in one round of adverarial training (default: 1)')
-parser.add_argument('--d_steps', type=int, default=3, metavar='N',
+parser.add_argument('--d_steps', type=int, default=1, metavar='N',
                     help='steps of discriminator updates in one round of adverarial training (default: 5)')
 parser.add_argument('--gk_epochs', type=int, default=1, metavar='N',
                     help='epochs of generator updates in one step of generate update (default: 1)')
-parser.add_argument('--dk_epochs', type=int, default=3, metavar='N',
+parser.add_argument('--dk_epochs', type=int, default=1, metavar='N',
                     help='epochs of discriminator updates in one step of discriminator update (default: 3)')
 parser.add_argument('--update_rate', type=float, default=0.8, metavar='UR',
                     help='update rate of roll-out model (default: 0.8)')
@@ -73,7 +73,7 @@ d_num_class = 2
 d_embed_dim = 300
 d_filter_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20]
 d_num_filters = [100, 200, 200, 200, 200, 100, 100, 100, 100, 100, 160, 160]
-d_dropout_prob = 0.5
+d_dropout_prob = 0.75
 
 
 def generate_samples(model, batch_size, generated_num, output_file):
