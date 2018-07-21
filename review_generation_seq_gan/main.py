@@ -267,56 +267,58 @@ if __name__ == '__main__':
     with open(VOCAB_FILE, 'wb') as f:
         pkl.dump(lang, f, protocol=pkl.HIGHEST_PROTOCOL) 
 
-    # Pre-train generator using MLE
-    print('#####################################################')
-    print('Start pre-training generator with MLE...')
-    print('#####################################################\n')
-    gen_data_iter = getGenDataIter(VOCAB_FILE, POSITIVE_FILE, args.batch_size, g_seq_len)
-    for i in range(args.g_pretrain_steps):
-        print("G-Step {}".format(i))
-        train_generator_MLE(generator, gen_data_iter, nll_loss, 
-            gen_optimizer, args.gk_epochs, gen_pretrain_train_loss, args)
-        eval_iter = getGenDataIter(VOCAB_FILE, EVAL_FILE, args.batch_size, g_seq_len)
-        gen_loss = eval_generator(generator, eval_iter, nll_loss, args)
-        gen_pretrain_eval_loss.append(gen_loss)
-        print("eval loss: {:.5f}\n".format(gen_loss))
-    print('#####################################################\n\n')
+    # # Pre-train generator using MLE
+    # print('#####################################################')
+    # print('Start pre-training generator with MLE...')
+    # print('#####################################################\n')
+    # gen_data_iter = getGenDataIter(VOCAB_FILE, POSITIVE_FILE, args.batch_size, g_seq_len)
+    # for i in range(args.g_pretrain_steps):
+    #     print("G-Step {}".format(i))
+    #     train_generator_MLE(generator, gen_data_iter, nll_loss, 
+    #         gen_optimizer, args.gk_epochs, gen_pretrain_train_loss, args)
+    #     eval_iter = getGenDataIter(VOCAB_FILE, EVAL_FILE, args.batch_size, g_seq_len)
+    #     gen_loss = eval_generator(generator, eval_iter, nll_loss, args)
+    #     gen_pretrain_eval_loss.append(gen_loss)
+    #     print("eval loss: {:.5f}\n".format(gen_loss))
+    # print('#####################################################\n\n')
 
-    # Pre-train discriminator
-    print('#####################################################')
-    print('Start pre-training discriminator...')
-    print('#####################################################\n')
-    for i in range(args.d_pretrain_steps):
-        print("D-Step {}".format(i))
-        train_discriminator(discriminator, generator, nll_loss, 
-            dis_optimizer, args.dk_epochs, dis_adversarial_train_loss, dis_adversarial_train_acc, args)
-        generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
-        eval_iter = getDisDataIter(VOCAB_FILE, EVAL_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
-        dis_loss, dis_acc = eval_discriminator(discriminator, eval_iter, nll_loss, args)
-        dis_pretrain_eval_loss.append(dis_loss)
-        dis_pretrain_eval_acc.append(dis_acc)
-        print("eval loss: {:.5f}, eval acc: {:.3f}\n".format(dis_loss, dis_acc))
-    print('#####################################################\n\n')
+    # # Pre-train discriminator
+    # print('#####################################################')
+    # print('Start pre-training discriminator...')
+    # print('#####################################################\n')
+    # for i in range(args.d_pretrain_steps):
+    #     print("D-Step {}".format(i))
+    #     train_discriminator(discriminator, generator, nll_loss, 
+    #         dis_optimizer, args.dk_epochs, dis_adversarial_train_loss, dis_adversarial_train_acc, args)
+    #     generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
+    #     eval_iter = getDisDataIter(VOCAB_FILE, EVAL_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
+    #     dis_loss, dis_acc = eval_discriminator(discriminator, eval_iter, nll_loss, args)
+    #     dis_pretrain_eval_loss.append(dis_loss)
+    #     dis_pretrain_eval_acc.append(dis_acc)
+    #     print("eval loss: {:.5f}, eval acc: {:.3f}\n".format(dis_loss, dis_acc))
+    # print('#####################################################\n\n')
 
     # Adversarial training
     print('#####################################################')
     print('Start adversarial training...')
     print('#####################################################\n')
     rollout = Rollout(generator, args.update_rate)
+    gen_data_iter = getGenDataIter(VOCAB_FILE, POSITIVE_FILE, args.batch_size, g_seq_len)
     for i in range(args.rounds):
+        # interleaved training
+        if i % 5 == 0:
+            print('MLE training')
+            for _ in range(3):
+                train_generator_MLE(generator, gen_data_iter, nll_loss, 
+                    gen_optimizer, args.gk_epochs, [], args)
+            print("#Train discriminator")
+            train_discriminator(discriminator, generator, nll_loss, dis_optimizer, args.dk_epochs, 
+                dis_adversarial_train_loss, dis_adversarial_train_acc, args)
+
         print("Round {}".format(i))
         adversarial_train(generator, discriminator, rollout, 
             pg_loss, nll_loss, gen_optimizer, dis_optimizer, 
             dis_adversarial_train_loss, dis_adversarial_train_acc, args)
-
-        # interleaved training
-        if i % 3 == 0:
-            print('MLE training')
-            train_generator_MLE(generator, gen_data_iter, nll_loss, 
-                gen_optimizer, args.gk_epochs, [], args)
-            print("#Train discriminator")
-            train_discriminator(discriminator, generator, nll_loss, dis_optimizer, args.dk_epochs, 
-                dis_adversarial_train_loss, dis_adversarial_train_acc, args)
         
         generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
         gen_eval_iter = getGenDataIter(VOCAB_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
