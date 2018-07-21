@@ -210,12 +210,12 @@ def adversarial_train(gen, dis, rollout, pg_loss, nll_loss, gen_optimizer, dis_o
         print("##G-Step {}".format(i))
         train_generator_PG(gen, dis, rollout, pg_loss, gen_optimizer, args.gk_epochs, args)
 
-    # train discriminator for d_steps
-    print("#Train discriminator")
-    for i in range(args.d_steps):
-        print("##D-Step {}".format(i))
-        train_discriminator(dis, gen, nll_loss, dis_optimizer, args.dk_epochs, 
-            dis_adversarial_train_loss, dis_adversarial_train_acc, args)
+    # # train discriminator for d_steps
+    # print("#Train discriminator")
+    # for i in range(args.d_steps):
+    #     print("##D-Step {}".format(i))
+    #     train_discriminator(dis, gen, nll_loss, dis_optimizer, args.dk_epochs, 
+    #         dis_adversarial_train_loss, dis_adversarial_train_acc, args)
 
     # update roll-out model
     rollout.update_params()
@@ -314,6 +314,9 @@ if __name__ == '__main__':
             print('MLE training')
             train_generator_MLE(generator, gen_data_iter, nll_loss, 
                 gen_optimizer, args.gk_epochs, [], args)
+            print("#Train discriminator")
+            train_discriminator(dis, gen, nll_loss, dis_optimizer, args.dk_epochs, 
+                dis_adversarial_train_loss, dis_adversarial_train_acc, args)
         
         generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
         gen_eval_iter = getGenDataIter(VOCAB_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
