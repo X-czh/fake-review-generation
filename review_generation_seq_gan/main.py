@@ -315,7 +315,7 @@ if __name__ == '__main__':
             train_generator_MLE(generator, gen_data_iter, nll_loss, 
                 gen_optimizer, args.gk_epochs, [], args)
             print("#Train discriminator")
-            train_discriminator(dis, gen, nll_loss, dis_optimizer, args.dk_epochs, 
+            train_discriminator(discriminator, generator, nll_loss, dis_optimizer, args.dk_epochs, 
                 dis_adversarial_train_loss, dis_adversarial_train_acc, args)
         
         generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
