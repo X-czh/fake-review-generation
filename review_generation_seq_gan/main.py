@@ -21,7 +21,7 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/review_generation/', metavar='PATH',
                     help='data path to save files (default: /scratch/zc807/review_generation/)')
-parser.add_argument('--rounds', type=int, default=20, metavar='N',
+parser.add_argument('--rounds', type=int, default=30, metavar='N',
                     help='rounds of adversarial training (default: 20)')
 parser.add_argument('--g_pretrain_steps', type=int, default=10, metavar='N',
                     help='steps of pre-training of generators (default: 10)')
@@ -29,7 +29,7 @@ parser.add_argument('--d_pretrain_steps', type=int, default=1, metavar='N',
                     help='steps of pre-training of discriminators (default: 1)')
 parser.add_argument('--g_steps', type=int, default=1, metavar='N',
                     help='steps of generator updates in one round of adverarial training (default: 1)')
-parser.add_argument('--d_steps', type=int, default=3, metavar='N',
+parser.add_argument('--d_steps', type=int, default=1, metavar='N',
                     help='steps of discriminator updates in one round of adverarial training (default: 3)')
 parser.add_argument('--gk_epochs', type=int, default=1, metavar='N',
                     help='epochs of generator updates in one step of generate update (default: 1)')
@@ -308,6 +308,13 @@ if __name__ == '__main__':
         adversarial_train(generator, discriminator, rollout, 
             pg_loss, nll_loss, gen_optimizer, dis_optimizer, 
             dis_adversarial_train_loss, dis_adversarial_train_acc, args)
+
+        # interleaved training
+        if i % 3 == 0:
+            print('MLE training')
+            train_generator_MLE(generator, gen_data_iter, nll_loss, 
+                gen_optimizer, args.gk_epochs, [], args)
+        
         generate_samples(generator, args.batch_size, args.n_samples, NEGATIVE_FILE)
         gen_eval_iter = getGenDataIter(VOCAB_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
         dis_eval_iter = getDisDataIter(VOCAB_FILE, EVAL_FILE, NEGATIVE_FILE, args.batch_size, g_seq_len)
