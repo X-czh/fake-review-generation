@@ -52,8 +52,8 @@ if __name__ == '__main__':
     combo.replace({r'\n+': ''}, regex=True, inplace=True)
 
     # Add space between alphanumerical characters and punctuation marks
-    combo.replace({r'([a-z0-9])([,:;.!?"()])': r'\1 \2'}, regex=True, inplace=True)
-    combo.replace({r'([,:;.!?"()])([a-z0-9])': r'\1 \2'}, regex=True, inplace=True)
+    combo.replace({r'([a-z0-9])([,:;.!?"()-])': r'\1 \2'}, regex=True, inplace=True)
+    combo.replace({r'([,:;.!?"()-])([a-z0-9])': r'\1 \2'}, regex=True, inplace=True)
 
     # Remove reviews with more than 30 words (including punctuations) (downsample step 2)
     combo = combo[combo['text'].apply(lambda x: len(x.split(' ')) <= 30)]

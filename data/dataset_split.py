@@ -16,4 +16,4 @@ if __name__ == '__main__':
     train_file = df[:200000].drop(['Unnamed: 0'], axis=1)
     train_file.to_csv('train.csv', sep='\t', encoding='utf-8')
     eval_file = df[200000:210000].drop(['Unnamed: 0'], axis=1)
-    eval_file.to_csv('val.csv', sep='\t', encoding='utf-8')
+    eval_file.to_csv('test.csv', sep='\t', encoding='utf-8')
