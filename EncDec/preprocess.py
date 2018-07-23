@@ -17,8 +17,6 @@ parser.add_argument('--data-path', type=str, default='/scratch/zc807/data', meta
                     help='data path (default: /scratch/zc807/data)')
 parser.add_argument('--save-data-path', type=str, default='/scratch/zc807/EncDec', metavar='PATH',
                     help='data path to save pairs.pkl and lang.pkl (default: /scratch/zc807/EncDec)')
-parser.add_argument('--num-pairs', type=int, default=200000, metavar='N',
-                    help='number of training pairs to use, 18 times of that of testing pairs')
 
 
 ###############################################
@@ -76,18 +74,11 @@ def readData(data_path):
 
     return train_pairs, test_pairs
 
-def prepareData(data_path, num_pairs):
+def prepareData(data_path):
     lang = Lang('Yelp Reviews')
     train_pairs, test_pairs = readData(data_path)
     print("Read %s training sentence pairs" % len(train_pairs))
     print("Read %s testing sentence pairs" % len(test_pairs))
-
-    # assert(len(train_pairs) > num_pairs)
-    # assert(len(test_pairs) > int(num_pairs/18))
-    # train_pairs = train_pairs[:num_pairs]
-    # test_pairs = test_pairs[:int(num_pairs/18)]
-    # print("Trimmed to %s training sentence pairs" % len(train_pairs))
-    # print("Trimmed to %s testing sentence pairs" % len(test_pairs))
 
     print("Counting words and constructing training pairs...")
     for pair in train_pairs:
@@ -106,8 +97,7 @@ if __name__ == '__main__':
         args.save_data_path = '.'
     
     print("hpc mode: {}".format(args.hpc))
-    print("num-pairs: {}".format(args.num_pairs))
-    lang, train_pairs, test_pairs = prepareData(args.data_path, args.num_pairs)
+    lang, train_pairs, test_pairs = prepareData(args.data_path)
     lang_tuple = (lang.word2index, lang.word2count, lang.index2word, lang.n_words)
     
     # print(lang.word2count['5.0'])

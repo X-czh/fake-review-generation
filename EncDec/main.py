@@ -23,11 +23,11 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data_path', type=str, default='/scratch/zc807/EncDec', metavar='PATH',
                     help='data path of pairs.pkl and lang.pkl (default: /scratch/zc807/EncDec)')
-parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/nlu/EncDec', metavar='PATH',
+parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/EncDec', metavar='PATH',
                     help='data path to save model parameters (default: /scratch/zc807/EncDec)')
 parser.add_argument('--metric', type=str, default='MULTI', metavar='METRIC',
                     help='metric to use (default: MULTI; ROUGE, BLEU and BLEU_clip available)')
-parser.add_argument('--vocab_size', type=int, default='15000', metavar='N',
+parser.add_argument('--vocab_size', type=int, default='808', metavar='N',
                     help='vocab size (default: 15000)')
 parser.add_argument('--hidden_size', type=int, default='300', metavar='N',
                     help='hidden size (default: 300)')
@@ -96,23 +96,14 @@ def train(input_variable, target_variable, encoder, decoder, encoder_optimizer, 
     use_cuda = args.cuda
     max_length = args.max_length
 
-    encoder_hidden = encoder.initHidden()
-
     encoder_optimizer.zero_grad()
     decoder_optimizer.zero_grad()
 
-    input_length = min(args.max_length, input_variable.size()[0])
+    loss = 0
     target_length = target_variable.size()[0]
 
-    encoder_outputs = torch.zeros(max_length, encoder.hidden_size)
-    encoder_outputs = encoder_outputs.cuda() if use_cuda else encoder_outputs
-
-    loss = 0
-    
-    for ei in range(input_length):
-        encoder_output, encoder_hidden = encoder(
-            input_variable[ei], encoder_hidden)
-        encoder_outputs[ei] = encoder_output[0][0]
+    encoder_hidden = encoder.initHidden()
+    _, encoder_hidden = encoder(input_variable, encoder_hidden)
 
     decoder_input = torch.LongTensor([[SOS_token]])
     decoder_input = decoder_input.cuda() if use_cuda else decoder_input
@@ -159,7 +150,6 @@ def trainEpochs(encoder, decoder, input_lang, output_lang, pairs, args):
     n_epochs = args.n_epochs
     print_every = args.print_every
     plot_every = args.plot_every
-    learning_rate = args.lr
 
     start = time.time()
     iter_i = 0
@@ -168,8 +158,8 @@ def trainEpochs(encoder, decoder, input_lang, output_lang, pairs, args):
     print_loss_total = 0  # Reset every print_every
     plot_loss_total = 0  # Reset every plot_every
 
-    encoder_optimizer = optim.SGD(encoder.parameters(), lr=learning_rate)
-    decoder_optimizer = optim.SGD(decoder.parameters(), lr=learning_rate)
+    encoder_optimizer = optim.Adadelta(encoder.parameters())
+    decoder_optimizer = optim.Adadelta(decoder.parameters())
     criterion = nn.NLLLoss()
 
     for epoch in range(args.n_epochs):
@@ -197,8 +187,16 @@ def trainEpochs(encoder, decoder, input_lang, output_lang, pairs, args):
                 plot_loss_avg = plot_loss_total / plot_every
                 plot_losses.append(plot_loss_avg)
                 plot_loss_total = 0
+
+        # # NOTE testing only
+        #     if iter_i == args.n_iters:
+        #         break
         
         print("Epoch {}/{} finished".format(epoch, args.n_epochs - 1))
+        torch.save(encoder.state_dict(), 
+            args.save_data_path + "/encoder_state_dict_epoch{}.pt".format(epoch))
+        torch.save(decoder.state_dict(), 
+            args.save_data_path + "/decoder_state_dict_epoch{}.pt".format(epoch))
 
     showPlot(plot_losses, args)
 
@@ -212,16 +210,8 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
     max_length = args.max_length
 
     input_variable = variableFromSentence(input_lang, sentence, args)
-    input_length = min(args.max_length, input_variable.size()[0])
     encoder_hidden = encoder.initHidden()
-
-    encoder_outputs = torch.zeros(max_length, encoder.hidden_size)
-    encoder_outputs = encoder_outputs.cuda() if use_cuda else encoder_outputs
-
-    for ei in range(input_length):
-        encoder_output, encoder_hidden = encoder(input_variable[ei],
-                                                 encoder_hidden)
-        encoder_outputs[ei] = encoder_outputs[ei] + encoder_output[0][0]
+    _, encoder_hidden = encoder(input_variable, encoder_hidden)
 
     decoder_input = torch.LongTensor([[SOS_token]])  # SOS
     decoder_input = decoder_input.cuda() if use_cuda else decoder_input
@@ -378,5 +368,5 @@ if __name__ == '__main__':
     print("Finished\n")
 
     # Export trained weights
-    torch.save(encoder.state_dict(), args.save_data_path + "/encoder_state_dict.pt")
-    torch.save(decoder.state_dict(), args.save_data_path + "/decoder_state_dict.pt")
+    torch.save(encoder.state_dict(), args.save_data_path + "/encoder_state_dict_final.pt")
+    torch.save(decoder.state_dict(), args.save_data_path + "/decoder_state_dict_final.pt")
