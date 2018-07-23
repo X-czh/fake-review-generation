@@ -27,7 +27,7 @@ parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/EncDec
                     help='data path to save model parameters (default: /scratch/zc807/EncDec)')
 parser.add_argument('--metric', type=str, default='MULTI', metavar='METRIC',
                     help='metric to use (default: MULTI; ROUGE, BLEU and BLEU_clip available)')
-parser.add_argument('--vocab_size', type=int, default='808', metavar='N',
+parser.add_argument('--vocab_size', type=int, default='15000', metavar='N',
                     help='vocab size (default: 15000)')
 parser.add_argument('--hidden_size', type=int, default='300', metavar='N',
                     help='hidden size (default: 300)')
