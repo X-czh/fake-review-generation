@@ -1,8 +1,7 @@
 import math
 import random
 import torch
-from torch.utils.data import Dataset
-from utils import SOS_token, EOS_token, UNK_token, pad_sequence
+from utils import EOS_token, UNK_token, pad_sequence
 
 class Lang:
     def __init__(self, lang_load):

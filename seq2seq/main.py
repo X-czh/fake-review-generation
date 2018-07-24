@@ -13,20 +13,20 @@ from torch.utils.data import Dataset, DataLoader
 from model import Seq2Seq, EncoderRNN, DecoderRNN
 from data import Lang, DataIter, variableFromSentence
 from metric import score, multi_score
-from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSince, showPlot
+from utils import PAD_token, SOS_token, asMinutes, timeSince, showPlot
 
 
 ###############################################
 # Training settings
 ###############################################
 
-parser = argparse.ArgumentParser(description='Sentence Reconstruction with Encoder-Decoder')
+parser = argparse.ArgumentParser(description='seq2seq')
 parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
-parser.add_argument('--data_path', type=str, default='/scratch/zc807/EncDec', metavar='PATH',
-                    help='data path of pairs.pkl and lang.pkl (default: /scratch/zc807/EncDec)')
-parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/nlu/EncDec', metavar='PATH',
-                    help='data path to save model parameters (default: /scratch/zc807/EncDec)')
+parser.add_argument('--data_path', type=str, default='/scratch/zc807/seq2seq', metavar='PATH',
+                    help='data path of pairs.pkl and lang.pkl (default: /scratch/zc807/seq2seq)')
+parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/seq2seq', metavar='PATH',
+                    help='data path to save model parameters (default: /scratch/zc807/seq2seq)')
 parser.add_argument('--metric', type=str, default='MULTI', metavar='METRIC',
                     help='metric to use (default: MULTI; ROUGE, BLEU and BLEU_clip available)')
 parser.add_argument('--vocab_size', type=int, default='15000', metavar='N',
