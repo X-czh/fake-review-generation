@@ -1,7 +1,7 @@
 import math
 import random
 import torch
-from utils import EOS_token, UNK_token, pad_sequence
+from utils import PAD_token, UNK_token, SOS_token, EOS_token, pad_sequence
 
 class Lang:
     def __init__(self, lang_load):

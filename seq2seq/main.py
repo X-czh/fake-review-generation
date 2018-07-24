@@ -13,7 +13,7 @@ from torch.utils.data import Dataset, DataLoader
 from model import Seq2Seq, EncoderRNN, DecoderRNN
 from data import Lang, DataIter, variableFromSentence
 from metric import score, multi_score
-from utils import PAD_token, SOS_token, asMinutes, timeSince, showPlot
+from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSince, showPlot
 
 
 ###############################################
