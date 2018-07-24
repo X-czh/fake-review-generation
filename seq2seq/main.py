@@ -1,4 +1,5 @@
 import argparse
+import os
 import time
 import random
 import numpy as np
@@ -8,9 +9,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
-from torch.utils.data import Dataset, DataLoader
 
-from model import Seq2Seq, EncoderRNN, DecoderRNN
+from model import EncoderRNN, DecoderRNN
 from data import Lang, DataIter, variableFromSentence
 from metric import score, multi_score
 from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSince, showPlot
@@ -27,6 +27,8 @@ parser.add_argument('--data_path', type=str, default='/scratch/zc807/seq2seq', m
                     help='data path of pairs.pkl and lang.pkl (default: /scratch/zc807/seq2seq)')
 parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/seq2seq', metavar='PATH',
                     help='data path to save model parameters (default: /scratch/zc807/seq2seq)')
+parser.add_argument('--resume', type=str, default='', metavar='PATH',
+                    help='data path to load checkpoint for resuming (default: none)')
 parser.add_argument('--metric', type=str, default='MULTI', metavar='METRIC',
                     help='metric to use (default: MULTI; ROUGE, BLEU and BLEU_clip available)')
 parser.add_argument('--vocab_size', type=int, default='15000', metavar='N',
@@ -37,20 +39,24 @@ parser.add_argument('--batch_size', type=int, default='32', metavar='N',
                     help='batch size (default: 32)')
 parser.add_argument('--n_epochs', type=int, default=1, metavar='N',
                     help='number of epochs to train (default: 1)')
-parser.add_argument('--n_batches', type=int, default=3000, metavar='N',
-                    help='number of batches to train (default: 3000), for testing only')
-parser.add_argument('--print_every', type=int, default='10', metavar='N',
-                    help='print every (default: 10) batches')
+parser.add_argument('--n_batches', type=int, default=0, metavar='N',
+                    help='number of batches to train (default: 0 (disabled)), for testing only')
+parser.add_argument('--print_every', type=int, default='100', metavar='N',
+                    help='print every (default: 100) batches')
 parser.add_argument('--plot_every', type=int, default='10', metavar='N',
                     help='plot every (default: 10) batches')
+parser.add_argument('--save_every', type=int, default='3', metavar='N',
+                    help='save checkpoint every (default: 3) epochs')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                     help='learning rate (default: 0.001)')
-parser.add_argument('--clip', type=float, default=10, metavar='CLIP',
-                    help='gradient clip threshold (default: 10)')
+parser.add_argument('--weight_decay', type=float, default=0, metavar='WD',
+                    help='weight decay (L2 penalty) (default: 0)')
+parser.add_argument('--clip', type=float, default=0, metavar='CLIP',
+                    help='gradient clip threshold (default: 0 (disabled)')
 parser.add_argument('--no_cuda', action='store_true', default=False,
                     help='disables CUDA training')
-parser.add_argument('--seed', type=int, default=1, metavar='S',
-                    help='random seed (default: 1)')
+parser.add_argument('--seed', type=int, default=1997, metavar='S',
+                    help='random seed (default: 1997)')
 parser.set_defaults(max_length=40)
 
 
@@ -77,15 +83,16 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
     loss.backward()
 
     # Clip gradient
-    # nn.utils.clip_grad_norm_(encoder.parameters(), args.clip)
-    # nn.utils.clip_grad_norm_(decoder.parameters(), args.clip)
+    if args.clip > 0:
+        nn.utils.clip_grad_norm_(encoder.parameters(), args.clip)
+        nn.utils.clip_grad_norm_(decoder.parameters(), args.clip)
 
     encoder_optimizer.step()
     decoder_optimizer.step()
 
     return loss.item()
 
-def trainEpochs(encoder, decoder, dataiter, args):
+def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, dataiter, args):
     n_epochs = args.n_epochs
     print_every = args.print_every
     plot_every = args.plot_every
@@ -96,10 +103,6 @@ def trainEpochs(encoder, decoder, dataiter, args):
     plot_losses = []
     print_loss_total = 0  # Reset every print_every
     plot_loss_total = 0  # Reset every plot_every
-
-    encoder_optimizer = optim.Adam(encoder.parameters(), lr=args.lr)
-    decoder_optimizer = optim.Adam(decoder.parameters(), lr=args.lr)
-    criterion = nn.NLLLoss(ignore_index=PAD_token)
 
     for epoch in range(args.n_epochs):
 
@@ -122,16 +125,23 @@ def trainEpochs(encoder, decoder, dataiter, args):
                 plot_losses.append(plot_loss_avg)
                 plot_loss_total = 0
 
-            # # NOTE testing only
-            # if batch_i == args.n_batches:
-            #     break
-        
+            if (epoch + 1) % args.save_every == 0:
+                checkpoint = {
+                    'epoch': epoch,
+                    'encoder_state_dict': encoder.state_dict(),
+                    'decoder_state_dict': decoder.state_dict(),
+                    'encoder_optim_state': encoder_optimizer.state_dict(),
+                    'decoder_optim_state': decoder_optimizer.state_dict(),
+                }
+                torch.save(checkpoint, args.save_data_path + "/epoch{}_checkpoint.pt".format(epoch))
+
+            # for testing only
+            if args.n_batches > 0 and batch_i == args.n_batches:
+                break
+
         dataiter.reset()
+        
         print("Epoch {}/{} finished".format(epoch, args.n_epochs - 1))
-        torch.save(encoder.state_dict(), 
-            args.save_data_path + "/encoder_state_dict_epoch{}.pt".format(epoch))
-        torch.save(decoder.state_dict(), 
-            args.save_data_path + "/decoder_state_dict_epoch{}.pt".format(epoch))
 
     showPlot(plot_losses, args)
 
@@ -249,29 +259,42 @@ def evaluateTestingPairs(encoder, decoder, pairs, input_lang, output_lang, args)
         score_overall = get_score_overall(score_short, score_long)
         print("Overall {} score: {}".format(args.metric, score_overall))
 
+
+###############################################
+# Main
+###############################################
+
 if __name__ == '__main__':
     args = parser.parse_args()
     args.cuda = not args.no_cuda and torch.cuda.is_available()
+    random.seed(args.seed)
+    torch.manual_seed(args.seed)
     if not args.hpc:
         args.data_path = '.'
         args.save_data_path = '.'
+    if args.cuda:
+        cudnn.benchmark = True
+        torch.cuda.manual_seed(args.seed)
 
     # Print settings
     print("hpc mode: {}".format(args.hpc))
+    print("data-path: {}".format(args.data_path))
+    print("save-data-path: {}".format(args.save_data_path))
+    print("resume: {}".format(args.resume))
     print("metric: {}".format(args.metric))
     print("vocab-size: {}".format(args.vocab_size))
     print("hidden-size: {}".format(args.hidden_size))
+    print("batch-size: {}".format(args.batch_size))
     print("n-epochs: {}".format(args.n_epochs))
+    print("n-batches (testing only): {}".format(args.n_batches))
     print("print-every: {}".format(args.print_every))
     print("plot-every: {}".format(args.plot_every))
+    print("save-every: {}".format(args.save_every))
     print("lr: {}".format(args.lr))
+    print("weight-decay: {}".format(args.weight_decay))
     print("clip: {}".format(args.clip))
     print("use cuda: {}".format(args.cuda))
-
-    # Set the seed for generating random numbers
-    torch.manual_seed(args.seed)
-    if args.cuda:
-        torch.cuda.manual_seed(args.seed)
+    print("seed: {}".format(args.seed))
 
     # Load pairs.pkl and lang.pkl
     with open(args.data_path + "/pairs.pkl", 'rb') as f:
@@ -289,7 +312,25 @@ if __name__ == '__main__':
     if args.cuda:
         encoder = encoder.cuda()
         decoder = decoder.cuda()
-    # seq2seq = Seq2Seq(encoder, decoder)
+    
+    # Set optimizer and criterion
+    encoder_optimizer = optim.Adam(encoder.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    decoder_optimizer = optim.Adam(decoder.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    criterion = nn.NLLLoss(ignore_index=PAD_token)
+
+    # Resume from checkpoint
+    if args.resume:
+        if os.path.isfile(args.resume):
+            print("=> loading checkpoint '{}'".format(args.resume))
+            checkpoint = torch.load(args.resume)
+            encoder.load_state_dict(checkpoint['encoder_state_dict'])
+            decoder.load_state_dict(checkpoint['decoder_state_dict'])
+            encoder_optimizer.load_state_dict(checkpoint['encoder_optim_state'])
+            decoder_optimizer.load_state_dict(checkpoint['encoder_optim_state'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(args.resume, checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(args.resume))
 
     # Train and evalute
     print("\nStart")
@@ -297,14 +338,10 @@ if __name__ == '__main__':
     evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
     print("Evaluate randomly on testing sentences:")
     evaluateRandomly(encoder, decoder, test_pairs, lang, lang, args)
-    trainEpochs(encoder, decoder, train_dataiter, args)
+    trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, train_dataiter, args)
     print("Evaluate randomly on training sentences:")
     evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
     print("Evaluate randomly on testing sentences:")
     evaluateRandomly(encoder, decoder, test_pairs, lang, lang, args)
     evaluateTestingPairs(encoder, decoder, test_pairs, lang, lang, args)
     print("Finished\n")
-
-    # Export trained weights
-    torch.save(encoder.state_dict(), args.save_data_path + "/encoder_state_dict.pt")
-    torch.save(decoder.state_dict(), args.save_data_path + "/decoder_state_dict.pt")

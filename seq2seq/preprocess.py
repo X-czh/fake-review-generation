@@ -99,13 +99,6 @@ if __name__ == '__main__':
     print("hpc mode: {}".format(args.hpc))
     lang, train_pairs, test_pairs = prepareData(args.data_path)
     lang_tuple = (lang.word2index, lang.word2count, lang.index2word, lang.n_words)
-    
-    # print(lang.word2count['5.0'])
-    # print(lang.word2count['4.0'])
-    # print(lang.word2count['3.0'])
-    # print(lang.word2count['2.0'])
-    # print(lang.word2count['1.0'])
-    # print(lang.word2count[lang.index2word[15000]])
 
     with open(args.save_data_path + "/pairs.pkl", 'wb') as f:
         pkl.dump((train_pairs, test_pairs), f, protocol=pkl.HIGHEST_PROTOCOL) 
