@@ -5,9 +5,15 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 # Define constants
-UNK_token = 0
+PAD_token = 0
 SOS_token = 1
 EOS_token = 2
+UNK_token = 3
+
+# Pad sequence
+def pad_sequence(seq, max_seq_len):
+    seq.extend([PAD_token for i in range(max_seq_len - len(seq))])
+    return seq
 
 # Extract N-Grams
 def extract_ngrams(sent, order):

@@ -26,9 +26,9 @@ parser.add_argument('--save-data-path', type=str, default='/scratch/zc807/EncDec
 class Lang:
     def __init__(self, name):
         self.name = name
-        self.n_words = 3  # Count UNK, SOS and EOS
+        self.n_words = 4  # Count PAD, UNK, SOS and EOS
         self.word2index = None
-        self.word2count = {"<UNK>": 100000002, "<SOS>": 100000001, "<EOS>": 100000000}
+        self.word2count = {"<PAD>": 100000003, "<SOS>": 100000002, "<EOS>": 100000001, "<UNK>": 100000000}
         self.index2word = None
 
     def addSentence(self, sent):
