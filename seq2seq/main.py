@@ -47,6 +47,8 @@ parser.add_argument('--plot_every', type=int, default='10', metavar='N',
                     help='plot every (default: 10) batches')
 parser.add_argument('--save_every', type=int, default='3', metavar='N',
                     help='save checkpoint every (default: 3) epochs')
+parser.add_argument('--teacher_forcing_ratio', type=float, default=0.5, metavar='TFR',
+                    help='teacher forcing ratio (default: 0.5)')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                     help='learning rate (default: 0.001)')
 parser.add_argument('--weight_decay', type=float, default=0, metavar='WD',
@@ -64,7 +66,6 @@ parser.set_defaults(max_length=40)
 # Training
 ###############################################
 
-teacher_forcing_ratio = 0.5
  
 def train(input_tensor, input_lengths, target_tensor, target_lengths, 
         encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, args):
@@ -75,10 +76,42 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
     
     loss = 0
 
+    # Run EncoderRNN on inputs
     encoder_outputs, encoder_hidden = encoder(input_tensor, input_lengths)
-    decoder_outputs, decoder_hidden = decoder(encoder_hidden, target_tensor, target_lengths)
 
-    
+    # Set encoder_hidden as the context vector for decoder
+    context_vector = encoder_hidden
+
+    # Prepare tensor for decoder on time_step_0
+    batch_size = context_vector.size(1)
+    decoder_input = torch.LongTensor([[SOS_token] * batch_size])
+
+    # Pass the context vector
+    decoder_hidden = context_vector
+
+    max_target_length = max(target_lengths)
+    decoder_outputs = torch.zeros(
+        max_target_length, 
+        batch_size, 
+        decoder.output_size
+    ) # (time_steps, batch_size, vocab_size)
+
+    if decoder.use_cuda:
+        decoder_input = decoder_input.cuda()
+        decoder_outputs = decoder_outputs.cuda()
+
+    use_teacher_forcing = True if random.random() > args.teacher_forcing_ratio else False
+
+    # Unfold the decoder RNN on the time dimension
+    for t in range(max_target_length):
+        decoder_output, decoder_hidden = decoder.forward_step(decoder_input, decoder_hidden)
+        decoder_outputs[t] = decoder_output
+        if use_teacher_forcing:
+            decoder_input = target_tensor[t].unsqueeze(0)
+        else:
+            topv, topi = decoder_output.data.topk(1)
+            decoder_input = topi.transpose(0, 1)
+
     loss += criterion(decoder_outputs.view(-1, args.vocab_size), target_tensor.view(-1))
     loss.backward()
 
@@ -290,6 +323,7 @@ if __name__ == '__main__':
     print("print-every: {}".format(args.print_every))
     print("plot-every: {}".format(args.plot_every))
     print("save-every: {}".format(args.save_every))
+    print("teacher forcing ratio: {}".format(args.teacher_forcing_ratio))
     print("lr: {}".format(args.lr))
     print("weight-decay: {}".format(args.weight_decay))
     print("clip: {}".format(args.clip))

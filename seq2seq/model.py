@@ -1,5 +1,3 @@
-import random
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -15,9 +13,9 @@ class Seq2Seq(nn.Module):
         self.encoder = encoder
         self.decoder = decoder
 
-    def forward(self, input_tensor, input_lengths, target_tensor, target_lengths):
+    def forward(self, input_tensor, input_lengths, max_length):
         encoder_outputs, encoder_hidden = self.encoder(input_tensor, input_lengths)
-        decoder_outputs, decoder_hidden = self.decoder(encoder_hidden, target_tensor, target_lengths)
+        decoder_outputs, decoder_hidden = self.decoder(encoder_hidden, max_length)
         return decoder_outputs, decoder_hidden
 
 
@@ -43,19 +41,17 @@ class EncoderRNN(nn.Module):
 
 class DecoderRNN(nn.Module):
 
-    def __init__(self, hidden_size, output_size, n_layers=2, dropout=0.1, 
-            teacher_forcing_ratio=0.5, use_cuda=True):
+    def __init__(self, hidden_size, output_size, n_layers=2, dropout=0.1, use_cuda=True):
         super(DecoderRNN, self).__init__()
 
         self.hidden_size = hidden_size
         self.output_size = output_size
         self.use_cuda = use_cuda
-        self.teacher_forcing_ratio = teacher_forcing_ratio
 
         self.embedding = nn.Embedding(output_size, hidden_size)
         self.gru = nn.GRU(hidden_size, hidden_size, 
             num_layers=n_layers, dropout=dropout, bidirectional=True)
-        self.fc = nn.Linear(2*hidden_size, output_size)
+        self.fc = nn.Linear(hidden_size * 2, output_size)
         self.log_softmax = nn.LogSoftmax(dim=1)
 
     def forward_step(self, inputs, hidden):
@@ -65,7 +61,7 @@ class DecoderRNN(nn.Module):
         output = self.log_softmax(self.fc(output))
         return output, hidden
 
-    def forward(self, context_vector, target_tensor, target_lengths):
+    def forward(self, context_vector, max_length):
 
         # Prepare tensor for decoder on time_step_0
         batch_size = context_vector.size(1)
@@ -74,9 +70,8 @@ class DecoderRNN(nn.Module):
         # Pass the context vector
         decoder_hidden = context_vector
 
-        max_target_length = max(target_lengths)
         decoder_outputs = torch.zeros(
-            max_target_length, 
+            max_length, 
             batch_size, 
             self.output_size
         ) # (time_steps, batch_size, vocab_size)
@@ -85,16 +80,11 @@ class DecoderRNN(nn.Module):
             decoder_input = decoder_input.cuda()
             decoder_outputs = decoder_outputs.cuda()
 
-        use_teacher_forcing = True if random.random() > self.teacher_forcing_ratio else False
-
         # Unfold the decoder RNN on the time dimension
-        for t in range(max_target_length):
+        for t in range(max_length):
             decoder_output, decoder_hidden = self.forward_step(decoder_input, decoder_hidden)
             decoder_outputs[t] = decoder_output
-            if use_teacher_forcing:
-                decoder_input = target_tensor[t].unsqueeze(0)
-            else:
-                topv, topi = decoder_output.data.topk(1)
-                decoder_input = topi.transpose(0, 1)
+            topv, topi = decoder_output.data.topk(1)
+            decoder_input = topi.transpose(0, 1)
 
         return decoder_outputs, decoder_hidden
