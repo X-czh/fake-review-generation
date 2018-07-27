@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
 
-from model import EncoderRNN, DecoderRNN
+from model import EncoderBiRNN, DecoderRNN
 from data import Lang, DataIter, variableFromSentence
 from metric import score, multi_score
 from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSince, showPlot
@@ -37,6 +37,10 @@ parser.add_argument('--hidden_size', type=int, default='300', metavar='N',
                     help='hidden size (default: 300)')
 parser.add_argument('--batch_size', type=int, default='32', metavar='N',
                     help='batch size (default: 32)')
+parser.add_argument('--n_layer', type=int, default='2', metavar='N',
+                    help='number of stacked layers of RNNs (default: 2)')
+parser.add_argument('--dropout', type=float, default='0.1', metavar='DR',
+                    help='dropout_prob for stacked RNNs (default: 0.1)')
 parser.add_argument('--n_epochs', type=int, default=1, metavar='N',
                     help='number of epochs to train (default: 1)')
 parser.add_argument('--n_batches', type=int, default=0, metavar='N',
@@ -79,8 +83,11 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
     # Run EncoderRNN on inputs
     encoder_outputs, encoder_hidden = encoder(input_tensor, input_lengths)
 
-    # Set encoder_hidden as the context vector for decoder
-    context_vector = encoder_hidden
+    # Concatenate bidirectional encoder hidden as context vector for decoder
+    context_vector = torch.cat([
+        encoder_hidden[0:encoder_hidden.size(0):2], 
+        encoder_hidden[1:encoder_hidden.size(0):2]
+        ], 2)
 
     # Prepare tensor for decoder on time_step_0
     batch_size = context_vector.size(1)
@@ -193,7 +200,12 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
 
     decoder_input = torch.LongTensor([[SOS_token]])  # SOS
     decoder_input = decoder_input.cuda() if use_cuda else decoder_input
-    decoder_hidden = encoder_hidden
+    
+    # Concatenate bidirectional encoder hidden as context vector for decoder
+    decoder_hidden = torch.cat([
+        encoder_hidden[0:encoder_hidden.size(0):2], 
+        encoder_hidden[1:encoder_hidden.size(0):2]
+        ], 2)
 
     decoded_words = []
 
@@ -318,6 +330,8 @@ if __name__ == '__main__':
     print("vocab-size: {}".format(args.vocab_size))
     print("hidden-size: {}".format(args.hidden_size))
     print("batch-size: {}".format(args.batch_size))
+    print("n-layer: {}".format(args.n_layer))
+    print("dropout: {}".format(args.dropout))
     print("n-epochs: {}".format(args.n_epochs))
     print("n-batches (testing only): {}".format(args.n_batches))
     print("print-every: {}".format(args.print_every))
@@ -341,8 +355,8 @@ if __name__ == '__main__':
     train_dataiter = DataIter(train_pairs, lang, args.vocab_size, args.batch_size, args.cuda)
 
     # Set encoder and decoder
-    encoder = EncoderRNN(args.vocab_size, args.hidden_size)
-    decoder = DecoderRNN(args.hidden_size, args.vocab_size)
+    encoder = EncoderBiRNN(args.vocab_size, args.hidden_size, args.n_layer, args.dropout)
+    decoder = DecoderRNN(args.hidden_size * 2, args.vocab_size, args.n_layer, args.dropout, args.cuda)
     if args.cuda:
         encoder = encoder.cuda()
         decoder = decoder.cuda()

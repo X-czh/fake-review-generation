@@ -19,13 +19,15 @@ class Seq2Seq(nn.Module):
         return decoder_outputs, decoder_hidden
 
 
-class EncoderRNN(nn.Module):
+class EncoderBiRNN(nn.Module):
 
-    def __init__(self, input_size, hidden_size, n_layers=2, dropout=0.1):
-        super(EncoderRNN, self).__init__()
+    def __init__(self, input_size, hidden_size, n_layers, dropout):
+        super(EncoderBiRNN, self).__init__()
 
         self.input_size = input_size
         self.hidden_size = hidden_size
+        self.n_layers = n_layers
+        self.dropout = dropout
 
         self.embedding = nn.Embedding(input_size, hidden_size)
         self.gru = nn.GRU(hidden_size, hidden_size, 
@@ -41,17 +43,18 @@ class EncoderRNN(nn.Module):
 
 class DecoderRNN(nn.Module):
 
-    def __init__(self, hidden_size, output_size, n_layers=2, dropout=0.1, use_cuda=True):
+    def __init__(self, hidden_size, output_size, n_layers, dropout, use_cuda):
         super(DecoderRNN, self).__init__()
 
         self.hidden_size = hidden_size
         self.output_size = output_size
+        self.n_layers = n_layers
+        self.dropout = dropout
         self.use_cuda = use_cuda
 
         self.embedding = nn.Embedding(output_size, hidden_size)
-        self.gru = nn.GRU(hidden_size, hidden_size, 
-            num_layers=n_layers, dropout=dropout, bidirectional=True)
-        self.fc = nn.Linear(hidden_size * 2, output_size)
+        self.gru = nn.GRU(hidden_size, hidden_size, num_layers=n_layers, dropout=dropout)
+        self.fc = nn.Linear(hidden_size, output_size)
         self.log_softmax = nn.LogSoftmax(dim=1)
 
     def forward_step(self, inputs, hidden):
@@ -71,8 +74,8 @@ class DecoderRNN(nn.Module):
         decoder_hidden = context_vector
 
         decoder_outputs = torch.zeros(
-            max_length, 
-            batch_size, 
+            max_length,
+            batch_size,
             self.output_size
         ) # (time_steps, batch_size, vocab_size)
 
