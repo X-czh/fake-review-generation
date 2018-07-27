@@ -37,7 +37,7 @@ parser.add_argument('--hidden_size', type=int, default='300', metavar='N',
                     help='hidden size (default: 300)')
 parser.add_argument('--batch_size', type=int, default='32', metavar='N',
                     help='batch size (default: 32)')
-parser.add_argument('--n_layer', type=int, default='2', metavar='N',
+parser.add_argument('--n_layers', type=int, default='2', metavar='N',
                     help='number of stacked layers of RNNs (default: 2)')
 parser.add_argument('--dropout', type=float, default='0.1', metavar='DR',
                     help='dropout_prob for stacked RNNs (default: 0.1)')
@@ -119,7 +119,7 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
             topv, topi = decoder_output.data.topk(1)
             decoder_input = topi.transpose(0, 1)
 
-    loss += criterion(decoder_outputs.view(-1, args.vocab_size), target_tensor.view(-1))
+    loss += criterion(decoder_outputs.view(-1, args.vocab_size), target_tensor.contiguous().view(-1))
     loss.backward()
 
     # Clip gradient
@@ -193,35 +193,36 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterio
 def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
     use_cuda = args.cuda
     max_length = args.max_length
-
-    input_tensor = variableFromSentence(input_lang, sentence, args.vocab_size, use_cuda)
-    input_lengths = [input_tensor.size(0)]
-    _, encoder_hidden = encoder(input_tensor, input_lengths)
-
-    decoder_input = torch.LongTensor([[SOS_token]])  # SOS
-    decoder_input = decoder_input.cuda() if use_cuda else decoder_input
     
-    # Concatenate bidirectional encoder hidden as context vector for decoder
-    decoder_hidden = torch.cat([
-        encoder_hidden[0:encoder_hidden.size(0):2], 
-        encoder_hidden[1:encoder_hidden.size(0):2]
-        ], 2)
+    with torch.no_grad():
+        input_tensor = variableFromSentence(input_lang, sentence, args.vocab_size, use_cuda)
+        input_lengths = [input_tensor.size(0)]
+        _, encoder_hidden = encoder(input_tensor, input_lengths)
 
-    decoded_words = []
-
-    for di in range(max_length):
-        decoder_output, decoder_hidden = decoder.forward_step(
-            decoder_input, decoder_hidden)
-        topv, topi = decoder_output.data.topk(1)
-        ni = topi.item()
-        if ni == EOS_token:
-            decoded_words.append('<EOS>')
-            break
-        else:
-            decoded_words.append(output_lang.index2word[ni])
-
-        decoder_input = torch.LongTensor([[ni]])
+        decoder_input = torch.LongTensor([[SOS_token]])  # SOS
         decoder_input = decoder_input.cuda() if use_cuda else decoder_input
+        
+        # Concatenate bidirectional encoder hidden as context vector for decoder
+        decoder_hidden = torch.cat([
+            encoder_hidden[0:encoder_hidden.size(0):2], 
+            encoder_hidden[1:encoder_hidden.size(0):2]
+            ], 2)
+
+        decoded_words = []
+
+        for di in range(max_length):
+            decoder_output, decoder_hidden = decoder.forward_step(
+                decoder_input, decoder_hidden)
+            topv, topi = decoder_output.data.topk(1)
+            ni = topi.item()
+            if ni == EOS_token:
+                decoded_words.append('<EOS>')
+                break
+            else:
+                decoded_words.append(output_lang.index2word[ni])
+
+            decoder_input = torch.LongTensor([[ni]])
+            decoder_input = decoder_input.cuda() if use_cuda else decoder_input
 
     return decoded_words
 
@@ -330,7 +331,7 @@ if __name__ == '__main__':
     print("vocab-size: {}".format(args.vocab_size))
     print("hidden-size: {}".format(args.hidden_size))
     print("batch-size: {}".format(args.batch_size))
-    print("n-layer: {}".format(args.n_layer))
+    print("n-layers: {}".format(args.n_layers))
     print("dropout: {}".format(args.dropout))
     print("n-epochs: {}".format(args.n_epochs))
     print("n-batches (testing only): {}".format(args.n_batches))
@@ -355,8 +356,8 @@ if __name__ == '__main__':
     train_dataiter = DataIter(train_pairs, lang, args.vocab_size, args.batch_size, args.cuda)
 
     # Set encoder and decoder
-    encoder = EncoderBiRNN(args.vocab_size, args.hidden_size, args.n_layer, args.dropout)
-    decoder = DecoderRNN(args.hidden_size * 2, args.vocab_size, args.n_layer, args.dropout, args.cuda)
+    encoder = EncoderBiRNN(args.vocab_size, args.hidden_size, args.n_layers, args.dropout)
+    decoder = DecoderRNN(args.hidden_size * 2, args.vocab_size, args.n_layers, args.dropout, args.cuda)
     if args.cuda:
         encoder = encoder.cuda()
         decoder = decoder.cuda()

@@ -38,6 +38,10 @@ class EncoderBiRNN(nn.Module):
         packed = pack_padded_sequence(embedded, input_lengths)
         packed_output, hidden = self.gru(packed, hidden)
         outputs, output_lengths = pad_packed_sequence(packed_output) # unpack (back to padded)
+        outputs = torch.cat([
+            outputs[:, :, :self.hidden_size], 
+            outputs[:, :, self.hidden_size:]
+            ], 2)  # Cat bidirectional outputs
         return outputs, hidden
 
 
