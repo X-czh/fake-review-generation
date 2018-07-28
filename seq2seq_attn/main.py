@@ -215,7 +215,7 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
         decoded_words = []
 
         for di in range(max_length):
-            decoder_output, decoder_hidden, attn_weights = decoder.forward_step(
+            decoder_output, decoder_hidden, _ = decoder.forward_step(
                 decoder_input, decoder_hidden, encoder_outputs)
             topv, topi = decoder_output.data.topk(1)
             ni = topi.item()

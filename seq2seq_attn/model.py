@@ -75,7 +75,7 @@ class Attn(nn.Module):
         attn_energies = self.score(output, encoder_outputs)
 
         # Normalize energies to weights in range 0 to 1
-        return F.softmax(attn_energies)
+        return F.softmax(attn_energies, 2)
 
     def score(self, output, encoder_outputs):
         seq_len = encoder_outputs.size(0)
