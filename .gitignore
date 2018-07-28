@@ -3,6 +3,7 @@
 *.pkl
 *.log
 *.data
+*.pdf
 __pycache__
 .vscode
 .ipynb_checkpoints
