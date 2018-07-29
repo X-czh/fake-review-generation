@@ -131,6 +131,7 @@ class AttnDecoderRNN(nn.Module):
         self.gru = nn.GRU(hidden_size, hidden_size, num_layers=n_layers, dropout=dropout)
         self.concat = nn.Linear(hidden_size * 2, hidden_size)
         self.out = nn.Linear(hidden_size, output_size)
+        self.log_softmax = nn.LogSoftmax(dim=1)
 
         # Choose attention model
         if attn_model != 'none':
@@ -161,6 +162,9 @@ class AttnDecoderRNN(nn.Module):
 
         # Squeeze the time dimension
         output = output.squeeze(0)
+
+        # Apply log_softmax
+        output = self.log_softmax(output)
 
         # Return final output, hidden state, and attention weights (for visualization)
         return output, hidden, attn_weights
