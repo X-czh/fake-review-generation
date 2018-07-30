@@ -105,14 +105,15 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
         decoder.output_size
     ) # (time_steps, batch_size, vocab_size)
 
+    # Sample noise
+    noise = torch.Tensor(np.random.normal(0, 1, (batch_size, args.noise_size)))
+
     if decoder.use_cuda:
         decoder_input = decoder_input.cuda()
         decoder_outputs = decoder_outputs.cuda()
+        noise = noise.cuda()
 
     use_teacher_forcing = True if random.random() > args.teacher_forcing_ratio else False
-
-    # Sample noise
-    noise = torch.Tensor(np.random.normal(0, 1, (batch_size, args.noise_size)))
 
     # Unfold the decoder RNN on the time dimension
     for t in range(max_target_length):
@@ -217,6 +218,8 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
 
         # Sample noise
         noise = torch.Tensor(np.random.normal(0, 1, (1, 50)))
+        if use_cuda:
+            noise = noise.cuda()
 
         for di in range(max_length):
             decoder_output, decoder_hidden = decoder.forward_step(

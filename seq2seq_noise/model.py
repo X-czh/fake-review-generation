@@ -89,12 +89,13 @@ class DecoderRNN(nn.Module):
             self.output_size
         ) # (time_steps, batch_size, vocab_size)
 
+        # Sample noise
+        noise = torch.Tensor(np.random.normal(0, 1, (batch_size, self.noise_size)))
+
         if self.use_cuda:
             decoder_input = decoder_input.cuda()
             decoder_outputs = decoder_outputs.cuda()
-
-        # Sample noise
-        noise = torch.Tensor(np.random.normal(0, 1, (batch_size, self.noise_size)))
+            noise = noise.cuda()
 
         # Unfold the decoder RNN on the time dimension
         for t in range(max_length):
