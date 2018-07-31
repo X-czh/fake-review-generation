@@ -15,8 +15,8 @@ parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
 parser.add_argument('--data-path', type=str, default='/scratch/zc807/data', metavar='PATH',
                     help='data path (default: /scratch/zc807/data)')
-parser.add_argument('--save-data-path', type=str, default='/scratch/zc807/seq2seq', metavar='PATH',
-                    help='data path to save pairs.pkl and lang.pkl (default: /scratch/zc807/seq2seq)')
+parser.add_argument('--save-data-path', type=str, default='/scratch/zc807/seq2seq_noise', metavar='PATH',
+                    help='data path to save pairs.pkl and lang.pkl (default: /scratch/zc807/seq2seq_noise)')
 
 
 ###############################################

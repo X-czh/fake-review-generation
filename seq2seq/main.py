@@ -49,8 +49,8 @@ parser.add_argument('--print_every', type=int, default='100', metavar='N',
                     help='print every (default: 100) batches')
 parser.add_argument('--plot_every', type=int, default='10', metavar='N',
                     help='plot every (default: 10) batches')
-parser.add_argument('--save_every', type=int, default='3', metavar='N',
-                    help='save checkpoint every (default: 3) epochs')
+parser.add_argument('--save_every', type=int, default='10', metavar='N',
+                    help='save checkpoint every (default: 10) epochs')
 parser.add_argument('--teacher_forcing_ratio', type=float, default=0.5, metavar='TFR',
                     help='teacher forcing ratio (default: 0.5)')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
@@ -228,13 +228,15 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
 
 def evaluateRandomly(encoder, decoder, pairs, input_lang, output_lang, args, n=10):
     for i in range(n):
+        print('PAIR {}'.format(i+1))
         pair = random.choice(pairs)
-        print('>', pair[0])
-        print('=', pair[1])
-        output_words = evaluate(encoder, decoder, pair[0], input_lang, output_lang, args)
-        output_sentence = ' '.join(output_words)
-        print('<', output_sentence)
-        print('')
+        for j in range(5):
+            print('>', pair[0])
+            print('=', pair[1])
+            output_words = evaluate(encoder, decoder, pair[0], input_lang, output_lang, args)
+            output_sentence = ' '.join(output_words)
+            print('<', output_sentence)
+            print('')
 
 def evaluateTestingPairs(encoder, decoder, pairs, input_lang, output_lang, args):
     score_short = 0

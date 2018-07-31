@@ -3,6 +3,7 @@
 *.pkl
 *.log
 *.data
+*.pt
 *.pdf
 __pycache__
 .vscode

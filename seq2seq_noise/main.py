@@ -23,10 +23,10 @@ from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSin
 parser = argparse.ArgumentParser(description='seq2seq')
 parser.add_argument('--hpc', action='store_true', default=False,
                     help='set to hpc mode')
-parser.add_argument('--data_path', type=str, default='/scratch/zc807/seq2seq', metavar='PATH',
-                    help='data path of pairs.pkl and lang.pkl (default: /scratch/zc807/seq2seq)')
-parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/seq2seq', metavar='PATH',
-                    help='data path to save model parameters (default: /scratch/zc807/seq2seq)')
+parser.add_argument('--data_path', type=str, default='/scratch/zc807/seq2seq_noise', metavar='PATH',
+                    help='data path of pairs.pkl and lang.pkl (default: /scratch/zc807/seq2seq_noise)')
+parser.add_argument('--save_data_path', type=str, default='/scratch/zc807/seq2seq_noise', metavar='PATH',
+                    help='data path to save model parameters (default: /scratch/zc807/seq2seq_noise)')
 parser.add_argument('--resume', type=str, default='', metavar='PATH',
                     help='data path to load checkpoint for resuming (default: none)')
 parser.add_argument('--metric', type=str, default='MULTI', metavar='METRIC',
@@ -51,8 +51,8 @@ parser.add_argument('--print_every', type=int, default='100', metavar='N',
                     help='print every (default: 100) batches')
 parser.add_argument('--plot_every', type=int, default='10', metavar='N',
                     help='plot every (default: 10) batches')
-parser.add_argument('--save_every', type=int, default='3', metavar='N',
-                    help='save checkpoint every (default: 3) epochs')
+parser.add_argument('--save_every', type=int, default='10', metavar='N',
+                    help='save checkpoint every (default: 10) epochs')
 parser.add_argument('--teacher_forcing_ratio', type=float, default=0.5, metavar='TFR',
                     help='teacher forcing ratio (default: 0.5)')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
@@ -239,6 +239,7 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
 
 def evaluateRandomly(encoder, decoder, pairs, input_lang, output_lang, args, n=10):
     for i in range(n):
+        print('PAIR {}'.format(i+1))
         pair = random.choice(pairs)
         for j in range(5):
             print('>', pair[0])
