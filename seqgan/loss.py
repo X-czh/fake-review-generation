@@ -9,7 +9,7 @@ class PGLoss(nn.Module):
     """
 
     def __init__(self):
-        super(PGLoss, self).__init__()
+        super().__init__()
 
     def forward(self, pred, target, reward):
         """

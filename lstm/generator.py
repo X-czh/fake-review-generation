@@ -7,7 +7,7 @@ class Generator(nn.Module):
     """ Generator """
 
     def __init__(self, vocab_size, embedding_dim, hidden_dim, use_cuda):
-        super(Generator, self).__init__()
+        super().__init__()
         self.hidden_dim = hidden_dim
         self.use_cuda = use_cuda
         self.embed = nn.Embedding(vocab_size, embedding_dim)

@@ -11,7 +11,7 @@ class Discriminator(nn.Module):
     """
 
     def __init__(self, num_classes, vocab_size, embedding_dim, filter_sizes, num_filters, dropout_prob):
-        super(Discriminator, self).__init__()
+        super().__init__()
         self.embed = nn.Embedding(vocab_size, embedding_dim)
         self.convs = nn.ModuleList([
             nn.Conv2d(1, num_f, (f_size, embedding_dim)) for f_size, num_f in zip(filter_sizes, num_filters)

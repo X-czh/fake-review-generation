@@ -9,7 +9,7 @@ from utils import SOS_token
 class Seq2Seq(nn.Module):
 
     def __init__(self, encoder, decoder):
-        super(Seq2Seq, self).__init__()
+        super().__init__()
         self.encoder = encoder
         self.decoder = decoder
 
@@ -22,7 +22,7 @@ class Seq2Seq(nn.Module):
 class EncoderBiRNN(nn.Module):
 
     def __init__(self, input_size, hidden_size, n_layers, dropout):
-        super(EncoderBiRNN, self).__init__()
+        super().__init__()
 
         self.input_size = input_size
         self.hidden_size = hidden_size
@@ -49,7 +49,7 @@ class Attn(nn.Module):
     """ Implements modified LuongAttn mechanism on the output features from the encoder and decoder """
 
     def __init__(self, method, hidden_size, use_cuda):
-        super(Attn, self).__init__()
+        super().__init__()
         
         self.method = method
         self.hidden_size = hidden_size
@@ -115,7 +115,7 @@ class AttnDecoderRNN(nn.Module):
     """ Implements modified LuongAttnDecoderRNN on the output features from the encoder and decoder """
 
     def __init__(self, attn_model, hidden_size, output_size, n_layers, dropout, use_cuda):
-        super(AttnDecoderRNN, self).__init__()
+        super().__init__()
 
         # Keep for reference
         self.attn_model = attn_model
