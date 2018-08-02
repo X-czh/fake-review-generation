@@ -217,7 +217,7 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
         decoded_words = []
 
         # Sample noise
-        noise = torch.Tensor(np.random.normal(0, 1, (1, 50)))
+        noise = torch.Tensor(np.random.normal(0, 1, (1, args.noise_size)))
         if use_cuda:
             noise = noise.cuda()
 
