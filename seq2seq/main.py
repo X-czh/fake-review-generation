@@ -33,10 +33,10 @@ parser.add_argument('--metric', type=str, default='MULTI', metavar='METRIC',
                     help='metric to use (default: MULTI; ROUGE, BLEU and BLEU_clip available)')
 parser.add_argument('--vocab_size', type=int, default='15000', metavar='N',
                     help='vocab size (default: 15000)')
-parser.add_argument('--hidden_size', type=int, default='300', metavar='N',
-                    help='hidden size (default: 300)')
-parser.add_argument('--batch_size', type=int, default='32', metavar='N',
-                    help='batch size (default: 32)')
+parser.add_argument('--hidden_size', type=int, default='500', metavar='N',
+                    help='hidden size (default: 500)')
+parser.add_argument('--batch_size', type=int, default='64', metavar='N',
+                    help='batch size (default: 64)')
 parser.add_argument('--n_layers', type=int, default='2', metavar='N',
                     help='number of stacked layers of RNNs (default: 2)')
 parser.add_argument('--dropout', type=float, default='0.1', metavar='DR',
