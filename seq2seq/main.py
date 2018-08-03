@@ -13,7 +13,7 @@ import torch.backends.cudnn as cudnn
 from model import EncoderBiRNN, DecoderRNN
 from data import Lang, DataIter, variableFromSentence
 from metric import score, multi_score
-from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSince, showPlot
+from utils import PAD_token, UNK_token, SOS_token, EOS_token, sample, asMinutes, timeSince, showPlot
 
 
 ###############################################
@@ -53,6 +53,8 @@ parser.add_argument('--save_every', type=int, default='10', metavar='N',
                     help='save checkpoint every (default: 10) epochs')
 parser.add_argument('--teacher_forcing_ratio', type=float, default=0.5, metavar='TFR',
                     help='teacher forcing ratio (default: 0.5)')
+parser.add_argument('--temperature', type=float, default=0.5, metavar='TEMP',
+                    help='temperature (default: 0.5)')
 parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                     help='learning rate (default: 0.001)')
 parser.add_argument('--weight_decay', type=float, default=0, metavar='WD',
@@ -132,7 +134,8 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
 
     return loss.item()
 
-def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, dataiter, args):
+def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, 
+        encoder_scheduler, decoder_scheduler, criterion, dataiter, args):
     n_epochs = args.n_epochs
     print_every = args.print_every
     plot_every = args.plot_every
@@ -141,6 +144,7 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterio
     batch_i = 0
     n_batches = n_epochs * len(dataiter)
     plot_losses = []
+    epoch_loss = 0 # Reset every epoch
     print_loss_total = 0  # Reset every print_every
     plot_loss_total = 0  # Reset every plot_every
 
@@ -151,6 +155,7 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterio
 
             loss = train(input_tensor, input_lengths, target_tensor, target_lengths, 
                 encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, args)
+            epoch_loss += loss
             print_loss_total += loss
             plot_loss_total += loss
 
@@ -179,6 +184,9 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterio
             if args.n_batches > 0 and batch_i == args.n_batches:
                 break
 
+        encoder_scheduler.step(epoch_loss)
+        decoder_scheduler.step(epoch_loss)
+        epoch_loss = 0
         dataiter.reset()
         
         print("Epoch {}/{} finished".format(epoch, args.n_epochs - 1))
@@ -213,15 +221,15 @@ def evaluate(encoder, decoder, sentence, input_lang, output_lang, args):
         for di in range(max_length):
             decoder_output, decoder_hidden = decoder.forward_step(
                 decoder_input, decoder_hidden)
-            topv, topi = decoder_output.data.topk(1)
-            ni = topi.item()
-            if ni == EOS_token:
+            word_weights = decoder_output.squeeze().data.div(args.temperature).exp().cpu()
+            word_idx = torch.multinomial(word_weights, 1).item()
+            if word_idx == EOS_token:
                 decoded_words.append('<EOS>')
                 break
             else:
-                decoded_words.append(output_lang.index2word[ni])
+                decoded_words.append(output_lang.index2word[word_idx])
 
-            decoder_input = torch.LongTensor([[ni]])
+            decoder_input = torch.LongTensor([[word_idx]])
             decoder_input = decoder_input.cuda() if use_cuda else decoder_input
 
     return decoded_words
@@ -341,6 +349,7 @@ if __name__ == '__main__':
     print("plot-every: {}".format(args.plot_every))
     print("save-every: {}".format(args.save_every))
     print("teacher forcing ratio: {}".format(args.teacher_forcing_ratio))
+    print("temperature: {}".format(args.temperature))
     print("lr: {}".format(args.lr))
     print("weight-decay: {}".format(args.weight_decay))
     print("clip: {}".format(args.clip))
@@ -363,10 +372,24 @@ if __name__ == '__main__':
     if args.cuda:
         encoder = encoder.cuda()
         decoder = decoder.cuda()
-    
-    # Set optimizer and criterion
+
+    # Set optimizer, lr_scheduler and criterion
     encoder_optimizer = optim.Adam(encoder.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     decoder_optimizer = optim.Adam(decoder.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    encoder_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer=encoder_optimizer, 
+        mode='min', 
+        factor=0.1, 
+        patience=5, 
+        verbose=True,
+        min_lr=0.00001)
+    decoder_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer=decoder_optimizer, 
+        mode='min', 
+        factor=0.1,
+        patience=5, 
+        verbose=True,
+        min_lr=0.00001)
     criterion = nn.NLLLoss(ignore_index=PAD_token)
 
     # Resume from checkpoint
@@ -385,11 +408,12 @@ if __name__ == '__main__':
 
     # Train and evalute
     print("\nStart")
-    print("Evaluate randomly on training sentences:")
-    evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
-    print("Evaluate randomly on testing sentences:")
-    evaluateRandomly(encoder, decoder, test_pairs, lang, lang, args)
-    trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, train_dataiter, args)
+    # print("Evaluate randomly on training sentences:")
+    # evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
+    # print("Evaluate randomly on testing sentences:")
+    # evaluateRandomly(encoder, decoder, test_pairs, lang, lang, args)
+    trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, 
+        encoder_scheduler, decoder_scheduler, criterion, train_dataiter, args)
     print("Evaluate randomly on training sentences:")
     evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
     print("Evaluate randomly on testing sentences:")
