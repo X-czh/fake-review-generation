@@ -13,7 +13,7 @@ import torch.backends.cudnn as cudnn
 from model import EncoderBiRNN, DecoderRNN
 from data import Lang, DataIter, variableFromSentence
 from metric import score, multi_score
-from utils import PAD_token, UNK_token, SOS_token, EOS_token, sample, asMinutes, timeSince, showPlot
+from utils import PAD_token, UNK_token, SOS_token, EOS_token, asMinutes, timeSince, showPlot
 
 
 ###############################################
