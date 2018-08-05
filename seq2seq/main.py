@@ -35,8 +35,8 @@ parser.add_argument('--vocab_size', type=int, default='15000', metavar='N',
                     help='vocab size (default: 15000)')
 parser.add_argument('--hidden_size', type=int, default='500', metavar='N',
                     help='hidden size (default: 500)')
-parser.add_argument('--batch_size', type=int, default='64', metavar='N',
-                    help='batch size (default: 64)')
+parser.add_argument('--batch_size', type=int, default='32', metavar='N',
+                    help='batch size (default: 32)')
 parser.add_argument('--n_layers', type=int, default='2', metavar='N',
                     help='number of stacked layers of RNNs (default: 2)')
 parser.add_argument('--dropout', type=float, default='0.1', metavar='DR',
@@ -55,16 +55,16 @@ parser.add_argument('--teacher_forcing_ratio', type=float, default=0.5, metavar=
                     help='teacher forcing ratio (default: 0.5)')
 parser.add_argument('--temperature', type=float, default=0.5, metavar='TEMP',
                     help='temperature (default: 0.5)')
-parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
-                    help='learning rate (default: 0.001)')
+parser.add_argument('--lr', type=float, default=0.0001, metavar='LR',
+                    help='learning rate (default: 0.0001)')
 parser.add_argument('--weight_decay', type=float, default=0, metavar='WD',
                     help='weight decay (L2 penalty) (default: 0)')
 parser.add_argument('--clip', type=float, default=0, metavar='CLIP',
                     help='gradient clip threshold (default: 0 (disabled)')
 parser.add_argument('--no_cuda', action='store_true', default=False,
                     help='disables CUDA training')
-parser.add_argument('--seed', type=int, default=1997, metavar='S',
-                    help='random seed (default: 1997)')
+parser.add_argument('--seed', type=int, default=1, metavar='S',
+                    help='random seed (default: 1)')
 parser.set_defaults(max_length=40)
 
 
@@ -134,8 +134,7 @@ def train(input_tensor, input_lengths, target_tensor, target_lengths,
 
     return loss.item()
 
-def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, 
-        encoder_scheduler, decoder_scheduler, criterion, dataiter, args):
+def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, dataiter, args):
     n_epochs = args.n_epochs
     print_every = args.print_every
     plot_every = args.plot_every
@@ -144,7 +143,6 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer,
     batch_i = 0
     n_batches = n_epochs * len(dataiter)
     plot_losses = []
-    epoch_loss = 0 # Reset every epoch
     print_loss_total = 0  # Reset every print_every
     plot_loss_total = 0  # Reset every plot_every
 
@@ -155,7 +153,6 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer,
 
             loss = train(input_tensor, input_lengths, target_tensor, target_lengths, 
                 encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, args)
-            epoch_loss += loss
             print_loss_total += loss
             plot_loss_total += loss
 
@@ -184,9 +181,6 @@ def trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer,
             if args.n_batches > 0 and batch_i == args.n_batches:
                 break
 
-        encoder_scheduler.step(epoch_loss)
-        decoder_scheduler.step(epoch_loss)
-        epoch_loss = 0
         dataiter.reset()
         
         print("Epoch {}/{} finished".format(epoch, args.n_epochs - 1))
@@ -376,20 +370,6 @@ if __name__ == '__main__':
     # Set optimizer, lr_scheduler and criterion
     encoder_optimizer = optim.Adam(encoder.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     decoder_optimizer = optim.Adam(decoder.parameters(), lr=args.lr, weight_decay=args.weight_decay)
-    encoder_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer=encoder_optimizer, 
-        mode='min', 
-        factor=0.1, 
-        patience=5, 
-        verbose=True,
-        min_lr=0.00001)
-    decoder_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer=decoder_optimizer, 
-        mode='min', 
-        factor=0.1,
-        patience=5, 
-        verbose=True,
-        min_lr=0.00001)
     criterion = nn.NLLLoss(ignore_index=PAD_token)
 
     # Resume from checkpoint
@@ -400,7 +380,7 @@ if __name__ == '__main__':
             encoder.load_state_dict(checkpoint['encoder_state_dict'])
             decoder.load_state_dict(checkpoint['decoder_state_dict'])
             encoder_optimizer.load_state_dict(checkpoint['encoder_optim_state'])
-            decoder_optimizer.load_state_dict(checkpoint['encoder_optim_state'])
+            decoder_optimizer.load_state_dict(checkpoint['decoder_optim_state'])
             print("=> loaded checkpoint '{}' (epoch {})"
                   .format(args.resume, checkpoint['epoch']))
         else:
@@ -412,8 +392,7 @@ if __name__ == '__main__':
     # evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
     # print("Evaluate randomly on testing sentences:")
     # evaluateRandomly(encoder, decoder, test_pairs, lang, lang, args)
-    trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, 
-        encoder_scheduler, decoder_scheduler, criterion, train_dataiter, args)
+    trainEpochs(encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, train_dataiter, args)
     print("Evaluate randomly on training sentences:")
     evaluateRandomly(encoder, decoder, train_pairs, lang, lang, args)
     print("Evaluate randomly on testing sentences:")
