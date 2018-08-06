@@ -1,0 +1,12 @@
+hpc mode: False
+Reading lines...
+Read 2500 training sentence pairs
+Read 2500 testing sentence pairs
+Counting words and constructing training pairs...
+Counted words in training sentences:
+Yelp Reviews 5533
+Example training sentence pairs:
+('4.0 restaurants italian', 'good menu . excellent service . good food & wine . highly recommended .')
+Example testing sentence pairs:
+('1.0 vegan restaurants pizza gluten-free', 'went in , sign said " open ", wanted a slice they had no pizza , no slices . wtf ? so why are you open ?')
+

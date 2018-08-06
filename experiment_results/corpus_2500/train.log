@@ -1,0 +1,551 @@
+hpc mode: False
+data-path: .
+save-data-path: .
+resume: 
+metric: MULTI
+vocab-size: 5000
+hidden-size: 300
+batch-size: 64
+n-layers: 2
+dropout: 0.1
+n-epochs: 60
+n-batches (testing only): 0
+print-every: 100
+plot-every: 10
+save-every: 10
+teacher forcing ratio: 0.5
+temperature: 0.5
+lr: 0.001
+weight-decay: 0
+clip: 0
+use cuda: True
+seed: 1
+
+Start
+Epoch 0/59 finished
+Epoch 1/59 finished
+0m 52s (- 19m 26s) (100 4%) 6.1777
+Epoch 2/59 finished
+Epoch 3/59 finished
+Epoch 4/59 finished
+1m 45s (- 18m 53s) (200 8%) 5.8550
+Epoch 5/59 finished
+Epoch 6/59 finished
+2m 40s (- 18m 9s) (300 12%) 5.5965
+Epoch 7/59 finished
+Epoch 8/59 finished
+Epoch 9/59 finished
+3m 57s (- 19m 12s) (400 17%) 5.4061
+Epoch 10/59 finished
+Epoch 11/59 finished
+4m 50s (- 17m 50s) (500 21%) 5.1447
+Epoch 12/59 finished
+Epoch 13/59 finished
+Epoch 14/59 finished
+5m 44s (- 16m 38s) (600 25%) 4.8077
+Epoch 15/59 finished
+Epoch 16/59 finished
+6m 36s (- 15m 29s) (700 29%) 4.4834
+Epoch 17/59 finished
+Epoch 18/59 finished
+Epoch 19/59 finished
+7m 50s (- 15m 6s) (800 34%) 3.9683
+Epoch 20/59 finished
+Epoch 21/59 finished
+Epoch 22/59 finished
+8m 42s (- 13m 56s) (900 38%) 3.6814
+Epoch 23/59 finished
+Epoch 24/59 finished
+9m 34s (- 12m 50s) (1000 42%) 3.4140
+Epoch 25/59 finished
+Epoch 26/59 finished
+Epoch 27/59 finished
+10m 26s (- 11m 46s) (1100 47%) 3.1630
+Epoch 28/59 finished
+Epoch 29/59 finished
+11m 39s (- 11m 4s) (1200 51%) 2.9353
+Epoch 30/59 finished
+Epoch 31/59 finished
+Epoch 32/59 finished
+12m 30s (- 10m 0s) (1300 55%) 2.7843
+Epoch 33/59 finished
+Epoch 34/59 finished
+13m 21s (- 8m 58s) (1400 59%) 2.4402
+Epoch 35/59 finished
+Epoch 36/59 finished
+Epoch 37/59 finished
+14m 12s (- 7m 57s) (1500 64%) 1.8845
+Epoch 38/59 finished
+Epoch 39/59 finished
+Epoch 40/59 finished
+15m 24s (- 7m 7s) (1600 68%) 1.8532
+Epoch 41/59 finished
+Epoch 42/59 finished
+16m 16s (- 6m 7s) (1700 72%) 1.6067
+Epoch 43/59 finished
+Epoch 44/59 finished
+Epoch 45/59 finished
+17m 7s (- 5m 8s) (1800 76%) 1.5425
+Epoch 46/59 finished
+Epoch 47/59 finished
+17m 58s (- 4m 9s) (1900 81%) 1.4807
+Epoch 48/59 finished
+Epoch 49/59 finished
+Epoch 50/59 finished
+19m 13s (- 3m 16s) (2000 85%) 1.6385
+Epoch 51/59 finished
+Epoch 52/59 finished
+20m 6s (- 2m 17s) (2100 89%) 1.6493
+Epoch 53/59 finished
+Epoch 54/59 finished
+Epoch 55/59 finished
+20m 57s (- 1m 20s) (2200 94%) 1.4419
+Epoch 56/59 finished
+Epoch 57/59 finished
+21m 49s (- 0m 22s) (2300 98%) 1.4272
+Epoch 58/59 finished
+Epoch 59/59 finished
+Evaluate randomly on training sentences:
+PAIR 1
+> 2.0 restaurants mexican nightlife bars
+= pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food
+< pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food <EOS>
+
+> 2.0 restaurants mexican nightlife bars
+= pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food
+< pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food <EOS>
+
+> 2.0 restaurants mexican nightlife bars
+= pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food
+< pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food <EOS>
+
+> 2.0 restaurants mexican nightlife bars
+= pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food
+< pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food <EOS>
+
+> 2.0 restaurants mexican nightlife bars
+= pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food
+< pros : good place for people watching on the strip if you get a table close to the open windowscons : mediocre and overpriced food <EOS>
+
+PAIR 2
+> 1.0 restaurants gluten-free italian pizza
+= came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off
+< came after reading reviews , but this place charges you for bread and butter .  they call it a  rip . <EOS>
+
+> 1.0 restaurants gluten-free italian pizza
+= came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off
+< came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ! <EOS>
+
+> 1.0 restaurants gluten-free italian pizza
+= came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off
+< came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off <EOS>
+
+> 1.0 restaurants gluten-free italian pizza
+= came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off
+< came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off <EOS>
+
+> 1.0 restaurants gluten-free italian pizza
+= came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off
+< came after reading reviews , but this place charges you for bread and butter .  they call it an appetizer ,  rip off <EOS>
+
+PAIR 3
+> 3.0 restaurants american ( new )
+= food is okay . nothing special . over priced . no real talent in the kitchen . trying to be something they aren't .
+< food is ok . nothing special . over priced . no real <UNK> in the kitchen . trying to be something they aren't . <EOS>
+
+> 3.0 restaurants american ( new )
+= food is okay . nothing special . over priced . no real talent in the kitchen . trying to be something they aren't .
+< food is okay .  over priced . no real <UNK> in the kitchen . trying to be something they aren't . <EOS>
+
+> 3.0 restaurants american ( new )
+= food is okay . nothing special . over priced . no real talent in the kitchen . trying to be something they aren't .
+< food is okay . nothing special . over priced . no real <UNK> in the kitchen . trying to be something they aren't . <EOS>
+
+> 3.0 restaurants american ( new )
+= food is okay . nothing special . over priced . no real talent in the kitchen . trying to be something they aren't .
+< food is good but . nothing . . is . but . of . kitchen <EOS>
+
+> 3.0 restaurants american ( new )
+= food is okay . nothing special . over priced . no real talent in the kitchen . trying to be something they aren't .
+< average service and quality of meal .  was expensive for no <UNK> in the kitchen . trying to be something they aren't . <EOS>
+
+PAIR 4
+> 2.0 mexican latin american restaurants
+= en un mot , dcevant . plats quelconques , service approximatif , ambiance inexistante .  viter .
+< en un mot , <UNK> . plats quelconques , service approximatif , ambiance inexistante .  viter . <EOS>
+
+> 2.0 mexican latin american restaurants
+= en un mot , dcevant . plats quelconques , service approximatif , ambiance inexistante .  viter .
+< en un mot , <UNK> . plats quelconques , service approximatif , ambiance inexistante .  viter . <EOS>
+
+> 2.0 mexican latin american restaurants
+= en un mot , dcevant . plats quelconques , service approximatif , ambiance inexistante .  viter .
+< en un mot , <UNK> . plats quelconques , service approximatif , ambiance inexistante . <EOS>
+
+> 2.0 mexican latin american restaurants
+= en un mot , dcevant . plats quelconques , service approximatif , ambiance inexistante .  viter .
+< en un mot , <UNK> . plats quelconques , service approximatif , ambiance inexistante .  viter . <EOS>
+
+> 2.0 mexican latin american restaurants
+= en un mot , dcevant . plats quelconques , service approximatif , ambiance inexistante .  viter .
+< en un mot , <UNK> . plats quelconques , service approximatif , ambiance inexistante .  viter . <EOS>
+
+PAIR 5
+> 4.0 restaurants thai
+= yum !! the egg and spring rolls r delish ! red curry is a family favorite along with the pad tai .
+< great food excellent service .  it's nice to have thai restaurant . the food is good but . <EOS>
+
+> 4.0 restaurants thai
+= yum !! the egg and spring rolls r delish ! red curry is a family favorite along with the pad tai .
+< food is pretty amazing .  it's nice to have thai restaurant in the area . the service can be a little . <EOS>
+
+> 4.0 restaurants thai
+= yum !! the egg and spring rolls r delish ! red curry is a family favorite along with the pad tai .
+< great food , service . cuisine . a little great and . family the the were restaurant the the <EOS>
+
+> 4.0 restaurants thai
+= yum !! the egg and spring rolls r delish ! red curry is a family favorite along with the pad tai .
+< great food , service . can be it's the the curry . a and were great the good . . and <EOS>
+
+> 4.0 restaurants thai
+= yum !! the egg and spring rolls r delish ! red curry is a family favorite along with the pad tai .
+< great food excellent service . it's . it's a little restaurant a with . the siam . the  rolls <EOS>
+
+PAIR 6
+> 4.0 food restaurants seafood caribbean
+= got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015
+< got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food since in vegas since moving here in 2015 <EOS>
+
+> 4.0 food restaurants seafood caribbean
+= got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015
+< got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015 <EOS>
+
+> 4.0 food restaurants seafood caribbean
+= got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015
+< got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015 <EOS>
+
+> 4.0 food restaurants seafood caribbean
+= got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015
+< got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015 <EOS>
+
+> 4.0 food restaurants seafood caribbean
+= got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015
+< got the jerk chicken wings with the red beans and rice and plantains really good haven't had any delicious caribbean food in vegas since moving here in 2015 <EOS>
+
+PAIR 7
+> 3.0 restaurants breakfast & brunch
+= a good breakfast place . nothing exceptional but they have a good basic breakfast menue and it's cheap . the fruits could be a little bit more fresh ...
+< food was great . ultimate good but the <UNK> pancake menu was <UNK> . a the and gave apparently they a <EOS>
+
+> 3.0 restaurants breakfast & brunch
+= a good breakfast place . nothing exceptional but they have a good basic breakfast menue and it's cheap . the fruits could be a little bit more fresh ...
+< a good breakfast place and . . the was was but but the  but liquor very good a <UNK> . a the bit <EOS>
+
+> 3.0 restaurants breakfast & brunch
+= a good breakfast place . nothing exceptional but they have a good basic breakfast menue and it's cheap . the fruits could be a little bit more fresh ...
+< a good breakfast place . waitress was <UNK> but menu brought a bit apparently they don't serve the serve . <EOS>
+
+> 3.0 restaurants breakfast & brunch
+= a good breakfast place . nothing exceptional but they have a good basic breakfast menue and it's cheap . the fruits could be a little bit more fresh ...
+< a good breakfast place . waitress was <UNK> .  brought a listed listed the gave fruits 2 order was and a bit <EOS>
+
+> 3.0 restaurants breakfast & brunch
+= a good breakfast place . nothing exceptional but they have a good basic breakfast menue and it's cheap . the fruits could be a little bit more fresh ...
+< a was great was a good ultimate . waitress brought the brought breakfast to menu item but liquor could be <UNK> <EOS>
+
+PAIR 8
+> 2.0 restaurants mexican fast food tex-mex
+= typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added .
+< typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added . <EOS>
+
+> 2.0 restaurants mexican fast food tex-mex
+= typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added .
+< typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added . <EOS>
+
+> 2.0 restaurants mexican fast food tex-mex
+= typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added .
+< typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added . <EOS>
+
+> 2.0 restaurants mexican fast food tex-mex
+= typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added .
+< typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added . <EOS>
+
+> 2.0 restaurants mexican fast food tex-mex
+= typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added .
+< typical chipotle flavor but the service staff always seems annoyed and they're light on that guac we all pay to have added . <EOS>
+
+PAIR 9
+> 5.0 restaurants chinese
+= the food was really good the atmosphere was great and the the service to i ate my fill
+< great food , fast ! great . ! get chicken the move . . the ! . . and definitely . . <EOS>
+
+> 5.0 restaurants chinese
+= the food was really good the atmosphere was great and the the service to i ate my fill
+< great food , and great !  food . get the closer . was chicken rice <EOS>
+
+> 5.0 restaurants chinese
+= the food was really good the atmosphere was great and the the service to i ate my fill
+< great flavor and broth ! get the original lan zhou noodle , can't go wrong with that . <EOS>
+
+> 5.0 restaurants chinese
+= the food was really good the atmosphere was great and the the service to i ate my fill
+< great food , broth don't great get the day . and . move . . service the super . chicken . :-) <EOS>
+
+> 5.0 restaurants chinese
+= the food was really good the atmosphere was great and the the service to i ate my fill
+< great ordered chinese food . delicious . very zhou steamed are mei . i . rice the chicken definitely . going back and even are delicious . <EOS>
+
+PAIR 10
+> 4.0 soup salad sandwiches restaurants
+= great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart .
+< great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart . <EOS>
+
+> 4.0 soup salad sandwiches restaurants
+= great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart .
+< great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart . <EOS>
+
+> 4.0 soup salad sandwiches restaurants
+= great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart .
+< great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart . <EOS>
+
+> 4.0 soup salad sandwiches restaurants
+= great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart .
+< great food that's quickly made . clean and clean place . only gets 4 stars because they don't have online rapid ordering like their american counterpart . <EOS>
+
+> 4.0 soup salad sandwiches restaurants
+= great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart .
+< great food that's quickly made . clean and nice eating area . only gets 4 stars because they don't have online rapid ordering like their american counterpart . <EOS>
+
+Evaluate randomly on testing sentences:
+PAIR 1
+> 5.0 sushi bars restaurants japanese
+= amazing ! my favorite sushi place in vegas ! chefs are a blast !
+< best sushi i have had in a years pricey everyone . . service recommend . . .  . . <EOS>
+
+> 5.0 sushi bars restaurants japanese
+= amazing ! my favorite sushi place in vegas ! chefs are a blast !
+< best take out in north markham . .... pricey but i am ok paying a quality high . <EOS>
+
+> 5.0 sushi bars restaurants japanese
+= amazing ! my favorite sushi place in vegas ! chefs are a blast !
+< best take in . pricey in sushi . . . sashimi .. very quality the is very <EOS>
+
+> 5.0 sushi bars restaurants japanese
+= amazing ! my favorite sushi place in vegas ! chefs are a blast !
+< best take out i in town pricey rolls i'm <EOS>
+
+> 5.0 sushi bars restaurants japanese
+= amazing ! my favorite sushi place in vegas ! chefs are a blast !
+< best my sushi vs in in . quality quality . paying for sushi , and paying . <EOS>
+
+PAIR 2
+> 1.0 japanese sushi bars restaurants
+= soggy and bland food . we've had sushi over the past 2 weeks and this is by far the worst . do not recommend .
+< wasn't impressed . at all today ... came in for my sisters birthday and it was horrible ... <EOS>
+
+> 1.0 japanese sushi bars restaurants
+= soggy and bland food . we've had sushi over the past 2 weeks and this is by far the worst . do not recommend .
+< wasn't impressed at all today ... came in for my sisters birthday and it was horrible ... <EOS>
+
+> 1.0 japanese sushi bars restaurants
+= soggy and bland food . we've had sushi over the past 2 weeks and this is by far the worst . do not recommend .
+< wasn't impressed . ... today ... 4 stars for it today ... my sisters and it was horrible ... <EOS>
+
+> 1.0 japanese sushi bars restaurants
+= soggy and bland food . we've had sushi over the past 2 weeks and this is by far the worst . do not recommend .
+< wasn't impressed at all today ... came in for my sisters birthday and it was horrible ... <EOS>
+
+> 1.0 japanese sushi bars restaurants
+= soggy and bland food . we've had sushi over the past 2 weeks and this is by far the worst . do not recommend .
+< wasn't impressed at all today ... came in for my sisters birthday and it was horrible ... <EOS>
+
+PAIR 3
+> 2.0 delis sandwiches restaurants
+= tomatoes looked disgusting and why don't they carry ketchup ? isn't this america ? i hope this microwaved breakfast griller tastes good ...
+< we ate there a few weeks ago . we all agreed that our meals felt like bricks had settled in the bottom of our stomachs !!! <EOS>
+
+> 2.0 delis sandwiches restaurants
+= tomatoes looked disgusting and why don't they carry ketchup ? isn't this america ? i hope this microwaved breakfast griller tastes good ...
+< we ate there a few weeks ago . we all agreed that our meals felt like bricks had settled in the bottom of our stomachs !!! <EOS>
+
+> 2.0 delis sandwiches restaurants
+= tomatoes looked disgusting and why don't they carry ketchup ? isn't this america ? i hope this microwaved breakfast griller tastes good ...
+< we ate there a few weeks ago . we all agreed that our meals felt like bricks had settled in the bottom of our stomachs !!! <EOS>
+
+> 2.0 delis sandwiches restaurants
+= tomatoes looked disgusting and why don't they carry ketchup ? isn't this america ? i hope this microwaved breakfast griller tastes good ...
+< we ate there a few weeks ago . we all agreed that our meals felt like bricks had settled in the bottom of our stomachs !!! <EOS>
+
+> 2.0 delis sandwiches restaurants
+= tomatoes looked disgusting and why don't they carry ketchup ? isn't this america ? i hope this microwaved breakfast griller tastes good ...
+< we ate there a few weeks ago . we all agreed that our meals felt like bricks had settled in the bottom of our stomachs !!! <EOS>
+
+PAIR 4
+> 3.0 fast food burgers restaurants
+= nothing special here . just an average , forgettable burger . if there was a five guys in the area , i would pass on this place .
+< decent mcdonald's . best thing about it is the inside is large and wide open so it's very comfortable to sit inside . <EOS>
+
+> 3.0 fast food burgers restaurants
+= nothing special here . just an average , forgettable burger . if there was a five guys in the area , i would pass on this place .
+< decent mcdonald's . best thing about it is the inside is and large and wide open so it's very comfortable to sit inside . <EOS>
+
+> 3.0 fast food burgers restaurants
+= nothing special here . just an average , forgettable burger . if there was a five guys in the area , i would pass on this place .
+< decent mcdonald's . best thing about it is the is large and wide open so it's very comfortable to sit inside . fries a burger . <EOS>
+
+> 3.0 fast food burgers restaurants
+= nothing special here . just an average , forgettable burger . if there was a five guys in the area , i would pass on this place .
+< decent mcdonald's . best thing about it is open . is about the inside is  and wide open so it's very comfortable to sit inside . <EOS>
+
+> 3.0 fast food burgers restaurants
+= nothing special here . just an average , forgettable burger . if there was a five guys in the area , i would pass on this place .
+< decent mcdonald's . best thing about it is the inside is large and wide open so it's very comfortable to sit inside . <EOS>
+
+PAIR 5
+> 3.0 restaurants pizza greek
+= good service , average pizza , horrible garlic bread .
+< solid pizza with good   quick service .  no no <UNK> or thick ) and <EOS>
+
+> 3.0 restaurants pizza greek
+= good service , average pizza , horrible garlic bread .
+< solid pizza with good .  quick , a good quick a <UNK> of a there a  out of . . was <EOS>
+
+> 3.0 restaurants pizza greek
+= good service , average pizza , horrible garlic bread .
+< solid pizza with good . quick .  quick a a bit bland . and . . to . <EOS>
+
+> 3.0 restaurants pizza greek
+= good service , average pizza , horrible garlic bread .
+< solid pizza with good .  quick a good quick  of a a <EOS>
+
+> 3.0 restaurants pizza greek
+= good service , average pizza , horrible garlic bread .
+< solid pizza with good .  . quick  not .  quick a good quick . a <EOS>
+
+PAIR 6
+> 3.0 salad sandwiches restaurants
+= good food , i had the californian wrap . the service was good . cut was a little pricy but convenient .
+< great food , subs . . go , the  the for  . they . . <EOS>
+
+> 3.0 salad sandwiches restaurants
+= good food , i had the californian wrap . the service was good . cut was a little pricy but convenient .
+< nothing good , but service was nice .  the , . 2 . . have .  . . <EOS>
+
+> 3.0 salad sandwiches restaurants
+= good food , i had the californian wrap . the service was good . cut was a little pricy but convenient .
+< food was , service . nice <UNK> and . . no . . . no dishes . . <EOS>
+
+> 3.0 salad sandwiches restaurants
+= good food , i had the californian wrap . the service was good . cut was a little pricy but convenient .
+< great food , but a few . the , no no they menu the the  . <EOS>
+
+> 3.0 salad sandwiches restaurants
+= good food , i had the californian wrap . the service was good . cut was a little pricy but convenient .
+< food was good , <UNK> service . for . , the . for , . no <EOS>
+
+PAIR 7
+> 3.0 restaurants japanese
+= never had a bad time , but only been twice . definitely a lunch kind of place .
+< took forever to out . food was good but the pork was disappointed the the ... but for a price ... <EOS>
+
+> 3.0 restaurants japanese
+= never had a bad time , but only been twice . definitely a lunch kind of place .
+< took forever to get out food and the service was ok ... food is good but masa sushi ... it was to the best . <EOS>
+
+> 3.0 restaurants japanese
+= never had a bad time , but only been twice . definitely a lunch kind of place .
+< took forever to get out food and the service was ok ... i had the chicken teriyaki . i had tender on enough sauce . <EOS>
+
+> 3.0 restaurants japanese
+= never had a bad time , but only been twice . definitely a lunch kind of place .
+< took forever to get out food and the service was good . i had a the service is a price ... tender with tender on <EOS>
+
+> 3.0 restaurants japanese
+= never had a bad time , but only been twice . definitely a lunch kind of place .
+< was the good sushi price . i and . they ... the but but sushi the a a the a . . . . <EOS>
+
+PAIR 8
+> 2.0 japanese restaurants sushi bars
+= good sushi but prices have gone up significantly . service isn't that great if you go alone . they forget that youre there .
+< had the food and quality but the maki was unimpressive . west and canceled canceled any sushi some boulder the prices <EOS>
+
+> 2.0 japanese restaurants sushi bars
+= good sushi but prices have gone up significantly . service isn't that great if you go alone . they forget that youre there .
+< had the ayce and no where near as good as sushi koma to canceled other ayce in the . <EOS>
+
+> 2.0 japanese restaurants sushi bars
+= good sushi but prices have gone up significantly . service isn't that great if you go alone . they forget that youre there .
+< food was ok but it took so long to get our food was how canceled it took to the wall here . <EOS>
+
+> 2.0 japanese restaurants sushi bars
+= good sushi but prices have gone up significantly . service isn't that great if you go alone . they forget that youre there .
+< the vegetable tempura was good but the maki took forever to . to canceled of the our food canceled was good <EOS>
+
+> 2.0 japanese restaurants sushi bars
+= good sushi but prices have gone up significantly . service isn't that great if you go alone . they forget that youre there .
+< the vegetable tempura was good but definitely not a sushi . unimpressive canceled canceled took forever to <EOS>
+
+PAIR 9
+> 1.0 restaurants burgers
+= burnt wings and wine served in water glasses .
+< terrible service . . . a subs not now . . avoid there avoid . he menu <EOS>
+
+> 1.0 restaurants burgers
+= burnt wings and wine served in water glasses .
+< terrible service . i . subs there  costs . . in there costs costs . . . . . <EOS>
+
+> 1.0 restaurants burgers
+= burnt wings and wine served in water glasses .
+< this place is now closed .  there is a for better places sign a ton of places . <EOS>
+
+> 1.0 restaurants burgers
+= burnt wings and wine served in water glasses .
+< terrible service . subs . . they now all costs . avoid at there costs i . there strip . <EOS>
+
+> 1.0 restaurants burgers
+= burnt wings and wine served in water glasses .
+< terrible service . average subs . avoid at all costs . there are a ton of better places in he strip . <EOS>
+
+PAIR 10
+> 1.0 restaurants canadian ( new )
+= closed .  i updated yelp a couple of weeks ago and its still not reflected !
+< <UNK> has probably the worst they have ever experienced . they they have a they have a restaurant on a was level in service <EOS>
+
+> 1.0 restaurants canadian ( new )
+= closed .  i updated yelp a couple of weeks ago and its still not reflected !
+< <UNK> has probably the worst management j have ever experienced in toronto . a restaurant a this level was a complete disappointment would have ever come . <EOS>
+
+> 1.0 restaurants canadian ( new )
+= closed .  i updated yelp a couple of weeks ago and its still not reflected !
+< <UNK> has probably the worst management j have ever experienced in toronto . a restaurant a restaurant on a level on a decor and not a come back . <EOS>
+
+> 1.0 restaurants canadian ( new )
+= closed .  i updated yelp a couple of weeks ago and its still not reflected !
+< <UNK> has probably the worst they have have ever experienced in a this restaurant a they restaurant have a disappointment . <EOS>
+
+> 1.0 restaurants canadian ( new )
+= closed .  i updated yelp a couple of weeks ago and its still not reflected !
+< <UNK> has probably the worst management j have ever experienced in toronto . a restaurant a this level was a complete disappointment in service and attitude . <EOS>
+
+Evaluating 2500 testing sentences...
+Num of short sentences (length <= 15): 218
+score for short sentnces (length <= 15):
+ROUGE1: 0.12364213375866231
+ROUGE2: 0.06769196308556864
+BLEU: 0.10957162008819227
+BLEU_CLIP: 0.06272543529863889
+
+Num of long sentences (length > 15): 2282
+score for long sentnces (length > 15):
+ROUGE1: 0.2406120213913011
+ROUGE2: 0.13499420736197457
+BLEU: 0.07674480677405
+BLEU_CLIP: 0.05105252665802657
+
+Overall:
+ROUGE1: 0.230412247189735
+ROUGE2: 0.12912545166107198
+BLEU: 0.07960730489504321
+BLEU_CLIP: 0.052070404291487966
+
+Finished
