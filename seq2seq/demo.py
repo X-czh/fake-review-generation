@@ -86,7 +86,7 @@ def evaluateRandomly(encoder, decoder, pairs, input_lang, output_lang, args, n=1
     m = input("Enter the number of tests:\n")
     for i in range(int(m)):
         star = input('Enter rating star: (5.0 / 4.0 / 3.0 / 2.0 / 1.0)\n')
-        category = input('Enter the category of the restaurant: (for example: "restaurant vietnam pho)\n').lower()
+        category = input('Enter the category of the restaurant: (for example: "restaurant vietnamese)\n').lower()
         sent = star + ' ' + category
         for j in range(5):
             print('>', sent)
