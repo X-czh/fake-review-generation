@@ -57,6 +57,12 @@ if __name__ == '__main__':
 
     # Remove reviews with more than 30 words (including punctuations) (downsample step 2)
     combo = combo[combo['text'].apply(lambda x: len(x.split(' ')) <= 30)]
+
+    # Remove reviews with more than 5 words of categories info (including punctuations) (downsample step 3)
+    df = df[df['categories'].apply(lambda x: len(str(x).split(' ')) <= 5)]
+
+    # Remove special characters (downsample step 4)
+    df = df[df['text'].str.contains(r'[`~@#\$%^\*=\+\[\]/<>]', regex=True)==False]
     
     # Drop rows with at least one NaN value
     combo.dropna(inplace=True)
