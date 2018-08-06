@@ -383,7 +383,7 @@ if __name__ == '__main__':
             encoder.load_state_dict(checkpoint['encoder_state_dict'])
             decoder.load_state_dict(checkpoint['decoder_state_dict'])
             encoder_optimizer.load_state_dict(checkpoint['encoder_optim_state'])
-            decoder_optimizer.load_state_dict(checkpoint['encoder_optim_state'])
+            decoder_optimizer.load_state_dict(checkpoint['decoder_optim_state'])
             print("=> loaded checkpoint '{}' (epoch {})"
                   .format(args.resume, checkpoint['epoch']))
         else:
