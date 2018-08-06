@@ -1,0 +1,1302 @@
+hpc mode: True
+data-path: /scratch/zc807/seq2seq
+save-data-path: /scratch/zc807/seq2seq
+resume: 
+metric: MULTI
+vocab-size: 15000
+hidden-size: 500
+batch-size: 64
+n-layers: 2
+dropout: 0.1
+n-epochs: 170
+n-batches (testing only): 0
+print-every: 100
+plot-every: 10
+save-every: 10
+teacher forcing ratio: 0.5
+temperature: 0.5
+lr: 0.0001
+weight-decay: 0
+clip: 0
+use cuda: True
+seed: 1
+
+Start
+0m 31s (- 343m 6s) (100 0%) 6.7904
+1m 2s (- 341m 50s) (200 0%) 6.0432
+1m 33s (- 341m 20s) (300 0%) 6.0112
+Epoch 0/169 finished
+2m 4s (- 340m 37s) (400 0%) 5.9221
+2m 35s (- 340m 3s) (500 0%) 5.8264
+3m 6s (- 339m 28s) (600 0%) 5.7383
+3m 36s (- 338m 45s) (700 1%) 5.6175
+Epoch 1/169 finished
+4m 7s (- 338m 13s) (800 1%) 5.5818
+4m 38s (- 337m 42s) (900 1%) 5.5268
+5m 9s (- 337m 10s) (1000 1%) 5.4866
+5m 40s (- 336m 31s) (1100 1%) 5.3358
+Epoch 2/169 finished
+6m 11s (- 336m 3s) (1200 1%) 5.4685
+6m 42s (- 335m 28s) (1300 1%) 5.2236
+7m 13s (- 334m 59s) (1400 2%) 5.3892
+7m 44s (- 334m 31s) (1500 2%) 5.3661
+Epoch 3/169 finished
+8m 15s (- 334m 2s) (1600 2%) 5.2771
+8m 46s (- 333m 32s) (1700 2%) 5.2728
+9m 17s (- 332m 59s) (1800 2%) 5.1777
+9m 48s (- 332m 27s) (1900 2%) 5.1991
+Epoch 4/169 finished
+10m 19s (- 331m 59s) (2000 3%) 5.2600
+10m 50s (- 331m 29s) (2100 3%) 5.1840
+11m 21s (- 330m 56s) (2200 3%) 5.0615
+11m 52s (- 330m 25s) (2300 3%) 5.1351
+Epoch 5/169 finished
+12m 23s (- 329m 55s) (2400 3%) 5.0590
+12m 54s (- 329m 26s) (2500 3%) 5.0728
+13m 25s (- 328m 57s) (2600 3%) 5.1923
+13m 56s (- 328m 27s) (2700 4%) 5.0969
+Epoch 6/169 finished
+14m 27s (- 327m 55s) (2800 4%) 4.8764
+14m 58s (- 327m 24s) (2900 4%) 5.0311
+15m 29s (- 326m 53s) (3000 4%) 4.9752
+16m 0s (- 326m 21s) (3100 4%) 4.9773
+Epoch 7/169 finished
+16m 31s (- 325m 52s) (3200 4%) 4.9649
+17m 2s (- 325m 22s) (3300 4%) 4.9984
+17m 33s (- 324m 53s) (3400 5%) 5.1163
+18m 4s (- 324m 23s) (3500 5%) 5.0282
+Epoch 8/169 finished
+21m 8s (- 368m 20s) (3600 5%) 4.8651
+24m 37s (- 416m 45s) (3700 5%) 4.8470
+27m 52s (- 458m 26s) (3800 5%) 4.9750
+31m 8s (- 498m 8s) (3900 5%) 4.8612
+Epoch 9/169 finished
+31m 40s (- 493m 13s) (4000 6%) 5.0696
+32m 10s (- 488m 12s) (4100 6%) 4.7772
+32m 41s (- 483m 23s) (4200 6%) 4.7213
+Epoch 10/169 finished
+33m 12s (- 478m 51s) (4300 6%) 4.8512
+33m 43s (- 474m 26s) (4400 6%) 4.6594
+34m 14s (- 470m 12s) (4500 6%) 4.9608
+34m 45s (- 466m 8s) (4600 6%) 4.8357
+Epoch 11/169 finished
+35m 15s (- 462m 12s) (4700 7%) 4.7192
+35m 46s (- 458m 26s) (4800 7%) 4.7994
+36m 17s (- 454m 47s) (4900 7%) 4.8504
+36m 48s (- 451m 15s) (5000 7%) 4.7430
+Epoch 12/169 finished
+37m 19s (- 447m 51s) (5100 7%) 4.6877
+37m 50s (- 444m 33s) (5200 7%) 4.6216
+38m 20s (- 441m 22s) (5300 7%) 4.7320
+38m 51s (- 438m 16s) (5400 8%) 4.6780
+Epoch 13/169 finished
+39m 22s (- 435m 17s) (5500 8%) 4.8230
+39m 53s (- 432m 23s) (5600 8%) 4.7591
+40m 24s (- 429m 34s) (5700 8%) 4.7097
+40m 55s (- 426m 50s) (5800 8%) 4.8928
+Epoch 14/169 finished
+41m 26s (- 424m 11s) (5900 8%) 4.7860
+41m 57s (- 421m 35s) (6000 9%) 4.7196
+42m 27s (- 419m 4s) (6100 9%) 4.7325
+42m 58s (- 416m 36s) (6200 9%) 4.6497
+Epoch 15/169 finished
+43m 29s (- 414m 12s) (6300 9%) 4.5973
+44m 0s (- 411m 52s) (6400 9%) 4.5713
+44m 31s (- 409m 35s) (6500 9%) 4.6648
+45m 2s (- 407m 22s) (6600 9%) 4.8279
+Epoch 16/169 finished
+45m 33s (- 405m 12s) (6700 10%) 4.5968
+46m 3s (- 403m 3s) (6800 10%) 4.5250
+46m 34s (- 400m 58s) (6900 10%) 4.4474
+47m 5s (- 398m 55s) (7000 10%) 4.4726
+Epoch 17/169 finished
+47m 36s (- 396m 55s) (7100 10%) 4.4892
+48m 7s (- 394m 58s) (7200 10%) 4.6210
+48m 38s (- 393m 4s) (7300 11%) 4.7126
+49m 8s (- 391m 11s) (7400 11%) 4.5174
+Epoch 18/169 finished
+51m 58s (- 407m 32s) (7500 11%) 4.5287
+54m 58s (- 424m 36s) (7600 11%) 4.5846
+57m 53s (- 440m 32s) (7700 11%) 4.4842
+60m 41s (- 455m 14s) (7800 11%) 4.5637
+Epoch 19/169 finished
+61m 13s (- 452m 38s) (7900 11%) 4.3749
+61m 44s (- 449m 57s) (8000 12%) 4.4660
+62m 15s (- 447m 20s) (8100 12%) 4.5817
+Epoch 20/169 finished
+62m 46s (- 444m 45s) (8200 12%) 4.2925
+63m 17s (- 442m 14s) (8300 12%) 4.4500
+63m 48s (- 439m 46s) (8400 12%) 4.5134
+64m 19s (- 437m 21s) (8500 12%) 4.5076
+Epoch 21/169 finished
+64m 49s (- 434m 58s) (8600 12%) 4.4756
+65m 22s (- 432m 48s) (8700 13%) 4.4879
+65m 53s (- 430m 31s) (8800 13%) 4.5144
+66m 24s (- 428m 16s) (8900 13%) 4.2672
+Epoch 22/169 finished
+66m 55s (- 426m 4s) (9000 13%) 4.6813
+67m 26s (- 423m 54s) (9100 13%) 4.4585
+67m 57s (- 421m 46s) (9200 13%) 4.3169
+68m 28s (- 419m 40s) (9300 14%) 4.5209
+Epoch 23/169 finished
+68m 59s (- 417m 36s) (9400 14%) 4.2016
+69m 30s (- 415m 34s) (9500 14%) 4.3565
+70m 1s (- 413m 33s) (9600 14%) 4.1153
+70m 32s (- 411m 35s) (9700 14%) 4.4900
+Epoch 24/169 finished
+71m 3s (- 409m 39s) (9800 14%) 4.3017
+71m 34s (- 407m 44s) (9900 14%) 4.2358
+72m 5s (- 405m 51s) (10000 15%) 4.4806
+72m 36s (- 404m 0s) (10100 15%) 4.2739
+Epoch 25/169 finished
+73m 7s (- 402m 10s) (10200 15%) 4.2904
+73m 38s (- 400m 22s) (10300 15%) 4.2916
+74m 9s (- 398m 35s) (10400 15%) 4.3410
+74m 40s (- 396m 49s) (10500 15%) 4.3145
+Epoch 26/169 finished
+75m 11s (- 395m 5s) (10600 15%) 4.1608
+75m 42s (- 393m 22s) (10700 16%) 4.0029
+76m 13s (- 391m 41s) (10800 16%) 4.4485
+76m 44s (- 390m 1s) (10900 16%) 4.3240
+Epoch 27/169 finished
+77m 15s (- 388m 23s) (11000 16%) 4.1996
+77m 46s (- 386m 45s) (11100 16%) 4.3495
+78m 17s (- 385m 9s) (11200 16%) 4.0417
+78m 48s (- 383m 34s) (11300 17%) 4.2739
+Epoch 28/169 finished
+81m 35s (- 392m 54s) (11400 17%) 4.2050
+84m 30s (- 402m 44s) (11500 17%) 4.2273
+87m 26s (- 412m 18s) (11600 17%) 4.1421
+90m 12s (- 420m 59s) (11700 17%) 4.3022
+Epoch 29/169 finished
+90m 44s (- 419m 7s) (11800 17%) 4.1923
+91m 15s (- 417m 11s) (11900 17%) 4.1366
+91m 46s (- 415m 17s) (12000 18%) 4.1230
+Epoch 30/169 finished
+92m 17s (- 413m 25s) (12100 18%) 4.2701
+92m 48s (- 411m 34s) (12200 18%) 4.1759
+93m 19s (- 409m 44s) (12300 18%) 4.1414
+93m 50s (- 407m 54s) (12400 18%) 3.8910
+Epoch 31/169 finished
+94m 21s (- 406m 7s) (12500 18%) 3.8982
+94m 52s (- 404m 20s) (12600 19%) 4.0517
+95m 23s (- 402m 35s) (12700 19%) 4.0575
+95m 54s (- 400m 51s) (12800 19%) 4.0932
+Epoch 32/169 finished
+96m 25s (- 399m 9s) (12900 19%) 4.4838
+96m 56s (- 397m 27s) (13000 19%) 4.2364
+97m 27s (- 395m 46s) (13100 19%) 3.9700
+97m 58s (- 394m 7s) (13200 19%) 4.1884
+Epoch 33/169 finished
+98m 29s (- 392m 29s) (13300 20%) 4.2490
+99m 0s (- 390m 51s) (13400 20%) 3.9960
+99m 31s (- 389m 14s) (13500 20%) 3.8844
+100m 2s (- 387m 39s) (13600 20%) 4.1040
+Epoch 34/169 finished
+100m 33s (- 386m 4s) (13700 20%) 3.9583
+101m 4s (- 384m 30s) (13800 20%) 3.9694
+101m 35s (- 382m 57s) (13900 20%) 4.2593
+102m 6s (- 381m 25s) (14000 21%) 4.0005
+Epoch 35/169 finished
+102m 37s (- 379m 54s) (14100 21%) 3.9274
+103m 8s (- 378m 24s) (14200 21%) 3.8518
+103m 39s (- 376m 55s) (14300 21%) 4.1334
+104m 10s (- 375m 26s) (14400 21%) 4.0574
+Epoch 36/169 finished
+104m 41s (- 373m 58s) (14500 21%) 3.8709
+105m 12s (- 372m 31s) (14600 22%) 4.2326
+105m 43s (- 371m 5s) (14700 22%) 3.8419
+106m 14s (- 369m 40s) (14800 22%) 4.1317
+Epoch 37/169 finished
+106m 44s (- 368m 14s) (14900 22%) 3.5501
+107m 15s (- 366m 50s) (15000 22%) 3.7130
+107m 46s (- 365m 27s) (15100 22%) 3.9424
+108m 17s (- 364m 4s) (15200 22%) 3.9916
+Epoch 38/169 finished
+110m 47s (- 369m 17s) (15300 23%) 3.9999
+113m 21s (- 374m 41s) (15400 23%) 3.9310
+115m 59s (- 380m 9s) (15500 23%) 3.8684
+118m 35s (- 385m 24s) (15600 23%) 3.6527
+Epoch 39/169 finished
+119m 7s (- 383m 54s) (15700 23%) 3.8328
+119m 37s (- 382m 22s) (15800 23%) 3.7194
+120m 8s (- 380m 51s) (15900 23%) 3.9258
+Epoch 40/169 finished
+120m 39s (- 379m 20s) (16000 24%) 3.7923
+121m 10s (- 377m 50s) (16100 24%) 3.6341
+121m 41s (- 376m 21s) (16200 24%) 4.1698
+122m 12s (- 374m 53s) (16300 24%) 3.8062
+Epoch 41/169 finished
+122m 43s (- 373m 25s) (16400 24%) 3.9860
+123m 14s (- 371m 58s) (16500 24%) 3.7995
+123m 45s (- 370m 32s) (16600 25%) 3.8263
+124m 16s (- 369m 6s) (16700 25%) 3.7897
+Epoch 42/169 finished
+124m 47s (- 367m 42s) (16800 25%) 3.8826
+125m 18s (- 366m 17s) (16900 25%) 3.6536
+125m 49s (- 364m 53s) (17000 25%) 3.9400
+126m 20s (- 363m 30s) (17100 25%) 3.8369
+Epoch 43/169 finished
+126m 51s (- 362m 8s) (17200 25%) 3.6821
+127m 22s (- 360m 46s) (17300 26%) 3.7046
+127m 53s (- 359m 25s) (17400 26%) 3.8607
+128m 24s (- 358m 4s) (17500 26%) 3.6727
+Epoch 44/169 finished
+128m 55s (- 356m 44s) (17600 26%) 3.6156
+129m 26s (- 355m 24s) (17700 26%) 3.8826
+129m 57s (- 354m 5s) (17800 26%) 3.5680
+130m 29s (- 352m 50s) (17900 26%) 3.6231
+Epoch 45/169 finished
+131m 0s (- 351m 32s) (18000 27%) 3.7338
+131m 31s (- 350m 15s) (18100 27%) 3.5324
+132m 2s (- 348m 58s) (18200 27%) 3.8789
+132m 33s (- 347m 41s) (18300 27%) 3.7841
+Epoch 46/169 finished
+133m 4s (- 346m 25s) (18400 27%) 3.5251
+133m 35s (- 345m 10s) (18500 27%) 3.4955
+134m 6s (- 343m 55s) (18600 28%) 3.5588
+134m 37s (- 342m 40s) (18700 28%) 3.5467
+Epoch 47/169 finished
+135m 8s (- 341m 26s) (18800 28%) 3.8458
+135m 39s (- 340m 12s) (18900 28%) 3.6558
+136m 10s (- 338m 59s) (19000 28%) 3.9007
+136m 41s (- 337m 47s) (19100 28%) 3.9081
+Epoch 48/169 finished
+139m 8s (- 341m 19s) (19200 28%) 3.7917
+142m 11s (- 346m 16s) (19300 29%) 3.6408
+145m 7s (- 350m 50s) (19400 29%) 3.5127
+148m 7s (- 355m 29s) (19500 29%) 3.7247
+Epoch 49/169 finished
+148m 40s (- 354m 15s) (19600 29%) 3.9504
+149m 11s (- 352m 55s) (19700 29%) 3.3681
+149m 42s (- 351m 35s) (19800 29%) 3.7043
+Epoch 50/169 finished
+150m 13s (- 350m 16s) (19900 30%) 3.3362
+150m 44s (- 348m 58s) (20000 30%) 3.6953
+151m 15s (- 347m 40s) (20100 30%) 3.5380
+151m 46s (- 346m 22s) (20200 30%) 3.6311
+Epoch 51/169 finished
+152m 17s (- 345m 5s) (20300 30%) 3.6020
+152m 48s (- 343m 48s) (20400 30%) 3.6268
+153m 19s (- 342m 32s) (20500 30%) 3.6981
+153m 50s (- 341m 16s) (20600 31%) 3.5669
+Epoch 52/169 finished
+154m 21s (- 340m 1s) (20700 31%) 3.3698
+154m 52s (- 338m 46s) (20800 31%) 3.7108
+155m 23s (- 337m 32s) (20900 31%) 3.6378
+155m 54s (- 336m 18s) (21000 31%) 3.6775
+Epoch 53/169 finished
+156m 25s (- 335m 4s) (21100 31%) 3.6844
+156m 56s (- 333m 51s) (21200 31%) 3.3895
+157m 26s (- 332m 38s) (21300 32%) 3.5214
+157m 57s (- 331m 25s) (21400 32%) 3.6250
+Epoch 54/169 finished
+158m 28s (- 330m 13s) (21500 32%) 3.6309
+158m 59s (- 329m 2s) (21600 32%) 3.6132
+159m 30s (- 327m 50s) (21700 32%) 3.3843
+160m 1s (- 326m 40s) (21800 32%) 3.9596
+Epoch 55/169 finished
+160m 32s (- 325m 29s) (21900 33%) 3.2667
+161m 3s (- 324m 19s) (22000 33%) 3.5439
+161m 34s (- 323m 9s) (22100 33%) 3.4430
+162m 5s (- 321m 59s) (22200 33%) 3.6893
+Epoch 56/169 finished
+162m 36s (- 320m 50s) (22300 33%) 3.4388
+163m 7s (- 319m 41s) (22400 33%) 3.3962
+163m 38s (- 318m 33s) (22500 33%) 3.4615
+164m 9s (- 317m 25s) (22600 34%) 3.5670
+Epoch 57/169 finished
+164m 40s (- 316m 17s) (22700 34%) 3.5483
+165m 11s (- 315m 9s) (22800 34%) 3.4903
+165m 42s (- 314m 2s) (22900 34%) 3.0688
+166m 13s (- 312m 55s) (23000 34%) 3.5667
+Epoch 58/169 finished
+168m 45s (- 315m 35s) (23100 34%) 3.4569
+171m 34s (- 318m 44s) (23200 34%) 3.8248
+174m 27s (- 321m 57s) (23300 35%) 3.6279
+177m 19s (- 325m 6s) (23400 35%) 3.2224
+Epoch 59/169 finished
+177m 51s (- 323m 56s) (23500 35%) 3.0302
+178m 22s (- 322m 44s) (23600 35%) 3.3965
+178m 53s (- 321m 33s) (23700 35%) 3.6635
+Epoch 60/169 finished
+179m 24s (- 320m 22s) (23800 35%) 3.8379
+179m 55s (- 319m 12s) (23900 36%) 3.2684
+180m 26s (- 318m 1s) (24000 36%) 3.5374
+180m 57s (- 316m 52s) (24100 36%) 3.6648
+Epoch 61/169 finished
+181m 28s (- 315m 43s) (24200 36%) 3.4018
+181m 59s (- 314m 33s) (24300 36%) 3.4609
+182m 30s (- 313m 24s) (24400 36%) 3.2785
+183m 1s (- 312m 16s) (24500 36%) 3.5820
+Epoch 62/169 finished
+183m 32s (- 311m 8s) (24600 37%) 3.8416
+184m 3s (- 310m 0s) (24700 37%) 3.3627
+184m 34s (- 308m 52s) (24800 37%) 3.5483
+185m 5s (- 307m 44s) (24900 37%) 3.6090
+Epoch 63/169 finished
+185m 36s (- 306m 37s) (25000 37%) 3.5142
+186m 7s (- 305m 30s) (25100 37%) 3.2079
+186m 38s (- 304m 24s) (25200 38%) 3.2857
+187m 9s (- 303m 17s) (25300 38%) 3.3604
+Epoch 64/169 finished
+187m 40s (- 302m 12s) (25400 38%) 3.5351
+188m 11s (- 301m 6s) (25500 38%) 3.4559
+188m 42s (- 300m 1s) (25600 38%) 3.5241
+189m 13s (- 298m 55s) (25700 38%) 3.5783
+Epoch 65/169 finished
+189m 44s (- 297m 51s) (25800 38%) 3.4998
+190m 15s (- 296m 46s) (25900 39%) 3.3828
+190m 46s (- 295m 41s) (26000 39%) 3.3841
+191m 17s (- 294m 37s) (26100 39%) 3.2766
+Epoch 66/169 finished
+191m 48s (- 293m 33s) (26200 39%) 3.1917
+192m 19s (- 292m 30s) (26300 39%) 3.4764
+192m 50s (- 291m 26s) (26400 39%) 3.1699
+193m 21s (- 290m 23s) (26500 39%) 3.2130
+Epoch 67/169 finished
+193m 52s (- 289m 20s) (26600 40%) 3.2687
+194m 23s (- 288m 17s) (26700 40%) 3.5534
+194m 54s (- 287m 15s) (26800 40%) 3.4836
+195m 25s (- 286m 13s) (26900 40%) 3.4212
+Epoch 68/169 finished
+198m 10s (- 288m 27s) (27000 40%) 3.2894
+200m 56s (- 290m 39s) (27100 40%) 3.3595
+204m 0s (- 293m 15s) (27200 41%) 3.4377
+207m 5s (- 295m 50s) (27300 41%) 3.2265
+Epoch 69/169 finished
+207m 37s (- 294m 45s) (27400 41%) 2.9734
+208m 8s (- 293m 39s) (27500 41%) 3.1791
+208m 38s (- 292m 33s) (27600 41%) 3.3825
+Epoch 70/169 finished
+209m 9s (- 291m 27s) (27700 41%) 3.4621
+209m 40s (- 290m 22s) (27800 41%) 3.4556
+210m 10s (- 289m 17s) (27900 42%) 3.4964
+210m 41s (- 288m 11s) (28000 42%) 3.1565
+Epoch 71/169 finished
+211m 12s (- 287m 7s) (28100 42%) 3.6557
+211m 43s (- 286m 2s) (28200 42%) 3.5439
+212m 13s (- 284m 58s) (28300 42%) 3.2792
+212m 44s (- 283m 54s) (28400 42%) 3.3200
+Epoch 72/169 finished
+213m 15s (- 282m 50s) (28500 42%) 2.9742
+213m 46s (- 281m 47s) (28600 43%) 3.3882
+214m 16s (- 280m 43s) (28700 43%) 3.4884
+214m 47s (- 279m 40s) (28800 43%) 2.9072
+Epoch 73/169 finished
+215m 18s (- 278m 37s) (28900 43%) 3.2592
+215m 48s (- 277m 35s) (29000 43%) 3.2510
+216m 19s (- 276m 32s) (29100 43%) 2.8861
+216m 50s (- 275m 30s) (29200 44%) 3.0760
+Epoch 74/169 finished
+217m 21s (- 274m 28s) (29300 44%) 3.2545
+217m 51s (- 273m 26s) (29400 44%) 3.0057
+218m 22s (- 272m 24s) (29500 44%) 3.2877
+218m 53s (- 271m 23s) (29600 44%) 3.3236
+Epoch 75/169 finished
+219m 23s (- 270m 22s) (29700 44%) 2.9079
+219m 54s (- 269m 21s) (29800 44%) 3.0645
+220m 25s (- 268m 20s) (29900 45%) 3.3890
+220m 56s (- 267m 19s) (30000 45%) 3.2428
+Epoch 76/169 finished
+221m 26s (- 266m 19s) (30100 45%) 3.2748
+221m 57s (- 265m 19s) (30200 45%) 3.3004
+222m 28s (- 264m 19s) (30300 45%) 3.1534
+222m 58s (- 263m 19s) (30400 45%) 3.0652
+Epoch 77/169 finished
+223m 29s (- 262m 19s) (30500 46%) 3.2259
+224m 0s (- 261m 20s) (30600 46%) 3.0023
+224m 31s (- 260m 21s) (30700 46%) 2.9000
+225m 1s (- 259m 22s) (30800 46%) 3.2933
+Epoch 78/169 finished
+227m 30s (- 260m 38s) (30900 46%) 3.1799
+230m 14s (- 262m 10s) (31000 46%) 2.9325
+233m 5s (- 263m 49s) (31100 46%) 3.2242
+235m 56s (- 265m 25s) (31200 47%) 3.1648
+Epoch 79/169 finished
+236m 27s (- 264m 25s) (31300 47%) 2.8860
+236m 58s (- 263m 23s) (31400 47%) 3.2344
+237m 29s (- 262m 22s) (31500 47%) 3.2041
+Epoch 80/169 finished
+238m 0s (- 261m 20s) (31600 47%) 2.7279
+238m 30s (- 260m 19s) (31700 47%) 3.0364
+239m 1s (- 259m 19s) (31800 47%) 3.4106
+239m 32s (- 258m 18s) (31900 48%) 2.9984
+Epoch 81/169 finished
+240m 2s (- 257m 18s) (32000 48%) 3.1859
+240m 33s (- 256m 18s) (32100 48%) 3.1301
+241m 4s (- 255m 17s) (32200 48%) 3.0831
+241m 35s (- 254m 18s) (32300 48%) 2.9238
+Epoch 82/169 finished
+242m 5s (- 253m 18s) (32400 48%) 3.1346
+242m 36s (- 252m 18s) (32500 49%) 2.8579
+243m 7s (- 251m 19s) (32600 49%) 3.2345
+243m 38s (- 250m 20s) (32700 49%) 3.0197
+Epoch 83/169 finished
+244m 8s (- 249m 21s) (32800 49%) 3.1279
+244m 39s (- 248m 22s) (32900 49%) 2.9207
+245m 10s (- 247m 24s) (33000 49%) 3.1312
+245m 41s (- 246m 25s) (33100 49%) 3.1363
+Epoch 84/169 finished
+246m 11s (- 245m 27s) (33200 50%) 2.8958
+246m 42s (- 244m 29s) (33300 50%) 2.9051
+247m 13s (- 243m 31s) (33400 50%) 3.1281
+247m 43s (- 242m 33s) (33500 50%) 2.8082
+Epoch 85/169 finished
+248m 14s (- 241m 35s) (33600 50%) 3.0647
+248m 45s (- 240m 38s) (33700 50%) 2.7585
+249m 16s (- 239m 40s) (33800 50%) 3.1726
+249m 46s (- 238m 43s) (33900 51%) 3.2082
+Epoch 86/169 finished
+250m 17s (- 237m 46s) (34000 51%) 3.2789
+250m 48s (- 236m 49s) (34100 51%) 3.1694
+251m 19s (- 235m 53s) (34200 51%) 3.3167
+251m 50s (- 234m 56s) (34300 51%) 3.2358
+Epoch 87/169 finished
+252m 20s (- 234m 0s) (34400 51%) 2.6535
+252m 51s (- 233m 4s) (34500 52%) 2.7267
+253m 22s (- 232m 8s) (34600 52%) 3.3388
+253m 52s (- 231m 12s) (34700 52%) 3.1616
+Epoch 88/169 finished
+256m 18s (- 232m 0s) (34800 52%) 3.2784
+259m 0s (- 233m 2s) (34900 52%) 2.9072
+261m 43s (- 234m 3s) (35000 52%) 3.0029
+264m 34s (- 235m 10s) (35100 52%) 2.9665
+Epoch 89/169 finished
+265m 7s (- 234m 14s) (35200 53%) 3.0705
+265m 38s (- 233m 16s) (35300 53%) 2.7634
+266m 8s (- 232m 18s) (35400 53%) 2.6289
+Epoch 90/169 finished
+266m 39s (- 231m 21s) (35500 53%) 3.0515
+267m 10s (- 230m 24s) (35600 53%) 3.1373
+267m 41s (- 229m 27s) (35700 53%) 2.9805
+268m 12s (- 228m 30s) (35800 53%) 2.6643
+Epoch 91/169 finished
+268m 43s (- 227m 33s) (35900 54%) 2.8258
+269m 14s (- 226m 36s) (36000 54%) 2.9510
+269m 45s (- 225m 40s) (36100 54%) 3.0649
+270m 16s (- 224m 43s) (36200 54%) 3.2462
+Epoch 92/169 finished
+270m 47s (- 223m 47s) (36300 54%) 3.2702
+271m 18s (- 222m 51s) (36400 54%) 2.9577
+271m 49s (- 221m 55s) (36500 55%) 2.8791
+272m 20s (- 220m 59s) (36600 55%) 2.8784
+Epoch 93/169 finished
+272m 51s (- 220m 4s) (36700 55%) 2.6569
+273m 22s (- 219m 8s) (36800 55%) 2.8194
+273m 53s (- 218m 12s) (36900 55%) 2.6261
+274m 24s (- 217m 17s) (37000 55%) 3.2418
+Epoch 94/169 finished
+274m 55s (- 216m 22s) (37100 55%) 3.0415
+275m 26s (- 215m 27s) (37200 56%) 2.9391
+275m 56s (- 214m 32s) (37300 56%) 2.6523
+276m 27s (- 213m 37s) (37400 56%) 2.7549
+Epoch 95/169 finished
+276m 58s (- 212m 43s) (37500 56%) 2.9194
+277m 29s (- 211m 48s) (37600 56%) 3.2076
+278m 0s (- 210m 54s) (37700 56%) 2.8159
+278m 31s (- 209m 59s) (37800 57%) 2.5272
+Epoch 96/169 finished
+279m 2s (- 209m 5s) (37900 57%) 3.0800
+279m 33s (- 208m 11s) (38000 57%) 2.6510
+280m 4s (- 207m 17s) (38100 57%) 2.7294
+280m 35s (- 206m 24s) (38200 57%) 3.1642
+Epoch 97/169 finished
+281m 6s (- 205m 30s) (38300 57%) 2.6201
+281m 37s (- 204m 36s) (38400 57%) 3.1175
+282m 8s (- 203m 43s) (38500 58%) 2.8896
+282m 39s (- 202m 50s) (38600 58%) 2.9551
+Epoch 98/169 finished
+285m 3s (- 203m 17s) (38700 58%) 2.8484
+287m 45s (- 203m 57s) (38800 58%) 2.7892
+290m 32s (- 204m 39s) (38900 58%) 2.9162
+293m 25s (- 205m 23s) (39000 58%) 2.7491
+Epoch 99/169 finished
+293m 57s (- 204m 29s) (39100 58%) 2.6187
+294m 28s (- 203m 34s) (39200 59%) 2.8989
+294m 59s (- 202m 39s) (39300 59%) 3.1424
+Epoch 100/169 finished
+295m 30s (- 201m 45s) (39400 59%) 3.0281
+296m 1s (- 200m 50s) (39500 59%) 2.6865
+296m 33s (- 199m 56s) (39600 59%) 2.7402
+297m 4s (- 199m 2s) (39700 59%) 2.8772
+Epoch 101/169 finished
+297m 35s (- 198m 8s) (39800 60%) 2.9486
+298m 6s (- 197m 14s) (39900 60%) 2.7870
+298m 37s (- 196m 20s) (40000 60%) 3.1312
+299m 8s (- 195m 26s) (40100 60%) 3.0649
+Epoch 102/169 finished
+299m 38s (- 194m 32s) (40200 60%) 2.8136
+300m 9s (- 193m 39s) (40300 60%) 2.8935
+300m 40s (- 192m 45s) (40400 60%) 3.0302
+301m 11s (- 191m 52s) (40500 61%) 2.5616
+Epoch 103/169 finished
+301m 42s (- 190m 59s) (40600 61%) 2.9280
+302m 13s (- 190m 5s) (40700 61%) 2.8048
+302m 44s (- 189m 12s) (40800 61%) 2.7883
+303m 15s (- 188m 19s) (40900 61%) 2.9422
+Epoch 104/169 finished
+303m 46s (- 187m 26s) (41000 61%) 2.5931
+304m 17s (- 186m 34s) (41100 61%) 2.8161
+304m 48s (- 185m 41s) (41200 62%) 2.8029
+305m 19s (- 184m 49s) (41300 62%) 2.7246
+Epoch 105/169 finished
+305m 49s (- 183m 56s) (41400 62%) 2.7160
+306m 20s (- 183m 4s) (41500 62%) 2.8266
+306m 51s (- 182m 11s) (41600 62%) 2.5441
+307m 22s (- 181m 19s) (41700 62%) 2.7265
+Epoch 106/169 finished
+307m 53s (- 180m 27s) (41800 63%) 2.9579
+308m 24s (- 179m 35s) (41900 63%) 2.6839
+308m 55s (- 178m 44s) (42000 63%) 2.8258
+309m 26s (- 177m 52s) (42100 63%) 2.9226
+Epoch 107/169 finished
+309m 57s (- 177m 0s) (42200 63%) 3.0567
+310m 28s (- 176m 9s) (42300 63%) 2.6295
+310m 59s (- 175m 17s) (42400 63%) 2.6899
+311m 30s (- 174m 26s) (42500 64%) 2.9717
+Epoch 108/169 finished
+314m 1s (- 174m 42s) (42600 64%) 2.5256
+316m 46s (- 175m 4s) (42700 64%) 2.8943
+319m 23s (- 175m 21s) (42800 64%) 3.1199
+321m 59s (- 175m 37s) (42900 64%) 2.5665
+Epoch 109/169 finished
+322m 31s (- 174m 45s) (43000 64%) 2.7403
+323m 1s (- 173m 52s) (43100 65%) 2.7462
+323m 32s (- 173m 0s) (43200 65%) 2.7162
+Epoch 110/169 finished
+324m 3s (- 172m 7s) (43300 65%) 3.0091
+324m 33s (- 171m 15s) (43400 65%) 2.6741
+325m 4s (- 170m 22s) (43500 65%) 2.6729
+325m 35s (- 169m 30s) (43600 65%) 2.9380
+Epoch 111/169 finished
+326m 5s (- 168m 38s) (43700 65%) 2.5940
+326m 36s (- 167m 46s) (43800 66%) 2.5383
+327m 6s (- 166m 54s) (43900 66%) 2.9921
+327m 37s (- 166m 2s) (44000 66%) 2.8788
+Epoch 112/169 finished
+328m 8s (- 165m 11s) (44100 66%) 2.7322
+328m 39s (- 164m 19s) (44200 66%) 2.8925
+329m 9s (- 163m 27s) (44300 66%) 2.7468
+329m 40s (- 162m 36s) (44400 66%) 2.9618
+Epoch 113/169 finished
+330m 11s (- 161m 45s) (44500 67%) 2.7210
+330m 41s (- 160m 53s) (44600 67%) 2.6998
+331m 12s (- 160m 2s) (44700 67%) 2.8341
+331m 43s (- 159m 11s) (44800 67%) 3.2539
+Epoch 114/169 finished
+332m 14s (- 158m 20s) (44900 67%) 2.7645
+332m 44s (- 157m 30s) (45000 67%) 2.9054
+333m 15s (- 156m 39s) (45100 68%) 2.9510
+333m 46s (- 155m 48s) (45200 68%) 2.6609
+Epoch 115/169 finished
+334m 16s (- 154m 57s) (45300 68%) 2.7541
+334m 47s (- 154m 7s) (45400 68%) 2.7682
+335m 18s (- 153m 16s) (45500 68%) 2.7411
+335m 49s (- 152m 26s) (45600 68%) 2.9294
+Epoch 116/169 finished
+336m 19s (- 151m 36s) (45700 68%) 2.4157
+336m 50s (- 150m 46s) (45800 69%) 2.7049
+337m 21s (- 149m 56s) (45900 69%) 3.1119
+337m 51s (- 149m 6s) (46000 69%) 2.8503
+Epoch 117/169 finished
+338m 22s (- 148m 16s) (46100 69%) 2.8895
+338m 53s (- 147m 26s) (46200 69%) 2.5493
+339m 24s (- 146m 36s) (46300 69%) 2.8730
+339m 54s (- 145m 46s) (46400 69%) 2.8322
+Epoch 118/169 finished
+342m 15s (- 145m 44s) (46500 70%) 2.6355
+344m 51s (- 145m 47s) (46600 70%) 2.5237
+347m 27s (- 145m 49s) (46700 70%) 3.0692
+350m 3s (- 145m 51s) (46800 70%) 2.5743
+Epoch 119/169 finished
+350m 35s (- 145m 1s) (46900 70%) 2.7243
+351m 5s (- 144m 10s) (47000 70%) 2.7686
+351m 36s (- 143m 19s) (47100 71%) 2.6418
+Epoch 120/169 finished
+352m 7s (- 142m 29s) (47200 71%) 3.0000
+352m 37s (- 141m 38s) (47300 71%) 2.3586
+353m 8s (- 140m 48s) (47400 71%) 2.8995
+353m 39s (- 139m 58s) (47500 71%) 2.7349
+Epoch 121/169 finished
+354m 10s (- 139m 8s) (47600 71%) 2.7592
+354m 40s (- 138m 18s) (47700 71%) 2.4985
+355m 11s (- 137m 28s) (47800 72%) 2.4115
+355m 42s (- 136m 38s) (47900 72%) 2.6090
+Epoch 122/169 finished
+356m 13s (- 135m 48s) (48000 72%) 2.5858
+356m 43s (- 134m 58s) (48100 72%) 2.3045
+357m 14s (- 134m 9s) (48200 72%) 2.5901
+357m 45s (- 133m 19s) (48300 72%) 2.8240
+Epoch 123/169 finished
+358m 15s (- 132m 29s) (48400 73%) 2.6062
+358m 46s (- 131m 40s) (48500 73%) 2.6760
+359m 17s (- 130m 51s) (48600 73%) 2.7355
+359m 48s (- 130m 1s) (48700 73%) 2.6764
+Epoch 124/169 finished
+360m 18s (- 129m 12s) (48800 73%) 2.4924
+360m 49s (- 128m 23s) (48900 73%) 2.3883
+361m 20s (- 127m 34s) (49000 73%) 2.7184
+361m 51s (- 126m 45s) (49100 74%) 2.6283
+Epoch 125/169 finished
+362m 21s (- 125m 56s) (49200 74%) 2.5969
+362m 52s (- 125m 7s) (49300 74%) 2.4874
+363m 23s (- 124m 19s) (49400 74%) 2.5554
+363m 54s (- 123m 30s) (49500 74%) 2.6171
+Epoch 126/169 finished
+364m 24s (- 122m 41s) (49600 74%) 2.7494
+364m 55s (- 121m 53s) (49700 74%) 2.5136
+365m 26s (- 121m 4s) (49800 75%) 2.8301
+365m 57s (- 120m 16s) (49900 75%) 2.6113
+Epoch 127/169 finished
+366m 28s (- 119m 28s) (50000 75%) 2.9784
+366m 58s (- 118m 39s) (50100 75%) 2.5216
+367m 29s (- 117m 51s) (50200 75%) 2.8468
+368m 0s (- 117m 3s) (50300 75%) 2.9245
+Epoch 128/169 finished
+370m 39s (- 116m 56s) (50400 76%) 2.3954
+373m 18s (- 116m 47s) (50500 76%) 2.4194
+375m 55s (- 116m 38s) (50600 76%) 2.5749
+378m 41s (- 116m 31s) (50700 76%) 3.0319
+Epoch 129/169 finished
+379m 13s (- 115m 42s) (50800 76%) 2.5507
+379m 44s (- 114m 53s) (50900 76%) 2.6575
+380m 15s (- 114m 4s) (51000 76%) 2.4306
+Epoch 130/169 finished
+380m 46s (- 113m 15s) (51100 77%) 2.7706
+381m 17s (- 112m 26s) (51200 77%) 2.8378
+381m 47s (- 111m 38s) (51300 77%) 2.7123
+382m 18s (- 110m 49s) (51400 77%) 2.3491
+Epoch 131/169 finished
+382m 49s (- 110m 1s) (51500 77%) 2.6402
+383m 20s (- 109m 12s) (51600 77%) 2.5077
+383m 51s (- 108m 24s) (51700 77%) 2.4310
+384m 22s (- 107m 35s) (51800 78%) 2.8534
+Epoch 132/169 finished
+384m 53s (- 106m 47s) (51900 78%) 2.3576
+385m 24s (- 105m 59s) (52000 78%) 2.5217
+385m 55s (- 105m 10s) (52100 78%) 2.4894
+386m 25s (- 104m 22s) (52200 78%) 2.7089
+Epoch 133/169 finished
+386m 56s (- 103m 34s) (52300 78%) 2.3719
+387m 27s (- 102m 46s) (52400 79%) 2.4540
+387m 58s (- 101m 58s) (52500 79%) 2.5203
+388m 29s (- 101m 11s) (52600 79%) 2.5109
+Epoch 134/169 finished
+389m 0s (- 100m 23s) (52700 79%) 2.7568
+389m 31s (- 99m 35s) (52800 79%) 2.8385
+390m 2s (- 98m 48s) (52900 79%) 2.7997
+390m 33s (- 98m 0s) (53000 79%) 2.5817
+Epoch 135/169 finished
+391m 4s (- 97m 13s) (53100 80%) 2.5716
+391m 35s (- 96m 25s) (53200 80%) 2.5734
+392m 6s (- 95m 38s) (53300 80%) 2.5043
+392m 37s (- 94m 50s) (53400 80%) 2.6343
+Epoch 136/169 finished
+393m 8s (- 94m 3s) (53500 80%) 2.1227
+393m 39s (- 93m 16s) (53600 80%) 2.4789
+394m 10s (- 92m 29s) (53700 80%) 2.4998
+394m 41s (- 91m 42s) (53800 81%) 2.9112
+Epoch 137/169 finished
+395m 12s (- 90m 55s) (53900 81%) 2.5208
+395m 43s (- 90m 8s) (54000 81%) 2.7659
+396m 14s (- 89m 21s) (54100 81%) 2.5330
+396m 44s (- 88m 34s) (54200 81%) 2.5402
+Epoch 138/169 finished
+399m 8s (- 88m 12s) (54300 81%) 2.5159
+401m 47s (- 87m 53s) (54400 82%) 2.6180
+404m 24s (- 87m 33s) (54500 82%) 2.4483
+407m 2s (- 87m 13s) (54600 82%) 2.6979
+Epoch 139/169 finished
+407m 34s (- 86m 25s) (54700 82%) 2.9024
+408m 5s (- 85m 38s) (54800 82%) 2.6883
+408m 36s (- 84m 50s) (54900 82%) 2.7627
+Epoch 140/169 finished
+409m 7s (- 84m 3s) (55000 82%) 2.4124
+409m 37s (- 83m 15s) (55100 83%) 2.5730
+410m 8s (- 82m 28s) (55200 83%) 2.2362
+410m 39s (- 81m 41s) (55300 83%) 2.8773
+Epoch 141/169 finished
+411m 10s (- 80m 53s) (55400 83%) 2.3489
+411m 41s (- 80m 6s) (55500 83%) 2.3995
+412m 12s (- 79m 19s) (55600 83%) 2.5012
+412m 43s (- 78m 32s) (55700 84%) 2.4546
+Epoch 142/169 finished
+413m 14s (- 77m 45s) (55800 84%) 2.5591
+413m 45s (- 76m 58s) (55900 84%) 2.3952
+414m 16s (- 76m 11s) (56000 84%) 2.5827
+414m 47s (- 75m 24s) (56100 84%) 2.6079
+Epoch 143/169 finished
+415m 18s (- 74m 38s) (56200 84%) 2.5350
+415m 48s (- 73m 51s) (56300 84%) 2.4424
+416m 19s (- 73m 4s) (56400 85%) 2.4664
+416m 50s (- 72m 18s) (56500 85%) 2.5347
+Epoch 144/169 finished
+417m 21s (- 71m 31s) (56600 85%) 2.0843
+417m 52s (- 70m 45s) (56700 85%) 2.7584
+418m 23s (- 69m 58s) (56800 85%) 2.5613
+418m 54s (- 69m 12s) (56900 85%) 2.4355
+Epoch 145/169 finished
+419m 25s (- 68m 25s) (57000 85%) 2.8232
+419m 56s (- 67m 39s) (57100 86%) 2.4599
+420m 27s (- 66m 53s) (57200 86%) 2.3503
+420m 58s (- 66m 7s) (57300 86%) 2.4039
+Epoch 146/169 finished
+421m 28s (- 65m 21s) (57400 86%) 2.2498
+421m 59s (- 64m 35s) (57500 86%) 2.4996
+422m 30s (- 63m 49s) (57600 86%) 2.2302
+423m 1s (- 63m 3s) (57700 87%) 2.2990
+Epoch 147/169 finished
+423m 32s (- 62m 17s) (57800 87%) 2.2498
+424m 3s (- 61m 31s) (57900 87%) 2.4016
+424m 34s (- 60m 45s) (58000 87%) 2.6808
+425m 5s (- 59m 59s) (58100 87%) 2.1999
+Epoch 148/169 finished
+427m 31s (- 59m 30s) (58200 87%) 2.7172
+430m 12s (- 59m 2s) (58300 87%) 2.4228
+432m 50s (- 58m 33s) (58400 88%) 2.3019
+435m 29s (- 58m 3s) (58500 88%) 2.6734
+Epoch 149/169 finished
+436m 1s (- 57m 17s) (58600 88%) 2.5102
+436m 31s (- 56m 31s) (58700 88%) 2.3862
+437m 2s (- 55m 44s) (58800 88%) 2.5162
+Epoch 150/169 finished
+437m 33s (- 54m 58s) (58900 88%) 2.4692
+438m 3s (- 54m 12s) (59000 88%) 2.5457
+438m 34s (- 53m 25s) (59100 89%) 2.7683
+439m 5s (- 52m 39s) (59200 89%) 2.6214
+Epoch 151/169 finished
+439m 35s (- 51m 53s) (59300 89%) 2.3323
+440m 6s (- 51m 7s) (59400 89%) 2.2976
+440m 37s (- 50m 21s) (59500 89%) 2.5153
+441m 7s (- 49m 35s) (59600 89%) 2.8145
+Epoch 152/169 finished
+441m 38s (- 48m 49s) (59700 90%) 2.7198
+442m 9s (- 48m 3s) (59800 90%) 2.5307
+442m 40s (- 47m 17s) (59900 90%) 2.7054
+443m 11s (- 46m 32s) (60000 90%) 2.5357
+Epoch 153/169 finished
+443m 41s (- 45m 46s) (60100 90%) 2.3788
+444m 12s (- 45m 0s) (60200 90%) 2.4289
+444m 43s (- 44m 15s) (60300 90%) 2.4063
+445m 13s (- 43m 29s) (60400 91%) 2.3628
+Epoch 154/169 finished
+445m 44s (- 42m 43s) (60500 91%) 2.2045
+446m 15s (- 41m 58s) (60600 91%) 2.5212
+446m 45s (- 41m 13s) (60700 91%) 2.7149
+447m 16s (- 40m 27s) (60800 91%) 2.6817
+Epoch 155/169 finished
+447m 47s (- 39m 42s) (60900 91%) 2.5607
+448m 17s (- 38m 57s) (61000 92%) 2.6669
+448m 48s (- 38m 11s) (61100 92%) 2.6964
+449m 19s (- 37m 26s) (61200 92%) 2.6498
+Epoch 156/169 finished
+449m 50s (- 36m 41s) (61300 92%) 2.6545
+450m 20s (- 35m 56s) (61400 92%) 2.5667
+450m 51s (- 35m 11s) (61500 92%) 2.3218
+451m 22s (- 34m 26s) (61600 92%) 2.5130
+Epoch 157/169 finished
+451m 52s (- 33m 41s) (61700 93%) 2.4633
+452m 23s (- 32m 56s) (61800 93%) 2.4887
+452m 54s (- 32m 11s) (61900 93%) 2.2954
+453m 24s (- 31m 26s) (62000 93%) 2.4592
+Epoch 158/169 finished
+456m 4s (- 30m 50s) (62100 93%) 2.6848
+458m 46s (- 30m 14s) (62200 93%) 2.5893
+461m 40s (- 29m 38s) (62300 93%) 2.7543
+464m 29s (- 29m 1s) (62400 94%) 2.4006
+Epoch 159/169 finished
+465m 1s (- 28m 16s) (62500 94%) 2.2185
+465m 32s (- 27m 30s) (62600 94%) 2.4736
+466m 2s (- 26m 45s) (62700 94%) 2.2723
+Epoch 160/169 finished
+466m 33s (- 26m 0s) (62800 94%) 2.7017
+467m 4s (- 25m 14s) (62900 94%) 2.4038
+467m 35s (- 24m 29s) (63000 95%) 2.5469
+468m 5s (- 23m 44s) (63100 95%) 2.5153
+Epoch 161/169 finished
+468m 36s (- 22m 59s) (63200 95%) 2.6615
+469m 7s (- 22m 14s) (63300 95%) 2.2387
+469m 38s (- 21m 28s) (63400 95%) 2.3247
+470m 9s (- 20m 43s) (63500 95%) 2.5936
+Epoch 162/169 finished
+470m 40s (- 19m 58s) (63600 95%) 2.4481
+471m 11s (- 19m 13s) (63700 96%) 2.6704
+471m 41s (- 18m 29s) (63800 96%) 2.8704
+472m 12s (- 17m 44s) (63900 96%) 2.3855
+Epoch 163/169 finished
+472m 43s (- 16m 59s) (64000 96%) 2.5638
+473m 14s (- 16m 14s) (64100 96%) 2.7082
+473m 44s (- 15m 29s) (64200 96%) 2.3793
+474m 15s (- 14m 45s) (64300 96%) 2.3650
+Epoch 164/169 finished
+474m 46s (- 14m 0s) (64400 97%) 2.5838
+475m 17s (- 13m 15s) (64500 97%) 2.5430
+475m 48s (- 12m 31s) (64600 97%) 2.7995
+476m 18s (- 11m 46s) (64700 97%) 2.6585
+Epoch 165/169 finished
+476m 49s (- 11m 2s) (64800 97%) 2.8676
+477m 20s (- 10m 17s) (64900 97%) 2.5313
+477m 51s (- 9m 33s) (65000 98%) 2.4945
+478m 22s (- 8m 49s) (65100 98%) 2.0003
+Epoch 166/169 finished
+478m 52s (- 8m 4s) (65200 98%) 2.6537
+479m 23s (- 7m 20s) (65300 98%) 2.3311
+479m 54s (- 6m 36s) (65400 98%) 2.2027
+480m 25s (- 5m 52s) (65500 98%) 2.6152
+Epoch 167/169 finished
+480m 55s (- 5m 7s) (65600 98%) 2.4317
+481m 26s (- 4m 23s) (65700 99%) 2.5406
+481m 57s (- 3m 39s) (65800 99%) 2.6536
+482m 28s (- 2m 55s) (65900 99%) 2.4139
+Epoch 168/169 finished
+485m 24s (- 2m 12s) (66000 99%) 2.1747
+488m 14s (- 1m 28s) (66100 99%) 2.2992
+490m 52s (- 0m 44s) (66200 99%) 2.4752
+493m 29s (- 0m 0s) (66300 100%) 2.3490
+Epoch 169/169 finished
+Evaluate randomly on training sentences:
+PAIR 1
+> 4.0 caribbean restaurants halal
+= loved their roti and chicken wrap .  was not a fan of their doubles .
+< loved their roti , roti and chicken . wrap was not very . , <EOS>
+
+> 4.0 caribbean restaurants halal
+= loved their roti and chicken wrap .  was not a fan of their doubles .
+< loved their roti and chicken wrap .  was not a fan of their doubles . <EOS>
+
+> 4.0 caribbean restaurants halal
+= loved their roti and chicken wrap .  was not a fan of their doubles .
+< loved their roti and chicken wrap .  was not a fan of their doubles . <EOS>
+
+> 4.0 caribbean restaurants halal
+= loved their roti and chicken wrap .  was not a fan of their doubles .
+< loved their roti and chicken wrap .  was not a fan of their doubles . <EOS>
+
+> 4.0 caribbean restaurants halal
+= loved their roti and chicken wrap .  was not a fan of their doubles .
+< loved their roti and chicken wrap .  was not a fan of their doubles . <EOS>
+
+PAIR 2
+> 4.0 restaurants fast food mexican
+= first time at this location . got to try the sofritas in a quesarito . very yummy ! nice staff .
+< came here for lunch today . this is was good and always . but i can't get it's the thing it . you will and . <EOS>
+
+> 4.0 restaurants fast food mexican
+= first time at this location . got to try the sofritas in a quesarito . very yummy ! nice staff .
+< first time at this location . it always has a nice <UNK> . the service was getting friendly . fast the food taste like it . :) <EOS>
+
+> 4.0 restaurants fast food mexican
+= first time at this location . got to try the sofritas in a quesarito . very yummy ! nice staff .
+< first time at this mother's day ! fast food it . . . . . . <EOS>
+
+> 4.0 restaurants fast food mexican
+= first time at this location . got to try the sofritas in a quesarito . very yummy ! nice staff .
+< first like we food but . the . . sofritas . it <UNK> . to for the smaller the . . . . . . <EOS>
+
+> 4.0 restaurants fast food mexican
+= first time at this location . got to try the sofritas in a quesarito . very yummy ! nice staff .
+< awesome asada fries . went there to get nachos but settles on the fries and did not regret it <EOS>
+
+PAIR 3
+> 5.0 restaurants sushi bars
+= fresh sushi late at night and a cozy atmosphere . very friendly staff .
+< we love this place for dinner , and sushi . is , . . and . the sushi <EOS>
+
+> 5.0 restaurants sushi bars
+= fresh sushi late at night and a cozy atmosphere . very friendly staff .
+< good value for all sushi can in vegas . reasonable prices , great for <UNK> can be definitely worth the drive . <EOS>
+
+> 5.0 restaurants sushi bars
+= fresh sushi late at night and a cozy atmosphere . very friendly staff .
+< the sushi is sushi . place price and . menu and staff . staff and  . is place . sushi . sushi . . . . <EOS>
+
+> 5.0 restaurants sushi bars
+= fresh sushi late at night and a cozy atmosphere . very friendly staff .
+< the is here the can food and , is to all . . the or , . . all we <EOS>
+
+> 5.0 restaurants sushi bars
+= fresh sushi late at night and a cozy atmosphere . very friendly staff .
+< best sushi in place favorite the the and the bring is  or for . is and . . you and <EOS>
+
+PAIR 4
+> 3.0 pizza restaurants fast food persian/iranian
+= 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive
+< 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive <EOS>
+
+> 3.0 pizza restaurants fast food persian/iranian
+= 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive
+< 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive <EOS>
+
+> 3.0 pizza restaurants fast food persian/iranian
+= 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive
+< 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive <EOS>
+
+> 3.0 pizza restaurants fast food persian/iranian
+= 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive
+< 1 ) chef quit on the day i went so there wasn't no food2 ) shisha was good 3 ) <EOS>
+
+> 3.0 pizza restaurants fast food persian/iranian
+= 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive
+< 1 ) chef quit on the day i went so there was no food2 ) shisha was good 3 ) it was a bit expensive <EOS>
+
+PAIR 5
+> 3.0 restaurants cajun/creole seafood
+= maybe because we came at 3 : 00 , changing of the guards , they weren't on there game ? the pan roast was good but crawfish frozen .
+< a little pricey and for 20 the the ! the guards size the not bites the <EOS>
+
+> 3.0 restaurants cajun/creole seafood
+= maybe because we came at 3 : 00 , changing of the guards , they weren't on there game ? the pan roast was good but crawfish frozen .
+< a little pricey and not the best the taste . the at guards the . the guards . <EOS>
+
+> 3.0 restaurants cajun/creole seafood
+= maybe because we came at 3 : 00 , changing of the guards , they weren't on there game ? the pan roast was good but crawfish frozen .
+< maybe because the the cajun shrimp . moist the shrimp . do the shrimp get in and <EOS>
+
+> 3.0 restaurants cajun/creole seafood
+= maybe because we came at 3 : 00 , changing of the guards , they weren't on there game ? the pan roast was good but crawfish frozen .
+< maybe because we have shrimp this the whole a in little the guards guards ! <EOS>
+
+> 3.0 restaurants cajun/creole seafood
+= maybe because we came at 3 : 00 , changing of the guards , they weren't on there game ? the pan roast was good but crawfish frozen .
+< a little pricey for the food at the that the and of the and guards the the <EOS>
+
+PAIR 6
+> 4.0 mediterranean restaurants greek
+= clean healthy fast and fresh i like to just phone my order in and take the food for pick up easy access i-15 and green valley
+< great food their great !  gyros and gyro that generally . a as good . get . . service . <EOS>
+
+> 4.0 mediterranean restaurants greek
+= clean healthy fast and fresh i like to just phone my order in and take the food for pick up easy access i-15 and green valley
+< great food , great service i gyro was was they . , <EOS>
+
+> 4.0 mediterranean restaurants greek
+= clean healthy fast and fresh i like to just phone my order in and take the food for pick up easy access i-15 and green valley
+< great food and great atmosphere . gyro was crisp and a . . are they the . . a . . . . <EOS>
+
+> 4.0 mediterranean restaurants greek
+= clean healthy fast and fresh i like to just phone my order in and take the food for pick up easy access i-15 and green valley
+< great food and never had <UNK> the gyro not too much and . good . . . . . the but . . . . . <EOS>
+
+> 4.0 mediterranean restaurants greek
+= clean healthy fast and fresh i like to just phone my order in and take the food for pick up easy access i-15 and green valley
+< gyros was good !  i usually order the gyro wrap and hummus a bit . . but the a a <EOS>
+
+PAIR 7
+> 4.0 breakfast & brunch restaurants
+= food is good , and very generous portions .  they have great pancakes and great omelettes !  definitely a place not to be missed !
+< great food , , . . atmostphere , . . wait , the . <UNK> . the . . would . . <EOS>
+
+> 4.0 breakfast & brunch restaurants
+= food is good , and very generous portions .  they have great pancakes and great omelettes !  definitely a place not to be missed !
+< great breakfast spot , the was the . . . and . , . . browns burgh we <EOS>
+
+> 4.0 breakfast & brunch restaurants
+= food is good , and very generous portions .  they have great pancakes and great omelettes !  definitely a place not to be missed !
+< very cute and cozy . perfect for breakfast on a sunday morning . prices are affordable and the quality of food was . . was will definitely . <EOS>
+
+> 4.0 breakfast & brunch restaurants
+= food is good , and very generous portions .  they have great pancakes and great omelettes !  definitely a place not to be missed !
+< great breakfest at the western decor was great breakfast . not the for were pancakes . . . <EOS>
+
+> 4.0 breakfast & brunch restaurants
+= food is good , and very generous portions .  they have great pancakes and great omelettes !  definitely a place not to be missed !
+< great food and , . the pancakes were the . the . . we a have . . as <EOS>
+
+PAIR 8
+> 3.0 restaurants mexican
+= very tasty food , on the pricey side . nice employees , clean facility and comfortable . way better than chipotle .
+< food was okay , but they are slow a little understaffed .  . .  and but . . are <EOS>
+
+> 3.0 restaurants mexican
+= very tasty food , on the pricey side . nice employees , clean facility and comfortable . way better than chipotle .
+< food is good but service is not up to . . , not the . and . the . . <EOS>
+
+> 3.0 restaurants mexican
+= very tasty food , on the pricey side . nice employees , clean facility and comfortable . way better than chipotle .
+< the food is the the and menu , . was . the food not sure . the . ! . . . . tasting . ! <EOS>
+
+> 3.0 restaurants mexican
+= very tasty food , on the pricey side . nice employees , clean facility and comfortable . way better than chipotle .
+< open 24 hours . good food and very nice late night service . <EOS>
+
+> 3.0 restaurants mexican
+= very tasty food , on the pricey side . nice employees , clean facility and comfortable . way better than chipotle .
+< good food place a nice salsa chips with salsa on the menu . not in my and the . , . . . . <EOS>
+
+PAIR 9
+> 1.0 fast food restaurants burgers
+= this mcdonald never has ice cream after 10 . ordered a big mac , they forgot the extra patty . workers aren't friendly at all .
+< ordered a 10 piece mcnuggets combo for a quick lunch only to find 9 pieces of mcnuggets . how dare they . <EOS>
+
+> 1.0 fast food restaurants burgers
+= this mcdonald never has ice cream after 10 . ordered a big mac , they forgot the extra patty . workers aren't friendly at all .
+< this particular mcdonalds provides they not . in i've of order . in . the don't . could . . <EOS>
+
+> 1.0 fast food restaurants burgers
+= this mcdonald never has ice cream after 10 . ordered a big mac , they forgot the extra patty . workers aren't friendly at all .
+< i asked for a regular sugar dinner is and parking took 15 minutes to get a burger . who . who <EOS>
+
+> 1.0 fast food restaurants burgers
+= this mcdonald never has ice cream after 10 . ordered a big mac , they forgot the extra patty . workers aren't friendly at all .
+< non existent customer service . rude cashiers and order is almost always wrong . corporate needs to check out this store , it's horrible . <EOS>
+
+> 1.0 fast food restaurants burgers
+= this mcdonald never has ice cream after 10 . ordered a big mac , they forgot the extra patty . workers aren't friendly at all .
+< they slow af here don't know how to count change and uneducated at proper poor customer service . <EOS>
+
+PAIR 10
+> 3.0 mexican restaurants
+= im not a big fan of el torero but my family is . which is why i'm forced to eat there . i prefer dos
+< it was ok but the chicken was outstanding . i got nachos . not as good as i expected . <EOS>
+
+> 3.0 mexican restaurants
+= im not a big fan of el torero but my family is . which is why i'm forced to eat there . i prefer dos
+< great food , but and the was . drinks is . i .. , are . for . . <EOS>
+
+> 3.0 mexican restaurants
+= im not a big fan of el torero but my family is . which is why i'm forced to eat there . i prefer dos
+< nothing special , it's just like any other filibertos in the area . the cashier was friendly and the food was average . <EOS>
+
+> 3.0 mexican restaurants
+= im not a big fan of el torero but my family is . which is why i'm forced to eat there . i prefer dos
+< tried this place again .  the food was good and service was just ok .  i would . not <EOS>
+
+> 3.0 mexican restaurants
+= im not a big fan of el torero but my family is . which is why i'm forced to eat there . i prefer dos
+< good food but . the . is . the . the i <EOS>
+
+Evaluate randomly on testing sentences:
+PAIR 1
+> 2.0 pakistani restaurants halal indian
+= the gravy is good but the chicken is never cooked properly .. chicken is very rubbery ..!! been here twice .. same thing every time ..
+< had the buffet . all their food was pretty good , and cheap taste . <EOS>
+
+> 2.0 pakistani restaurants halal indian
+= the gravy is good but the chicken is never cooked properly .. chicken is very rubbery ..!! been here twice .. same thing every time ..
+< went for the . service got the restaurant after they too . to be around , the place was not worth it . <EOS>
+
+> 2.0 pakistani restaurants halal indian
+= the gravy is good but the chicken is never cooked properly .. chicken is very rubbery ..!! been here twice .. same thing every time ..
+< all chilli west of curries were ok . but the restaurants here is quite slow , especially . won't be <EOS>
+
+> 2.0 pakistani restaurants halal indian
+= the gravy is good but the chicken is never cooked properly .. chicken is very rubbery ..!! been here twice .. same thing every time ..
+< just place the place of their r . the service is too their . was . was higher .. <EOS>
+
+> 2.0 pakistani restaurants halal indian
+= the gravy is good but the chicken is never cooked properly .. chicken is very rubbery ..!! been here twice .. same thing every time ..
+< didn't like the food here . the was . , how restaurant . and the we service ! <EOS>
+
+PAIR 2
+> 1.0 chinese malaysian restaurants
+= used ubereats . took over 2 hours to get the food . still considering whether to eat cold food with ( accumulated ) waters all over it or not .
+< bland food . delivery took two hours from and . , the !!! . if . the . bad rude . . . . . again . <EOS>
+
+> 1.0 chinese malaysian restaurants
+= used ubereats . took over 2 hours to get the food . still considering whether to eat cold food with ( accumulated ) waters all over it or not .
+< ordered delivery from them in food today . ordered the chicken fried rice and . the rice was . . . . . <EOS>
+
+> 1.0 chinese malaysian restaurants
+= used ubereats . took over 2 hours to get the food . still considering whether to eat cold food with ( accumulated ) waters all over it or not .
+< ordered delivery . food was bad . fried rice was soggy . and dirty also the had . not go not won't won't the . . <EOS>
+
+> 1.0 chinese malaysian restaurants
+= used ubereats . took over 2 hours to get the food . still considering whether to eat cold food with ( accumulated ) waters all over it or not .
+< ordered delivery . food didn't ordered from sick . had plenty of lettuce and beef <UNK> . . also , . . . <EOS>
+
+> 1.0 chinese malaysian restaurants
+= used ubereats . took over 2 hours to get the food . still considering whether to eat cold food with ( accumulated ) waters all over it or not .
+< ordered delivery for food , ordered the had delivery , and rice . . ok a the . <EOS>
+
+PAIR 3
+> 1.0 middle eastern restaurants
+= worst customer service ever !!! so rude ! the lady in charge with the red hair was rude !!! i would never go back ! food was cold as well
+< service was slow and it was . when i ordered . . and shawarma . . and . and there was . <EOS>
+
+> 1.0 middle eastern restaurants
+= worst customer service ever !!! so rude ! the lady in charge with the red hair was rude !!! i would never go back ! food was cold as well
+< service was slow and it was . . . had . . the . . . . . , . . . <EOS>
+
+> 1.0 middle eastern restaurants
+= worst customer service ever !!! so rude ! the lady in charge with the red hair was rude !!! i would never go back ! food was cold as well
+< disappointed . had a big platter platter and some of the shawarma was low - the average . and they didn't give them . <EOS>
+
+> 1.0 middle eastern restaurants
+= worst customer service ever !!! so rude ! the lady in charge with the red hair was rude !!! i would never go back ! food was cold as well
+< mediocre was and a <UNK> service . . ordered . . dry and and pretty . and . and . . <EOS>
+
+> 1.0 middle eastern restaurants
+= worst customer service ever !!! so rude ! the lady in charge with the red hair was rude !!! i would never go back ! food was cold as well
+< mediocre location and service with bad attitude ... do not fresh . the and <UNK> wrap . . . . . . . <EOS>
+
+PAIR 4
+> 3.0 restaurants chinese
+= some meals are better then the others but in all reality i would go back ... and i have just wish they opened up their menu to teriyaki .
+< the food was good is but , , , good . service . . the but . the <EOS>
+
+> 3.0 restaurants chinese
+= some meals are better then the others but in all reality i would go back ... and i have just wish they opened up their menu to teriyaki .
+< a little bit above the quality of your average greasy chinese fast food . this is not the worst chinese <EOS>
+
+> 3.0 restaurants chinese
+= some meals are better then the others but in all reality i would go back ... and i have just wish they opened up their menu to teriyaki .
+< fr 4 euro gibt's an dem stand in der bahnhofshalle eine box mit gebratenen nudeln und frischem gemse <UNK> 2 vegetarische frhlingsrollen . <UNK> asiatische imbissqualitt . <EOS>
+
+> 3.0 restaurants chinese
+= some meals are better then the others but in all reality i would go back ... and i have just wish they opened up their menu to teriyaki .
+< average chinese food .  not a standout my favorite chinese , but it's not in . <EOS>
+
+> 3.0 restaurants chinese
+= some meals are better then the others but in all reality i would go back ... and i have just wish they opened up their menu to teriyaki .
+< good is for a lunch good . of the food . <UNK> . like soup really . <EOS>
+
+PAIR 5
+> 5.0 mexican tacos tapas/small plates restaurants
+= love everything about urban taco ! margaritas are well above average with lots of flavors . large wine list . food was unbelievably good ! very impressed overall !
+< everything was delicious , happy hour menu rocked !  i recommend the short rib taco and cream corn with grilled onions and peppers <EOS>
+
+> 5.0 mexican tacos tapas/small plates restaurants
+= love everything about urban taco ! margaritas are well above average with lots of flavors . large wine list . food was unbelievably good ! very impressed overall !
+< so so so delicious ! the will and def be the . and and the the and . the <EOS>
+
+> 5.0 mexican tacos tapas/small plates restaurants
+= love everything about urban taco ! margaritas are well above average with lots of flavors . large wine list . food was unbelievably good ! very impressed overall !
+< so so so good ! i will be back . . flight the the . the ! and ! corn the my to very <EOS>
+
+> 5.0 mexican tacos tapas/small plates restaurants
+= love everything about urban taco ! margaritas are well above average with lots of flavors . large wine list . food was unbelievably good ! very impressed overall !
+< so so so good ! i will rocked be back . the well , happy the happy hour prices are . the and and i . again . <EOS>
+
+> 5.0 mexican tacos tapas/small plates restaurants
+= love everything about urban taco ! margaritas are well above average with lots of flavors . large wine list . food was unbelievably good ! very impressed overall !
+< everything so so good ! i to i recommend this and . and the the and and . be so and .  and it ! was <EOS>
+
+PAIR 6
+> 4.0 restaurants chinese
+= great food , made fresh and what a surprise ! in bolton .
+< have been going here for years and it is now closed . the best on the area . but <EOS>
+
+> 4.0 restaurants chinese
+= great food , made fresh and what a surprise ! in bolton .
+< i really like their spicy chicken with and , very . to good  . the i menu for <EOS>
+
+> 4.0 restaurants chinese
+= great food , made fresh and what a surprise ! in bolton .
+< i like the noodles (), chewy and soup is good .  other dishes are good as are the two . <EOS>
+
+> 4.0 restaurants chinese
+= great food , made fresh and what a surprise ! in bolton .
+< i really good the food here is  and . . . , . that me  for the and <EOS>
+
+> 4.0 restaurants chinese
+= great food , made fresh and what a surprise ! in bolton .
+< the food here is the . with , . the food . and . for too . <EOS>
+
+PAIR 7
+> 3.0 burgers restaurants
+= it's seems like medium means well done here so make your self clear !
+< the place and , are they even and onion . . good was . they .  . burger burger . <EOS>
+
+> 3.0 burgers restaurants
+= it's seems like medium means well done here so make your self clear !
+< it was alright but i wouldn't go out of my way to eat here . <EOS>
+
+> 3.0 burgers restaurants
+= it's seems like medium means well done here so make your self clear !
+< burgers are good but the not food the . are . . was friendly my really burger time . ok and <EOS>
+
+> 3.0 burgers restaurants
+= it's seems like medium means well done here so make your self clear !
+< great are . . , and . , but the . . but . . . . <EOS>
+
+> 3.0 burgers restaurants
+= it's seems like medium means well done here so make your self clear !
+< the fries are good , the . fries very <UNK> music . ok the . . <EOS>
+
+PAIR 8
+> 3.0 mexican nightlife bars restaurants
+= i enjoy this place ... great location ,  nice food ,  awesome atmosphere and its affordable . it's good for a soft kick it .
+< great location , beautiful decor , service was good . my food was ok . <EOS>
+
+> 3.0 mexican nightlife bars restaurants
+= i enjoy this place ... great location ,  nice food ,  awesome atmosphere and its affordable . it's good for a soft kick it .
+< great location , beautiful decor , service was good . the food was food ok but <EOS>
+
+> 3.0 mexican nightlife bars restaurants
+= i enjoy this place ... great location ,  nice food ,  awesome atmosphere and its affordable . it's good for a soft kick it .
+< great location was just ok the outdoor bar did not get to the be . . <EOS>
+
+> 3.0 mexican nightlife bars restaurants
+= i enjoy this place ... great location ,  nice food ,  awesome atmosphere and its affordable . it's good for a soft kick it .
+< great location , beautiful decor , service was good , but food was ok . <EOS>
+
+> 3.0 mexican nightlife bars restaurants
+= i enjoy this place ... great location ,  nice food ,  awesome atmosphere and its affordable . it's good for a soft kick it .
+< the food was was ok decor and was the service was not . was not the not good <EOS>
+
+PAIR 9
+> 5.0 restaurants pizza hot dogs
+= best wings in town , laid back atmosphere family friendly and quick service . pizza is pretty delicious too !!
+< great <UNK> chicago style pizza . got the <UNK> great hot n peppers . <EOS>
+
+> 5.0 restaurants pizza hot dogs
+= best wings in town , laid back atmosphere family friendly and quick service . pizza is pretty delicious too !!
+< great best pizza in . <UNK> . . the <UNK> . . <UNK> of <UNK> . great great <EOS>
+
+> 5.0 restaurants pizza hot dogs
+= best wings in town , laid back atmosphere family friendly and quick service . pizza is pretty delicious too !!
+< great tasting pizza for a <UNK> price . also food with the <UNK> . not service very will go <EOS>
+
+> 5.0 restaurants pizza hot dogs
+= best wings in town , laid back atmosphere family friendly and quick service . pizza is pretty delicious too !!
+< great in n around . great <UNK> the . peppers . <UNK> <EOS>
+
+> 5.0 restaurants pizza hot dogs
+= best wings in town , laid back atmosphere family friendly and quick service . pizza is pretty delicious too !!
+< great tasting chicago pizza in . <UNK> . . and . the . but the . <EOS>
+
+PAIR 10
+> 3.0 korean japanese restaurants
+= everything here is pretty inconsistent . service is terrible when it's crowded . the food is pretty good though , refills on sides cost extra .
+< decent food , but nothing special the in a bit restaurant . service is presentation , crowded and cute little slow . service was a bit slow . <EOS>
+
+> 3.0 korean japanese restaurants
+= everything here is pretty inconsistent . service is terrible when it's crowded . the food is pretty good though , refills on sides cost extra .
+< the food restaurant , the . the not . is . <EOS>
+
+> 3.0 korean japanese restaurants
+= everything here is pretty inconsistent . service is terrible when it's crowded . the food is pretty good though , refills on sides cost extra .
+< food was is . , . the , the the the a . the . . for also for the . . and good . <EOS>
+
+> 3.0 korean japanese restaurants
+= everything here is pretty inconsistent . service is terrible when it's crowded . the food is pretty good though , refills on sides cost extra .
+< decent food . portions large small portions . price not good . menu is small bit for . not much <EOS>
+
+> 3.0 korean japanese restaurants
+= everything here is pretty inconsistent . service is terrible when it's crowded . the food is pretty good though , refills on sides cost extra .
+< ordered pork variety . quality got here in a row like the place and its decent if there are too many other casual dining restaurants . <EOS>
+
+Evaluating 2500 testing sentences...
+Num of short sentences (length <= 15): 201
+score for short sentnces (length <= 15):
+ROUGE1: 0.12275779183926876
+ROUGE2: 0.0688522782032844
+BLEU: 0.11579654879784998
+BLEU_CLIP: 0.06003113049704021
+
+Num of long sentences (length > 15): 2299
+score for long sentnces (length > 15):
+ROUGE1: 0.24982422170848476
+ROUGE2: 0.1395578233670669
+BLEU: 0.08889915913252398
+BLEU_CLIP: 0.0556912110560274
+
+Overall:
+ROUGE1: 0.2396080807469998
+ROUGE2: 0.1338730975358988
+BLEU: 0.09106170926161619
+BLEU_CLIP: 0.05604014057908484
+
+Finished
+

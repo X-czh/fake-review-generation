@@ -1,0 +1,11 @@
+hpc mode: False
+Reading lines...
+Read 25000 training sentence pairs
+Read 2500 testing sentence pairs
+Counting words and constructing training pairs...
+Counted words in training sentences:
+Yelp Reviews 19466
+Example training sentence pairs:
+('4.0 sandwiches restaurants fast food', 'i have always received good service when stopping in to pick up sandwiches .  main part of the restaurant always appears clean .')
+Example testing sentence pairs:
+('3.0 vegetarian thai restaurants seafood', 'no wait , seated promptly . the food was ok for the price , nothing amazing . staff friendly enough .')
